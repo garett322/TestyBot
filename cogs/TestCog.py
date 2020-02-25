@@ -12,7 +12,7 @@ class TestCog(commands.Cog, name = "TestCog" ):
 
     @commands.command(name = 'test' )
     async def testy(self, ctx):
-    	await ctx.send('')
+    	await ctx.send('It Works!')
 
 def setup(bot):
     bot.add_cog(TestCog(bot))
