@@ -5,15 +5,15 @@ import asyncio
 
 
 class RouletteCog(commands.Cog, name = "RouletteCog" ):
-    def __init__(self, bot):
-        self.bot = bot
+	def __init__(self, bot):
+		self.bot = bot
 
-    async def on_message(self, message):
-        if message.author == 'Test Bot#0806':
-            return
+	async def on_message(self, message):
+		if message.author == 'Test Bot#0806':
+			return
         
-    @commands.command(name = 'roulette' )
-    async def russian_roulette(self, ctx):
+	@commands.command(name = 'roulette' )
+	async def russian_roulette(self, ctx):
 		opponent_id = ctx.mentions[0].id
 		oponnent_user = self.bot.get_user(oponnent_id)
 		if (!opponent_user):
@@ -29,4 +29,4 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 			
                            
 def setup(bot):
-    bot.add_cog(RouletteCog(bot))
+	bot.add_cog(RouletteCog(bot))
