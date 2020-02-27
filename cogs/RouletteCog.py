@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import asyncio
 
 
 class RouletteCog(commands.Cog, name = "RouletteCog" ):
