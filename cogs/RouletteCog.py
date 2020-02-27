@@ -16,7 +16,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
     async def russian_roulette(self, ctx):
         await ctx.send('Please mention the person you want to challenge:')
         try:
-    	    msg = await self.bot.wait_for('message', timeout=10.0)
+            msg = await self.bot.wait_for('message', timeout=10.0)
         except asyncio.TimeoutError:
             await ctx.send('You took too long... Game has been cancelled')
         else:
