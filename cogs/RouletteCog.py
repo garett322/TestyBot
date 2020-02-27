@@ -25,15 +25,16 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				await ctx.send('You cant challenge me ' + opponent_user.mention + '. Lmao. I would kick your ass anyways.')
 			else:
 				await ctx.send('Hey ' + opponent_user.mention + ', ' + ctx.author.mention + ' has challenged you to a game of Russian Roulette! Would you like to accept?')
+				
+				def check(m):
+					return m.content.lower() == 'y' or m.content.lower() == 'yes'
+				
 				try:
-					msg = await self.bot.wait_for('message', timeout=15.0)
+					msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 				except asyncio.TimeoutError:
-					await ctx.send('You took too long... Game has been cancelled')
+					await ctx.send('You took too long to accept... Game has been cancelled')
 				else:
-					if 0.content.lower() == 'y' or 0.content.lower() == 'yes':
-						await ctx.send('You said {0.content}, {0.author}.'.format(msg))
-					else:
-						await ctx.send("Mission failed. We'll get 'em next time")
+					await ctx.send('You said {.content}, {.author}.'.format(msg))
 
 					
 					
