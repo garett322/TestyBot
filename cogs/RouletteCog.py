@@ -22,7 +22,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 			if opponent_id == ctx.author.id:
 				await ctx.send('You cant challenge yourself ' + opponent_user.mention)
 			elif opponent_id == self.bot.user.id:
-				await ctx.send('You cant challenge me ' + opponent_user.mention + '. Lmao. I would kick your ass anyways.')
+				await ctx.send('You cant challenge me ' + ctx.author.mention + '. Lmao. I would kick your ass anyways.')
 			else:
 				await ctx.send('Hey ' + opponent_user.mention + ', ' + ctx.author.mention + ' has challenged you to a game of Russian Roulette! Would you like to accept?')
 				
