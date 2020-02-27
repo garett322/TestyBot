@@ -20,10 +20,8 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
         except asyncio.TimeoutError:
             await ctx.send('You took too long... Game has been cancelled')
         else:
-            if (0.content.author() == ctx.message.author):
                 await ctx.send('You said {0.content}, {0.author}.'.format(msg))
-            else:
-                await ctx.send('You cant respond to this command right now.')
+                await ctx.send('You cant respond to this command right now.'.format(ctx.message.author.mention())
                 
             
 
