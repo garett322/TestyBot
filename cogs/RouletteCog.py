@@ -19,13 +19,24 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 		if not opponent_user:
 			await ctx.send('Please mention a valid user to challenge:')
 		else:
-			await ctx.send(opponent_user.mention + ' Roulette Works!')
-		#try:
-		#msg = await self.bot.wait_for('message', timeout=15.0)
-		#except asyncio.TimeoutError:
-		#await ctx.send('You took too long... Game has been cancelled')
-		#else:
-		#await ctx.send('You said {0.content}, {0.author}.'.format(msg))
+			if opponent_id == ctx.author.id:
+				await ctx.send('You cant challenge yourself ' + opponent_user.mention)
+			elif opponent_id == 'Test Bot#0806':
+				await ctx.send('You cant challenge me ' + opponent_user.mention + '. Lmao. I would kick your ass anyways.')
+			else:
+				await ctx.send('Hey ' + opponent_user.mention + ', ' + ctx.author.mention + ' has challenged you to a game of Russian Roulette! Would you like to accept?')
+				try:
+					msg = await self.bot.wait_for('message', timeout=15.0)
+				except asyncio.TimeoutError:
+					await ctx.send('You took too long... Game has been cancelled')
+				else:
+					if 0.content.lower() == 'y' or 0.content.lower() == 'yes':
+						await ctx.send('You said {0.content}, {0.author}.'.format(msg))
+					else:
+						await ctx.send("Mission failed. We'll get 'em next time")
+
+					
+					
 			
                            
 def setup(bot):
