@@ -21,11 +21,11 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 		else:
 			await ctx.send(opponent_user.mention + ' Roulette Works!')
 			#try:
-			#	msg = await self.bot.wait_for('message', timeout=15.0)
+			#msg = await self.bot.wait_for('message', timeout=15.0)
 			#except asyncio.TimeoutError:
-			#	await ctx.send('You took too long... Game has been cancelled')
+			#await ctx.send('You took too long... Game has been cancelled')
 			#else:
-			#	await ctx.send('You said {0.content}, {0.author}.'.format(msg))
+			#await ctx.send('You said {0.content}, {0.author}.'.format(msg))
 			
                            
 def setup(bot):
