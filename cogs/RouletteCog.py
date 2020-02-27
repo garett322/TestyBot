@@ -15,7 +15,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 	@commands.command(name = 'roulette' )
 	async def russian_roulette(self, ctx):
 		opponent_id = ctx.message.mentions[0].id
-		oponnent_user = self.bot.get_user(opponent_id)
+		opponent_user = self.bot.get_user(opponent_id)
 		if not opponent_user:
 			await ctx.send('Please mention a valid user to challenge:')
 		else:
