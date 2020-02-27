@@ -13,7 +13,8 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
         
     @commands.command(name = 'roulette' )
     async def russian_roulette(self, ctx):
-    	msg = await client.wait_for('message', check=pred, timeout=60.0)
+        try:
+    	    msg = await client.wait_for('message', check=pred, timeout=60.0)
         except asyncio.TimeoutError:
             await channel.send('You took too long...')
         else:
