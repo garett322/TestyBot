@@ -14,13 +14,18 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
         
     @commands.command(name = 'roulette' )
     async def russian_roulette(self, ctx):
+        await ctx.send('Please mention the person you want to challenge:')
         try:
-    	    msg = await self.bot.wait_for('message', timeout=60.0)
+    	    msg = await self.bot.wait_for('message', timeout=10.0)
         except asyncio.TimeoutError:
-            await ctx.send('You took too long...')
+            await ctx.send('You took too long... Game has been cancelled')
         else:
-            await ctx.send('You said {0.content}, {0.author}.'.format(msg))
-
+            if (0.content.author() == ctx.message.author):
+                await ctx.send('You said {0.content}, {0.author}.'.format(msg))
+            else:
+                await ctx.send('You cant respond to this command right now.')
+                
+            
 
 
 def setup(bot):
