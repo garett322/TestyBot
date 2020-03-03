@@ -12,6 +12,7 @@ async def on_message(message):
         	pass
 	else:
 		await message.author.send('Please use the bot-commands channel. Thanks!')
+		return
 	await client.process_commands(message)
 	
 client.load_extension('cogs.TestCog')
