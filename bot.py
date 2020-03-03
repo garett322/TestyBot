@@ -7,7 +7,7 @@ async def on_ready():
 	print('Logged in as {0.user}'.format(client))
 	
 @client.event
-async def on_message():
+async def on_message(self):
 	if (message.channel.id == '676897947731886085'):
         	pass
 	else:
