@@ -30,7 +30,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				
 				def check(author):
 					def inner_check(message):
-						return author == opponent_user and (message.content.lower() == '.y' or message.content.lower() == '.yes)
+						return author == opponent_user and (message.content.lower() == '.y' or message.content.lower() == '.yes')
 					return inner_check
 				
 				
