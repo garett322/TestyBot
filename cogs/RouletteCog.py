@@ -29,7 +29,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				
 				
 				def check(m):
-					return m.content.lower() == 'y' or m.content.lower() == 'yes'
+					return m.content.lower() == '.y' or m.content.lower() == '.yes'
 				try:
 					msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 				except asyncio.TimeoutError:
