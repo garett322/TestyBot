@@ -41,6 +41,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				else:
 					clip = [i for i in range(6)]
 					bullet = choice(clip)
+					await ctx.send(bullet)
 					await ctx.send(ctx.author.mention + ' slides a bullet into the revolver, closes it,  and spins the cylinder. They then hand the revolver to ' + opponent_user.mention)
 					
 					
