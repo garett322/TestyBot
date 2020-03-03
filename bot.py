@@ -8,7 +8,7 @@ async def on_ready():
 	
 @client.event
 async def on_message(message):
-	if (message.channel.id == '676897947731886085'):
+	if (message.channel.id == 676897947731886085):
         	pass
 	else:
 		await message.author.send('Please use the bot-commands channel. Thanks!')
