@@ -58,7 +58,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 						await ctx.send(opponent_user.mention + ' took too long to pull the trigger. ' + ctx.author.mention + ' picks up the revolver and shoots ' + opponent_user.mention + ' in the foot.')
 						await ctx.send(ctx.author.mention + ' Wins!!!')
 					else:
-						if bullet == '0':
+						if bullet == 0:
 							await ctx.send('BANG! ' + opponent_user.mention + ' looks down and sees blood slowly seeping through the new hole in their foot...')
 							await ctx.send(ctx.author.mention + ' Wins!!!')
 						else:
@@ -75,7 +75,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 								await ctx.send(ctx.author.mention + ' took too long to pull the trigger. ' + opponent_user.mention + ' picks up the revolver and shoots ' + ctx.author.mention + ' in the foot.')
 								await ctx.send(opponent_user.mention + ' Wins!!!')
 							else:
-								if bullet == '1':
+								if bullet == 1:
 									await ctx.send('BANG! ' + ctx.author.mention + ' looks down and sees blood slowly seeping through the new hole in their foot...')
 									await ctx.send(opponent_user.mention + ' Wins!!!')
 								else:
@@ -92,7 +92,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 										await ctx.send(opponent_user.mention + ' took too long to pull the trigger. ' + ctx.author.mention + ' picks up the revolver and shoots ' + opponent_user.mention + ' in the foot.')
 										await ctx.send(ctx.author.mention + ' Wins!!!')
 									else:
-										if bullet == '2':
+										if bullet == 2:
 											await ctx.send('BANG! ' + opponent_user.mention + ' looks down and sees blood slowly seeping through the new hole in their foot...')
 											await ctx.send(ctx.author.mention + ' Wins!!!')
 										else:
@@ -109,7 +109,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 												await ctx.send(ctx.author.mention + ' took too long to pull the trigger. ' + opponent_user.mention + ' picks up the revolver and shoots ' + ctx.author.mention + ' in the foot.')
 												await ctx.send(opponent_user.mention + ' Wins!!!')
 											else:
-												if bullet == '3':
+												if bullet == 3:
 													await ctx.send('BANG! ' + ctx.author.mention + ' looks down and sees blood slowly seeping through the new hole in their foot...')
 													await ctx.send(opponent_user.mention + ' Wins!!!')
 												else:
@@ -125,7 +125,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 														await ctx.send(opponent_user.mention + ' took too long to pull the trigger. ' + ctx.author.mention + ' picks up the revolver and shoots ' + opponent_user.mention + ' in the foot.')
 														await ctx.send(ctx.author.mention + ' Wins!!!')
 													else:
-														if bullet == '4':
+														if bullet == 4:
 															await ctx.send('BANG! ' + opponent_user.mention + ' looks down and sees blood slowly seeping through the new hole in their foot...')
 															await ctx.send(ctx.author.mention + ' Wins!!!')
 														else:
