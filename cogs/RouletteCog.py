@@ -32,7 +32,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				try:
 					msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 				except asyncio.TimeoutError:
-					await ctx.send('You took too long to accept... Game has been cancelled')
+					await ctx.send(opponent_user.mention + ' took too long to accept... Game has been cancelled')
 				else:
 					await ctx.send('You said {.content}, {.author}.'.format(msg))
 
