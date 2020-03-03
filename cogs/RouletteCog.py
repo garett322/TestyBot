@@ -30,18 +30,17 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				
 				def check(author):
 					def inner_check(message):
-						return author == opponent_user and (message.content.lower() == '.y' or message.content.lower() == '.yes')
+						return author == opponent_user and (message.content.lower() == 'y' or message.content.lower() == 'yes')
 					return inner_check
 				
 				
 				try:
-					msg = await self.bot.wait_for('message', timeout=15.0, check=check(opponent_user))
+					msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 				except asyncio.TimeoutError:
 					await ctx.send(opponent_user.mention + ' took too long to accept... Game has been cancelled')
 				else:
 					clip = [i for i in range(6)]
 					bullet = choice(clip)
-					await ctx.send(bullet)
 					await ctx.send(ctx.author.mention + ' slides a bullet into the revolver, closes it,  and spins the cylinder. They then hand the revolver to ' + opponent_user.mention)
 					
 					
@@ -53,7 +52,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 						return inner_check
 										     
 					try:
-						msg = await self.bot.wait_for('message', timeout=15.0, check=check(opponent_user))
+						msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 					except asyncio.TimeoutError:
 						await ctx.send(opponent_user.mention + ' took too long to pull the trigger. ' + ctx.author.mention + ' picks up the revolver and shoots ' + opponent_user.mention + ' in the foot.')
 						await ctx.send(ctx.author.mention + ' Wins!!!')
@@ -70,7 +69,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 									return author == ctx.author and (message.content == 'shoot')
 								return inner_check
 							try:
-								msg = await self.bot.wait_for('message', timeout=15.0, check=check(ctx.author))
+								msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 							except asyncio.TimeoutError:
 								await ctx.send(ctx.author.mention + ' took too long to pull the trigger. ' + opponent_user.mention + ' picks up the revolver and shoots ' + ctx.author.mention + ' in the foot.')
 								await ctx.send(opponent_user.mention + ' Wins!!!')
@@ -87,7 +86,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 											return author == opponent_user and (message.content == 'shoot')
 										return inner_check
 									try:
-										msg = await self.bot.wait_for('message', timeout=15.0, check=check(opponent_user))
+										msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 									except asyncio.TimeoutError:
 										await ctx.send(opponent_user.mention + ' took too long to pull the trigger. ' + ctx.author.mention + ' picks up the revolver and shoots ' + opponent_user.mention + ' in the foot.')
 										await ctx.send(ctx.author.mention + ' Wins!!!')
@@ -104,7 +103,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 													return author == ctx.author and (message.content == 'shoot')
 												return inner_check
 											try:
-												msg = await self.bot.wait_for('message', timeout=15.0, check=check(ctx.author))
+												msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 											except asyncio.TimeoutError:
 												await ctx.send(ctx.author.mention + ' took too long to pull the trigger. ' + opponent_user.mention + ' picks up the revolver and shoots ' + ctx.author.mention + ' in the foot.')
 												await ctx.send(opponent_user.mention + ' Wins!!!')
@@ -120,7 +119,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 															return author == opponent_user and (message.content == 'shoot')
 														return inner_check
 													try:
-														msg = await self.bot.wait_for('message', timeout=15.0, check=check(opponent_user))
+														msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 													except asyncio.TimeoutError:
 														await ctx.send(opponent_user.mention + ' took too long to pull the trigger. ' + ctx.author.mention + ' picks up the revolver and shoots ' + opponent_user.mention + ' in the foot.')
 														await ctx.send(ctx.author.mention + ' Wins!!!')
@@ -136,7 +135,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 																	return author == ctx.author and (message.content == 'shoot')
 																return inner_check
 															try:
-																msg = await self.bot.wait_for('message', timeout=15.0, check=check(ctx.author))
+																msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 															except asyncio.TimeoutError:
 																await ctx.send(ctx.author.mention + ' took too long to pull the trigger. ' + opponent_user.mention + ' picks up the revolver and shoots ' + ctx.author.mention + ' in the foot.')
 																await ctx.send(opponent_user.mention + ' Wins!!!')
