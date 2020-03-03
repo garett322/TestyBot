@@ -7,11 +7,13 @@ async def on_ready():
 	print('Logged in as {0.user}'.format(client))
 	
 @client.event
-async def on_message(self):
+async def on_message(message):
 	if (message.channel.id == '676897947731886085'):
         	pass
 	else:
 		await message.author.send('Please use the bot-commands channel. Thanks!')
+	await client.process_commands(message)
+	
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RouletteCog')
 
