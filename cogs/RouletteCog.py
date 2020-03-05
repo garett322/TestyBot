@@ -28,10 +28,8 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 				await ctx.send('Hey ' + opponent_user.mention + ', ' + ctx.author.mention + ' has challenged you to a game of Russian Roulette! Would you like to accept?')
 				
 				
-				def check(author):
-					def inner_check(message):
-						return author == opponent_user and (message.content.lower() == 'y' or message.content.lower() == 'yes')
-					return inner_check
+				def check(message):
+					return message.author == opponent_user and (message.content.lower() == 'y' or message.content.lower() == 'yes')
 				
 				
 				try:
@@ -46,10 +44,8 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 					
 					
 										     
-					def check(author):
-						def inner_check(message):
-							return author == opponent_user and (message.content == 'shoot')
-						return inner_check
+					def check(message):
+						return message.author == opponent_user and (message.content == 'shoot')
 										     
 					try:
 						msg = await self.bot.wait_for('message', timeout=15.0, check=check)
@@ -64,10 +60,9 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 							await ctx.send('Click... ' + opponent_user.mention + ' hands the revolver over to ' + ctx.author.mention)
 							
 							
-							def check(author):
-								def inner_check(message):
-									return author == message.author and (message.content == 'shoot')
-								return inner_check
+							def check(message):
+								return message.author == ctx.author and (message.content == 'shoot')
+
 							try:
 								msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 							except asyncio.TimeoutError:
@@ -81,10 +76,9 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 									await ctx.send('Click... ' + ctx.author.mention + ' hands the revolver over to ' + opponent_user.mention)
 									
 									
-									def check(author):
-										def inner_check(message):
-											return author == opponent_user and (message.content == 'shoot')
-										return inner_check
+									def check(message):
+										return message.author == opponent_user and (message.content == 'shoot')
+
 									try:
 										msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 									except asyncio.TimeoutError:
@@ -98,10 +92,9 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 											await ctx.send('Click... ' + opponent_user.mention + ' hands the revolver over to ' + ctx.author.mention)
 											
 											
-											def check(author):
-												def inner_check(message):
-													return author == message.author and (message.content == 'shoot')
-												return inner_check
+											def check(message):
+												return message.author == ctx.author and (message.content == 'shoot')
+
 											try:
 												msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 											except asyncio.TimeoutError:
@@ -114,10 +107,9 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 												else:
 													await ctx.send('Click... ' + ctx.author.mention + ' hands the revolver over to ' + opponent_user.mention)
 													
-													def check(author):
-														def inner_check(message):
-															return author == opponent_user and (message.content == 'shoot')
-														return inner_check
+													def check(message):
+														return message.author == opponent_user and (message.content == 'shoot')
+
 													try:
 														msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 													except asyncio.TimeoutError:
@@ -130,10 +122,9 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 														else:
 															await ctx.send('Click... ' + opponent_user.mention + ' hands the revolver over to ' + ctx.author.mention)
 															
-															def check(author):
-																def inner_check(message):
-																	return author == message.author and (message.content == 'shoot')
-																return inner_check
+															def check(message):
+																return message.author == ctx.author and (message.content == 'shoot')
+
 															try:
 																msg = await self.bot.wait_for('message', timeout=15.0, check=check)
 															except asyncio.TimeoutError:
