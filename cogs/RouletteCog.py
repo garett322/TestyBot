@@ -40,6 +40,7 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 					clip = [i for i in range(6)]
 					bullet = choice(clip)
 					await ctx.send(ctx.author.mention + ' slides a bullet into the revolver, closes it,  and spins the cylinder. They then hand the revolver to ' + opponent_user.mention)
+					await ctx.send("say 'shoot' to pull the trigger")
 					
 					
 					
