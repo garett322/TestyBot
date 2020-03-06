@@ -22,9 +22,6 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 			try:
 				ctx.message.mentions[1].id
 			except IndexError:
-				await ctx.send('Please only mention 1 user to challenge.')
-				return
-			else:
 				
 				opponent_id = ctx.message.mentions[0].id
 				opponent_user = self.bot.get_user(opponent_id)
@@ -144,7 +141,9 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 																	await ctx.send('BANG! ' + ctx.author.mention + ' looks down and sees blood slowly seeping through the new hole in their foot...')
 																	await ctx.send(opponent_user.mention + ' Wins!!!')
 						
-						
+			else:			
+				await ctx.send('Please only mention 1 user to challenge.')
+				return
 						
 def setup(bot):
 	bot.add_cog(RouletteCog(bot))
