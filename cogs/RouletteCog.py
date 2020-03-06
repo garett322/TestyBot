@@ -15,11 +15,16 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
         
 	@commands.command(name = 'roulette' )
 	async def russian_roulette(self, ctx):
-		opponent_id = ctx.message.mentions[0].id
-		opponent_user = self.bot.get_user(opponent_id)
-		if not opponent_id:
-			await ctx.send('Please mention a valid user to challenge:')
+		if not ctx.message.mentions:
+			await ctx.send('Please mention a valid user to challenge.')
+			return
+		elif ctx.message.mentions[1].id:
+			await ctx.send('Please only mention 1 user to challenge.')
+			return
 		else:
+			opponent_id = ctx.message.mentions[0].id
+			opponent_user = self.bot.get_user(opponent_id)
+		
 			if opponent_id == ctx.author.id:
 				await ctx.send('You cant challenge yourself ' + opponent_user.mention)
 			elif opponent_id == self.bot.user.id:
