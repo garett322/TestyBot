@@ -12,7 +12,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 
 	@commands.command(name = 'torn' )
 	async def torny(self, ctx):
-		ctx.send('hi')
+		await ctx.send('hi')
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
