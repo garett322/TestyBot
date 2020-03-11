@@ -20,5 +20,6 @@ async def on_message(message):
 	
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RouletteCog')
+client.load_extension('cogs.TornCog')
 
 client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XknFVQ.gZPzOHRgqOMCNkePNIpAP2iRvDk')
