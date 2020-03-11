@@ -14,12 +14,12 @@ class TornCog(commands.Cog, name = "TornCog" ):
 
 
 	@commands.group()
-	async def api(ctx):
+	async def api(self, ctx):
 		if ctx.invoked_subcommand is None:
 			await ctx.send('Invalid command passed...')
 
 	@api.command()
-	async def set(ctx):
+	async def set(self, ctx):
 		api_key = ctx.message.content
 		result = json.loads('https://api.torn.com/user/?selections=travel&key=${api_key}')
 		await ctx.send(result['travel'])
