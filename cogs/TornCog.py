@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class TestCog(commands.Cog, name = "TornCog" ):
+class TornCog(commands.Cog, name = "TornCog" ):
 	def __init__(self, bot):
 		self.bot = bot
 
