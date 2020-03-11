@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import json
+import requests
 
 
 
@@ -19,9 +19,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.send('Invalid command passed...')
 
 	@api.command()
-	async def set(self, ctx):
-		api_key = ctx.message.content
-		result = json.loads('https://api.torn.com/user/?selections=travel&key=${api_key}')
+	async def set(self, ctx, api_key):
+		result = requests.get('https://api.torn.com/user/?selections=travel&key=${api_key}').json()
 		await ctx.send(result['travel']['destination'])
 
 def setup(bot):
