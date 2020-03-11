@@ -20,7 +20,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 
 	@api.command()
 	async def set(self, ctx, api_key):
-		result = requests.get('https://api.torn.com/user/?selections=travel&key=${api_key}').json()
+		result = requests.get('https://api.torn.com/user/?selections=travel&key=TbP7AVcCBhvTdYb8').json()
 		await ctx.send(result['travel']['destination'])
 
 def setup(bot):
