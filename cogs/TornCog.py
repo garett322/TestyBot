@@ -23,11 +23,11 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		key_check = requests.get('https://api.torn.com/user/?selections=basic&key={}'.format(api_key)).json()
 		
 		try:
-			result = key_check['error']['error']
+			result = key_check['gender']
 		except KeyError:
-		  await ctx.send('error')
+		  await ctx.send(result)
 		else:
-		  await ctx.send(key_check['gender'])
+		  await ctx.send(key_check['error'])
 		  
 
 def setup(bot):
