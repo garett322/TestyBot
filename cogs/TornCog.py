@@ -20,8 +20,12 @@ class TornCog(commands.Cog, name = "TornCog" ):
 
 	@api.command()
 	async def set(self, ctx, api_key):
-		result = requests.get('https://api.torn.com/user/?selections=travel&key=TbP7AVcCBhvTdYb8').json()
-		await ctx.send(result['travel']['destination'])
+		key_check = requests.get('https://api.torn.com/user/?selections=basic&key={}'.format(api_key)).json()
+		if result['error']:
+		  await ctx.send(error)
+		else:
+		  await ctx.send(result['gender'])
+		  
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
