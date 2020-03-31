@@ -12,6 +12,14 @@ class RouletteCog(commands.Cog, name = "RouletteCog" ):
 	async def on_message(self, message):
 		if message.author == 'Test Bot#0806':
 			return
+		if (message.channel.id == 676897947731886085):
+			pass
+		else:
+			if message.content.startswith('.'):
+				await message.author.send('Please use the bot-commands channel. Thanks!')
+				return
+			else:
+				return
         
 	@commands.command(name = 'roulette' )
 	async def russian_roulette(self, ctx):
