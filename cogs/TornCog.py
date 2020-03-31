@@ -1,6 +1,12 @@
 import discord
 from discord.ext import commands
 import requests
+import pymongo
+from pymongo import MongoClient
+
+mclient = MongoClient(mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906)
+
+KEYS = mclient.dso61787.API_KEYS
 
 
 
@@ -17,11 +23,18 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	async def api_set(self, ctx, api_key):
 		key_check = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 		try:
-		  result = key_check['gender']
+		  playername = key_check['name']
 		except KeyError:
 		  await ctx.send(key_check['error'])
 		else:
-		  await ctx.send(result)
+		  doc = {"name": playername,
+		    "api_key": api_key
+		  }
+		  await ctx.send(playername)
+		  await ctx.send(api_key)
+		  await ctx.send(doc['name'])
+		  await ctx.send(doc['api_key'])
+		  #inserted_doc = KEYS.insert_one(doc)
 		
 		  
 
