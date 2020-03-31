@@ -4,10 +4,6 @@ import requests
 import pymongo
 from pymongo import MongoClient
 
-mclient = MongoClient(mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906)
-
-KEYS = mclient.dso61787.API_KEYS
-
 
 
 class TornCog(commands.Cog, name = "TornCog" ):
@@ -17,6 +13,13 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	async def on_message(self, message):
 		if message.author == 'Test Bot#0806':
 			return
+			
+			
+  mclient = MongoClient(mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906)
+  
+  KEYS = mclient.dso61787.API_KEYS
+
+
 
 
 	@commands.command()
