@@ -8,14 +8,14 @@ async def on_ready():
 	
 @client.event
 async def on_message(message):
-	if (message.channel.id == 676897947731886085):
-        	pass
-	else:
-		if message.content.startswith('.'):
-			await message.author.send('Please use the bot-commands channel. Thanks!')
-			return
-		else:
-			return
+	#if (message.channel.id == 676897947731886085):
+        #	pass
+	#else:
+	#	if message.content.startswith('.'):
+	#		await message.author.send('Please use the bot-commands channel. Thanks!')
+	#		return
+	#	else:
+	#		return
 	await client.process_commands(message)
 	
 client.load_extension('cogs.TestCog')
