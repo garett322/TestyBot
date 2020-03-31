@@ -25,22 +25,23 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	async def api_set(self, ctx, api_key):
 		API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 		try:
-		  playername = API_DOC['name']
+			playername = API_DOC['name']
 		except KeyError:
-		  await ctx.send('There seems to have been an error...')
-		  await ctx.send('The error is as follows: ' + API_DOC['error'])
+			await ctx.send('There seems to have been an error...')
+			await ctx.send('The error is as follows: ' + API_DOC['error'])
 		else:
-		  try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-		  if try_doc['discord_username'] == str(ctx.author.id):
-		    await ctx.send('You have already registered your API key with me ' + playername + '.')
-		  else:
-        doc = {"name": playername,
-        "api_key": api_key,
-        "discord_username": str(ctx.author.id)}
-        inserted_doc = KEYS.insert_one(doc)		    
-        await ctx.send('Your API key has been registered!!')
-        
-#found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+			try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+			
+			if try_doc['discord_username'] == str(ctx.author.id):
+				await ctx.send('You have already registered your API key with me ' + playername + '.')
+			else:
+				doc = {"name": playername,
+				       "api_key": api_key,
+				       "discord_username": str(ctx.author.id)}
+				inserted_doc = KEYS.insert_one(doc)		    
+				await ctx.send('Your API key has been registered!!')
+				found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+				await ctx.send(found_doc['name'])
 
 
 def setup(bot):
