@@ -19,9 +19,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		try:
 		  result = key_check['"gender"']
 		except KeyError:
-		  await ctx.send(result)
-		else:
 		  await ctx.send(key_check['"error"'])
+		else:
+		  await ctx.send(result)
 		
 		  
 
