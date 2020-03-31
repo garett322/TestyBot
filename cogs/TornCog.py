@@ -38,7 +38,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		  await ctx.send(doc['name'])
 		  await ctx.send(doc['api_key'])
 		  inserted_doc = KEYS.insert_one(doc)
-		  found_doc = KEYS.find_one({"discord_username", str(ctx.author.id)})
+		  found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 		  await ctx.send(found_doc)
 		
 		  
