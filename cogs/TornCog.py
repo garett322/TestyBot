@@ -15,8 +15,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			return
 			
 			
-  mclient = MongoClient(mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906)
-  
+	mclient = MongoClient(mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906)
   KEYS = mclient.dso61787.API_KEYS
 
 
