@@ -29,16 +29,17 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		except KeyError:
 		  await ctx.send(key_check['error'])
 		else:
+		  author = '"' + ctx.author.id + '"'
 		  doc = {"name": playername,
 		    "api_key": api_key,
-		    "discord_username": ctx.author.id
+		    "discord_username": author
 		  }
 		  await ctx.send(playername)
 		  await ctx.send(api_key)
 		  await ctx.send(doc['name'])
 		  await ctx.send(doc['api_key'])
 		  inserted_doc = KEYS.insert_one(doc)
-		  found_doc = KEYS.find_one({"discord_username", ctx.author.id})
+		  found_doc = KEYS.find_one({"discord_username", author})
 		  await ctx.send(found_doc)
 		
 		  
