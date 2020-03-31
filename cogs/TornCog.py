@@ -31,7 +31,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		  await ctx.send('The error is as follows: ' + API_DOC['error'])
 		else:
 		  try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-		  if try_doc['discord_username'] = str(ctx.author.id):
+		  if try_doc['discord_username'] == str(ctx.author.id):
 		    await ctx.send('You have already registered your API key with me ' + playername + '.')
 		  else:
         doc = {"name": playername,
