@@ -17,7 +17,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	async def api_set(self, ctx, api_key):
 		key_check = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 		try:
-  	  result = key_check['"gender"']
+		  result = key_check['"gender"']
 		except KeyError:
 		  await ctx.send(result)
 		else:
