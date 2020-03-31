@@ -21,7 +21,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 	@commands.command()
 	async def api_set(self, ctx, api_key):
-		if ctx.channel.is_private:
+		if ctx.guild is False:
+		
 			API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 			try:
 				playername = API_DOC['name']
@@ -30,7 +31,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 				await ctx.author.send('The error is as follows: ' + API_DOC['error'])
 			else:
 				try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-			
+		
 			
 				try:
 					if try_doc['discord_username'] == str(ctx.author.id):
@@ -43,7 +44,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					await ctx.author.send('Your API key has been registered!!')
 					found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 					await ctx.author.send(found_doc['name'])
-		else:
+				
+		else:	
 			await bot.delete_message(ctx.message)
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return	       
