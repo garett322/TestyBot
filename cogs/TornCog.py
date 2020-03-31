@@ -41,9 +41,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					       "api_key": api_key,
 					       "discord_username": str(ctx.author.id)}
 					inserted_doc = KEYS.insert_one(doc)		    
-					await ctx.author.send('Your API key has been registered!!')
+					await ctx.author.send('Your API key has been registered ' + playername + '!!')
 					found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-					await ctx.author.send(found_doc['name'])
 				
 		else:	
 			await ctx.message.delete()
