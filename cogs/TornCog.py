@@ -21,7 +21,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 	@commands.command()
 	async def api_set(self, ctx, api_key):
-		if ctx.guild is False:
+		if ctx.guild is None:
 		
 			API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 			try:
