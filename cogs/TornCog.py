@@ -21,31 +21,31 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 	@commands.command()
 	async def api_set(self, ctx, api_key):
-		if message.channel.is_private:
+		if ctx.message.channel.is_private:
 			API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 			try:
 				playername = API_DOC['name']
 			except KeyError:
-				await ctx.send('There seems to have been an error...')
-				await ctx.send('The error is as follows: ' + API_DOC['error'])
+				await ctx.author.send('There seems to have been an error...')
+				await ctx.author.send('The error is as follows: ' + API_DOC['error'])
 			else:
 				try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 			
 			
 				try:
 					if try_doc['discord_username'] == str(ctx.author.id):
-						await ctx.send('You have already registered your API key with me ' + playername + '.')
+						await ctx.author.send('You have already registered your API key with me ' + playername + '.')
 				except TypeError:
 					doc = {"name": playername,
 					       "api_key": api_key,
 					       "discord_username": str(ctx.author.id)}
 					inserted_doc = KEYS.insert_one(doc)		    
-					await ctx.send('Your API key has been registered!!')
+					await ctx.author.send('Your API key has been registered!!')
 					found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-					await ctx.send(found_doc['name'])
+					await ctx.author.send(found_doc['name'])
 		else:
 			await bot.delete_message(ctx.message)
-			await ctx.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
+			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return	       
 
 def setup(bot):
