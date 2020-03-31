@@ -4,7 +4,7 @@ import requests
 import pymongo
 from pymongo import MongoClient
 
-mclient = MongoClient('mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906')
+mclient = MongoClient('mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906?retryWrites=false')
 KEYS = mclient.heroku_zb0mj906.API_KEYS
 
 
