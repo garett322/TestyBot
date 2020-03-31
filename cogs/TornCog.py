@@ -13,21 +13,16 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			return
 
 
-	@commands.group()
-	async def api(self, ctx):
-		if ctx.invoked_subcommand is None:
-			await ctx.send('Invalid command passed...')
-
-	@api.command()
-	async def set(self, ctx, api_key):
-		key_check = requests.get('https://api.torn.com/user/?selections=basic&key={}'.format(api_key)).json()
+	@commands.command()
+	async def api_set(self, ctx, api_key):
+		key_check = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
+				try:
+				  result = key_check['"gender"']
+				except KeyError:
+				  await ctx.send(result)
+				else:
+				  await ctx.send(key_check['"error"'])
 		
-		try:
-			result = key_check['gender']
-		except KeyError:
-		  await ctx.send(result)
-		else:
-		  await ctx.send(key_check['error'])
 		  
 
 def setup(bot):
