@@ -46,7 +46,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					await ctx.author.send(found_doc['name'])
 				
 		else:	
-			await bot.delete_message(ctx.message)
+			await commands.delete_message(ctx.message)
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return	       
 
