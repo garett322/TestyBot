@@ -27,7 +27,7 @@ async def on_command_error(error, ctx):
 	print(' ')
 	print(' ')
 	print(' ')
-	print(error.content)
+	print(error.message.content)
 	return
 	
 	
