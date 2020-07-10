@@ -20,7 +20,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			
 	@commands.command()
-	async def api-set(self, ctx, api_key):
+	async def api_set(self, ctx, api_key):
 		if ctx.guild is None:
 			
 			if api_key = "":
