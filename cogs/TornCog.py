@@ -20,8 +20,12 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			
 	@commands.command()
-	async def api_set(self, ctx, api_key):
+	async def api-set(self, ctx, api_key):
 		if ctx.guild is None:
+			
+			if api_key = "":
+				await ctx.author.send('You need to input your API Key for this command to work.')
+				return
 		
 			API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
 			try:
