@@ -21,11 +21,8 @@ async def on_message(message):
 	
 @client.event
 async def on_command_error(ctx, error):
+	await ctx.send(error)
 	print('We caught the following error:')
-	print(' ')
-	print(' ')
-	print(' ')
-	print(' ')
 	print(' ')
 	print(error)
 	return
