@@ -23,8 +23,8 @@ async def on_message(message):
 async def on_command_error(ctx, error):
 	await ctx.send(error)
 	print('We caught the following error:')
-	print(' ')
 	print(error)
+	print(' ')
 	return
 	
 	
