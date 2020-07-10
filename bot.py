@@ -20,14 +20,14 @@ async def on_message(message):
 
 	
 @client.event
-async def on_command_error(error, ctx):
+async def on_command_error(ctx, error):
 	print('We caught the following error:')
 	print(' ')
 	print(' ')
 	print(' ')
 	print(' ')
 	print(' ')
-	print(error.message.content)
+	print(error)
 	return
 	
 	
