@@ -38,9 +38,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 				if try_doc['discord_username'] == str(ctx.author.id):
 					await ctx.author.send('You have already registered your API key with me ' + playername + '.')
 			except TypeError:
-					doc = {"name": playername,
-				       "api_key": api_key,
-				       "discord_username": str(ctx.author.id)}
+				doc = {"name": playername,
+				"api_key": api_key,
+				"discord_username": str(ctx.author.id)}
 					
 				inserted_doc = KEYS.insert_one(doc)		    
 				await ctx.author.send('Your API key has been registered ' + playername + '!!')
