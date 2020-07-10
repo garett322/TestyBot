@@ -23,30 +23,33 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	async def api_set(self, ctx, api_key):
 		if ctx.guild is None:
 			
-			API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
-			
-			try:
-				playername = API_DOC['name']
-			except KeyError:
-				await ctx.author.send('There seems to have been an error...')
-				await ctx.author.send('The error is as follows: ' + API_DOC['error'])
+			if not api_key:
+				await ctx.author.send('You need to put in your API Key for this command.')
+				return
 			else:
-				try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+				API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_key)).json()
+			
+				try:
+					playername = API_DOC['name']
+				except KeyError:
+					await ctx.author.send('There seems to have been an error...')
+					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
+				else:
+					try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 		
 				
-			try:
-				if try_doc['discord_username'] == str(ctx.author.id):
-					await ctx.author.send('You have already registered your API key with me ' + playername + '.')
-			except TypeError:
-				doc = {"name": playername,
-				"api_key": api_key,
-				"discord_username": str(ctx.author.id)}
+				try:
+					if try_doc['discord_username'] == str(ctx.author.id):
+						await ctx.author.send('You have already registered your API key with me ' + playername + '.')
+				except TypeError:
+					doc = {"name": playername,
+					"api_key": api_key,
+					"discord_username": str(ctx.author.id)}
 					
-				inserted_doc = KEYS.insert_one(doc)		    
-				await ctx.author.send('Your API key has been registered ' + playername + '!!')
-				found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+					inserted_doc = KEYS.insert_one(doc)		    
+					await ctx.author.send('Your API key has been registered ' + playername + '!!')
+					found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 					
-				
 		else:	
 			await ctx.message.delete()
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
