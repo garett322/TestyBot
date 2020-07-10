@@ -9,8 +9,8 @@ class TestCog(commands.Cog, name = "TestCog" ):
 
 	async def on_message(self, message):
 		if message.author == 'Test Bot#0806':
-		return
-		
+			return
+	
 	@commands.command(name = 'check' )
 	async def check(self, ctx, *args):
 		if not args:
