@@ -14,10 +14,10 @@ class TestCog(commands.Cog, name = "TestCog" ):
 	@commands.command(name = 'check' )
 	async def check(self, ctx, *args):
 		if not args:
-			await ctx.send('hello')
+			await ctx.send('No args')
 			return
 		else:
-			await ctx.send('Nope. Sorry')
+			await ctx.send('Args confirmed')
 			return
       
         
