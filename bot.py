@@ -17,7 +17,15 @@ async def on_message(message):
 		else:
 			return
 	await client.process_commands(message)
+
 	
+@client.event
+async def on_command_error(error, ctx):
+	await ctx.send('There was a fatal error. Please make sure you used the command properly and try again.')
+	return
+	
+	
+
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RouletteCog')
 client.load_extension('cogs.TornCog')
