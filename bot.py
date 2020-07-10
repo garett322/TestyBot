@@ -22,10 +22,8 @@ async def on_message(message):
 @client.event
 async def on_command_error(ctx, error):
 	await ctx.send('We encountered a fatal error. Please check the command you entered and try again.')
-	await ctx.send('The error is as follows: ' + error)
-	print('We caught the following error:')
-	print(error)
 	print(' ')
+	print(error)
 	return
 	
 	
