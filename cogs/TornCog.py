@@ -60,9 +60,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		
 		
 		
-		with urllib.request.urlopen("http://maps.googleapis.com/maps/api/geocode/json?address=google") as API_data:
-			data = json.loads(API_data.read().decode())
-			print(data)
+		#with urllib.request.urlopen("http://maps.googleapis.com/maps/api/geocode/json?address=google") as API_data:
+		#	data = json.loads(API_data.read().decode())
+		#	print(data)
 			
 			
 			
