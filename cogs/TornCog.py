@@ -66,9 +66,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			
 			
-			
-		if args[0].lower() = "stats"
-			await ctx.send()
+		arg_check = args[0]	
+		if arg_check.lower() = "stats"
+			await ctx.send('It works!')
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
