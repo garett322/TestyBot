@@ -54,6 +54,11 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.message.delete()
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
+	@commands.command()
+	async def check(self, ctx, args):
+		for x in args:
+			if (x = "hi"):
+				print('Hello')
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
