@@ -57,7 +57,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	@commands.command()
 	async def check(self, ctx, args):
 		for x in args:
-			if (x = "hi"):
+			if x == 'hi':
 				print('Hello')
 
 def setup(bot):
