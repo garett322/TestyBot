@@ -3,6 +3,7 @@ from discord.ext import commands
 import requests
 import pymongo
 from pymongo import MongoClient
+import urllib.request, json 
 
 mclient = MongoClient('mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906?retryWrites=false')
 KEYS = mclient.heroku_zb0mj906.API_KEYS
@@ -56,8 +57,18 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			return
 	@commands.command()
 	async def check(self, ctx, args):
-		for x in args:
-			print(x)
+		
+		
+		
+		with urllib.request.urlopen("http://maps.googleapis.com/maps/api/geocode/json?address=google") as API_data:
+			data = json.loads(API_data.read().decode())
+			print(data)
+			
+			
+			
+			
+		if args[0].lower() = "stats"
+			await ctx.send()
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
