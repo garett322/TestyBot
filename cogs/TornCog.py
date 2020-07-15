@@ -7,7 +7,7 @@ import urllib.request, json
 
 
 dbt = pymongo.MongoClient("mongodb+srv://garett322:13243546gareth@discordbotcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
-KEYS = db.DiscordBotCluster
+KEYS = db.Keys
 
 
 
