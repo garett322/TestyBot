@@ -6,10 +6,9 @@ from pymongo import MongoClient
 import urllib.request, json 
 
 
-database = pymongo.MongoClient("mongodb+srv://garett322:13243546gareth@discordbotcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
-KEYS = database.Keys
-
-
+mclient = MongoClient("mongodb+srv://garett322:13243546gareth@discordbotcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
+db = mclient.API
+KEYS = db.Keys
 
 #mclient = MongoClient('mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906?retryWrites=false')
 #KEYS = mclient.heroku_zb0mj906.API_KEYS
