@@ -56,14 +56,14 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
 	@commands.command()
-	async def check(self, ctx, args: None):
+	async def check(self, ctx, args: ''):
 		
 		
 		
 		#with urllib.request.urlopen("http://maps.googleapis.com/maps/api/geocode/json?address=google") as API_data:
 		#	data = json.loads(API_data.read().decode())
 		#	print(data)
-		if args = None:
+		if args = '':
 			await ctx.send('no args')
 			return
 			
