@@ -2,4 +2,4 @@ git+https://github.com/Rapptz/discord.py
 async-timeout==3.0.1
 requests==2.23.0
 pymongo==3.9.0
-dnspython==2.0.0
+dnspython==2.0.0rc2
