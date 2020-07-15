@@ -64,8 +64,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		#	data = json.loads(API_data.read().decode())
 		#	print(data)
 			
-		if args[1]:
-			ctx.send('Please only use one argument with this command')
+		if args[1] != "":
+			await ctx.send('Please only use one argument with this command')
 			return
 		
 		args_string = str(args[0])	
