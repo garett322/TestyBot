@@ -6,8 +6,8 @@ from pymongo import MongoClient
 import urllib.request, json 
 
 
-dbt = pymongo.MongoClient("mongodb+srv://garett322:13243546gareth@discordbotcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
-KEYS = db.Keys
+database = pymongo.MongoClient("mongodb+srv://garett322:13243546gareth@discordbotcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
+KEYS = database.Keys
 
 
 
