@@ -56,7 +56,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
 	@commands.command()
-	async def check(self, ctx, *args):
+	async def check(self, ctx, args):
 		
 		
 		
@@ -64,11 +64,13 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		#	data = json.loads(API_data.read().decode())
 		#	print(data)
 			
-			
-		args_string = str(args)	
+		if args[1]:
+			ctx.send('Please only use one argument with this command')
+			return
 		
-		if args_string.lower() == "stats":
-			await ctx.author.send('It works!')
+		args_string = str(args[0])	
+		if args_string.lower() == 'stats':
+			await ctx.send('It works!')
 			return
 
 def setup(bot):
