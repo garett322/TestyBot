@@ -5,14 +5,9 @@ import pymongo
 from pymongo import MongoClient
 import urllib.request, json 
 
-
 mclient = MongoClient("mongodb+srv://garett322:13243546gareth@discordbotcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
 db = mclient.API
 KEYS = db.Keys
-
-#mclient = MongoClient('mongodb://heroku_zb0mj906:9dhrt56f6gdaprvdu1dg0am4eo@ds061787.mlab.com:61787/heroku_zb0mj906?retryWrites=false')
-#KEYS = mclient.heroku_zb0mj906.API_KEYS
-
 
 
 class TornCog(commands.Cog, name = "TornCog" ):
@@ -60,8 +55,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.message.delete()
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
-	#@commands.command()
-	#async def check(self, ctx, args):
+	@commands.command()
+	async def check(self, ctx, *args):
 		
 		
 		
@@ -71,9 +66,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			
 			
-		#arg_check = args[0]
-		#if str(arg_check).lower() = "stats"
-		#	await ctx.send('It works!')
+		if str(args).lower() = "stats"
+			await ctx.send('It works!')
+			return
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
