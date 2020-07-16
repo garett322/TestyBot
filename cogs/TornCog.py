@@ -56,7 +56,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
 	@commands.command()
-	async def check(self, ctx, args = None):
+	async def torn(self, ctx, args = None):
 		
 		if not args:
 			await ctx.send('no args')
@@ -67,19 +67,36 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			
 		args_string = str(args)	
-		if args_string.lower() == 'stats':
+		if args_string.lower() == 'battle stats':
 			
+			
+
 			user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 			api_pull = user_check_doc['api_key']
-						     
-			try:
-				if user_check_doc['discord_username'] == str(ctx.author.id):
-					API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_pull)).json()
-					playername = API_DOC['name']
+			if user_check_doc['discord_username'] == str(ctx.author.id):
+				
+				try:
+					API_DOC = requests.get('https://api.torn.com/user/?selections=battlestats&key={}'.format(api_pull)).json()
+					
+					try:
+						str_pull= API_DOC['strength']
+						dex_pull= API_DOC['']
+						def_pull= API_DOC['']
+						spd_pull= API_DOC['']
+						total_pull= API_DOC['']
+					except KeyError:
+						await ctx.author.send('There seems to have been an error...')
+						await ctx.author.send('The error is as follows: ' + API_DOC['error'])
+						return
+					
+					
 					await ctx.send(playername)
 					return
-			except TypeError:
-				await ctx.send('error')
+				
+				except TypeError:
+					return
+			else:
+				ctx.send('You have to register your API Key with the "api_set" command before you can use this.')
 				return
 		
 		
