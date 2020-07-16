@@ -70,7 +70,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		if args_string.lower() == 'stats':
 			
 			user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-			api_pull = user_check_doc[api_key]
+			api_pull = user_check_doc['api_key']
 						     
 			try:
 				if try_doc['discord_username'] == str(ctx.author.id):
