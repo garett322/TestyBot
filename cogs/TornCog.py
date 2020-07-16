@@ -70,7 +70,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			
 		args_string = str(args)	
-		if args_string.lower() == 'battle stats':
+		if args_string.lower() == 'battlestats':
 			
 			
 
