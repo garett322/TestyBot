@@ -55,6 +55,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.message.delete()
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
+		
+		
+		
 	@commands.command()
 	async def torn(self, ctx, args = None):
 		
@@ -80,18 +83,21 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					
 					try:
 						str_pull= API_DOC['strength']
-						dex_pull= API_DOC['']
-						def_pull= API_DOC['']
-						spd_pull= API_DOC['']
-						total_pull= API_DOC['']
+						dex_pull= API_DOC['dexterity']
+						def_pull= API_DOC['defense']
+						spd_pull= API_DOC['speed']
+						total_pull= API_DOC['total']
 					except KeyError:
 						await ctx.author.send('There seems to have been an error...')
 						await ctx.author.send('The error is as follows: ' + API_DOC['error'])
 						return
-					
-					
-					await ctx.send(playername)
-					return
+					else:
+						await ctx.send('Strenth: ' + str_pull)
+						await ctx.send('Dexterity: ' + dex_pull)
+						await ctx.send('Defense: ' + def_pull)
+						await ctx.send('Speed: ' + spd_pull)
+						await ctx.send('Total: ' + total_pull)
+						return
 				
 				except TypeError:
 					return
