@@ -78,9 +78,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					playername = API_DOC['name']
 					await ctx.send(playername)
 					return
-				except TypeError:
-					await ctx.send('error')
-					return
+			except TypeError:
+				await ctx.send('error')
+				return
 		
 		
 		
