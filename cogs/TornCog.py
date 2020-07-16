@@ -56,7 +56,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
 	@commands.command()
-	async def check(self, ctx, args: discord.member=None):
+	async def check(self, ctx, args: None):
 		
 		
 		
