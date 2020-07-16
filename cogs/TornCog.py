@@ -58,20 +58,34 @@ class TornCog(commands.Cog, name = "TornCog" ):
 	@commands.command()
 	async def check(self, ctx, args = None):
 		
-		
-		
-		#with urllib.request.urlopen("http://maps.googleapis.com/maps/api/geocode/json?address=google") as API_data:
-		#	data = json.loads(API_data.read().decode())
-		#	print(data)
-		
 		if not args:
 			await ctx.send('no args')
 			return
 			
+			
+			
+			
+			
 		args_string = str(args)	
 		if args_string.lower() == 'stats':
-			await ctx.send('It works!')
-			return
+			
+			user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+			api_pull = user_check_doc[api_key]
+						     
+			try:
+				if try_doc['discord_username'] == str(ctx.author.id):
+					API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_pull)).json()
+					playername = API_DOC['name']
+					await ctx.send(playername)
+					return
+				except TypeError:
+					await ctx.send('error')
+					return
+		
+		
+		
+		
+		
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
