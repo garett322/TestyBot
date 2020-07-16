@@ -64,7 +64,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		#	data = json.loads(API_data.read().decode())
 		#	print(data)
 		
-		if args == None:
+		if not args:
 			await ctx.send('no args')
 			return
 			
