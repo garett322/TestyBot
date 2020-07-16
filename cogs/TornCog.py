@@ -73,7 +73,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			api_pull = user_check_doc['api_key']
 						     
 			try:
-				if try_doc['discord_username'] == str(ctx.author.id):
+				if user_check_doc['discord_username'] == str(ctx.author.id):
 					API_DOC = requests.get('https://api.torn.com/user/?selections=&key={}'.format(api_pull)).json()
 					playername = API_DOC['name']
 					await ctx.send(playername)
