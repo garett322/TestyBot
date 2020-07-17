@@ -105,6 +105,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 							return
 				
 					except TypeError:
+						await ctx.send('typeerror')
 						return
 				else:
 					ctx.send('You have to register your API Key with the "api_set" command before you can use this.')
