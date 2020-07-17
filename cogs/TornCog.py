@@ -90,9 +90,12 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					return
 				else:
 					
-					statsembed = discord.Embed(title=user_check_doc['name'] + '\'s stats', description="Desc", color=0x00ff00)
-					statsembed.add_field(name="Field1", value="hi", inline=False)	
-					statsembed.add_field(name="Field2", value="hi2", inline=False)
+					statsembed = discord.Embed(title=user_check_doc['name'] + '\'s stats', description="", color=0x00ffff)
+					statsembed.add_field(name="Strength:", value=str_pull, inline=True)	
+					statsembed.add_field(name="Dexterity:", value=dex_pull, inline=True)
+					statsembed.add_field(name="Defense:", value=def_pull, inline=True)
+					statsembed.add_field(name="Speed:", value=spd_pull, inline=True)
+					statsembed.add_field(name="Total:", value=total_pull, inline=True)
 					await ctx.send(embed=statsembed)
 					
 					
