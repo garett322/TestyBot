@@ -77,13 +77,6 @@ class TornCog(commands.Cog, name = "TornCog" ):
 				
 				api_pull = user_check_doc['api_key']
 				API_DOC = requests.get('https://api.torn.com/user/?selections=battlestats&key={}'.format(api_pull)).json()
-				
-				try:
-					playername = API_DOC['name']
-				except KeyError:
-					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
-				else:
-					ctx.send(playername)
 					
 				try:
 					str_pull= API_DOC['strength']
@@ -96,6 +89,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
 					return
 				else:
+					await ctx.send('Your battlestats are as follows, ' + user_check_doc['name'] +':')
 					await ctx.send('Strenth: ' + str_pull)
 					await ctx.send('Dexterity: ' + dex_pull)
 					await ctx.send('Defense: ' + def_pull)
