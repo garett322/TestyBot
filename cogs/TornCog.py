@@ -91,8 +91,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 				else:
 					
 					statsembed = discord.Embed(title=user_check_doc['name'] + '\'s stats', description="Desc", color=0x00ff00)
-					embedVar.add_field(name="Field1", value="hi", inline=False)	
-					embedVar.add_field(name="Field2", value="hi2", inline=False)
+					statsembed.add_field(name="Field1", value="hi", inline=False)	
+					statsembed.add_field(name="Field2", value="hi2", inline=False)
 					await ctx.send(embed=statsembed)
 					
 					
@@ -106,7 +106,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					return
 			
 			else:
-				ctx.send('You have to register your API Key with the "api_set" command before you can use this.')
+				await ctx.send('You have to register your API Key with the "api_set" command before you can use this.')
 				return
 			
 			
