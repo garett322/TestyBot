@@ -33,8 +33,8 @@ class TornCog(commands.Cog, name = "TornCog" ):
 				try:
 					playername = API_DOC['name']
 				except KeyError:
-					await ctx.author.send('There seems to have been an error...')
-					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
+					print('The error is as follows: ' + API_DOC['error'])
+					return
 				else:
 					try_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 		
@@ -50,6 +50,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					inserted_doc = KEYS.insert_one(doc)		    
 					await ctx.author.send('Your API key has been registered ' + playername + '!!')
 					found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
+					return
 					
 		else:	
 			await ctx.message.delete()
@@ -85,8 +86,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					spd_pull= API_DOC['speed']
 					total_pull= API_DOC['total']
 				except KeyError:
-					await ctx.author.send('There seems to have been an error...')
-					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
+					print('The error is as follows: ' + API_DOC['error'])
 					return
 				else:
 					await ctx.send('Your battlestats are as follows, ' + user_check_doc['name'] +':')
