@@ -77,6 +77,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 				
 				user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 				api_pull = user_check_doc['api_key']
+				await ctx.send(api_pull)
 				
 			except:
 				await ctx.send('error')
