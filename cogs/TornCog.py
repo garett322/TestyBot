@@ -72,42 +72,39 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		args_string = str(args)	
 		if args_string.lower() == 'battlestats':
 			
-			
-
-			
 			user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 			api_pull = user_check_doc['api_key']
-			await ctx.send(api_pull)
 			
-
-			await ctx.send('error')
 		else:
 			if user_check_doc['discord_username'] == str(ctx.author.id):
-			
-				try:
-					API_DOC = requests.get('https://api.torn.com/user/?selections=battlestats&key={}'.format(api_pull)).json()
 				
-					try:
-						str_pull= API_DOC['strength']
-						dex_pull= API_DOC['dexterity']
-						def_pull= API_DOC['defense']
-						spd_pull= API_DOC['speed']
-						total_pull= API_DOC['total']
-					except KeyError:
-						await ctx.author.send('There seems to have been an error...')
-						await ctx.author.send('The error is as follows: ' + API_DOC['error'])
-						return
-					else:
-						await ctx.send('Strenth: ' + str_pull)
-						await ctx.send('Dexterity: ' + dex_pull)
-						await ctx.send('Defense: ' + def_pull)
-						await ctx.send('Speed: ' + spd_pull)
-						await ctx.send('Total: ' + total_pull)
-						return
-			
-				except TypeError:
-					await ctx.send('typeerror')
+				API_DOC = requests.get('https://api.torn.com/user/?selections=battlestats&key={}'.format(api_pull)).json()
+				
+				try:
+					playername = API_DOC['name']
+				except KeyError:
+					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
+				else:
+					ctx.send(playername)
+					
+				try:
+					str_pull= API_DOC['strength']
+					dex_pull= API_DOC['dexterity']
+					def_pull= API_DOC['defense']
+					spd_pull= API_DOC['speed']
+					total_pull= API_DOC['total']
+				except KeyError:
+					await ctx.author.send('There seems to have been an error...')
+					await ctx.author.send('The error is as follows: ' + API_DOC['error'])
 					return
+				else:
+					await ctx.send('Strenth: ' + str_pull)
+					await ctx.send('Dexterity: ' + dex_pull)
+					await ctx.send('Defense: ' + def_pull)
+					await ctx.send('Speed: ' + spd_pull)
+					await ctx.send('Total: ' + total_pull)
+					return
+			
 			else:
 				ctx.send('You have to register your API Key with the "api_set" command before you can use this.')
 				return
