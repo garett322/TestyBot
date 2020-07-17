@@ -97,7 +97,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					embed.add_field(name='Dexterity', value=dex_pull, inline=True)
 					embed.add_field(name="------------------------------------------------------", value="", inline=True)
 					embed.add_field(name='Total:', value=total_pull, inline=False)
-					await self.bot.say(embed=embed)
+					await ctx.send(embed=embed)
 					return
 			
 			else:
