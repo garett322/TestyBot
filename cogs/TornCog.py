@@ -74,8 +74,6 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			
 			user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
 			api_pull = user_check_doc['api_key']
-			
-		else:
 			if user_check_doc['discord_username'] == str(ctx.author.id):
 				
 				API_DOC = requests.get('https://api.torn.com/user/?selections=battlestats&key={}'.format(api_pull)).json()
@@ -108,6 +106,11 @@ class TornCog(commands.Cog, name = "TornCog" ):
 			else:
 				ctx.send('You have to register your API Key with the "api_set" command before you can use this.')
 				return
+			
+			
+		else:
+			await ctx.send('not battlestats')
+			return
 		
 		
 		
