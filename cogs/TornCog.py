@@ -95,7 +95,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					statsembed.add_field(name="Dexterity:", value=dex_pull, inline=False)
 					statsembed.add_field(name="Defense:", value=def_pull, inline=False)
 					statsembed.add_field(name="Speed:", value=spd_pull, inline=False)
-					statsembed.add_field(name=empty, value=empty, inline=False)
+					statsembed.add_field(name="", value="", inline=False)
 					statsembed.add_field(name="Total:", value=total_pull, inline=False)
 					await ctx.send(embed=statsembed)
 					
