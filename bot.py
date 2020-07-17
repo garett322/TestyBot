@@ -19,12 +19,12 @@ async def on_message(message):
 	await client.process_commands(message)
 
 	
-@client.event
-async def on_command_error(ctx, error):
-	await ctx.send('We encountered a fatal error. Please check the command you entered and try again.')
-	print(' ')
-	print(error)
-	return
+#@client.event
+#async def on_command_error(ctx, error):
+#	await ctx.send('We encountered a fatal error. Please check the command you entered and try again.')
+#	print(' ')
+#	print(error)
+#	return
 	
 	
 
