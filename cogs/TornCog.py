@@ -73,9 +73,9 @@ class TornCog(commands.Cog, name = "TornCog" ):
 		if args_string.lower() == 'battlestats':
 			
 			user_check_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
-			api_pull = user_check_doc['api_key']
 			if user_check_doc['discord_username'] == str(ctx.author.id):
 				
+				api_pull = user_check_doc['api_key']
 				API_DOC = requests.get('https://api.torn.com/user/?selections=battlestats&key={}'.format(api_pull)).json()
 				
 				try:
