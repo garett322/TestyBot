@@ -90,11 +90,11 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					return
 				else:
 					await ctx.send('Your battlestats are as follows, ' + user_check_doc['name'] +':')
-					await ctx.send('Strenth: ' + str_pull)
-					await ctx.send('Dexterity: ' + dex_pull)
-					await ctx.send('Defense: ' + def_pull)
-					await ctx.send('Speed: ' + spd_pull)
-					await ctx.send('Total: ' + total_pull)
+					await ctx.send('Strenth: ' + str(str_pull))
+					await ctx.send('Dexterity: ' + str(dex_pull))
+					await ctx.send('Defense: ' + str(def_pull))
+					await ctx.send('Speed: ' + str(spd_pull))
+					await ctx.send('Total: ' + str(total_pull))
 					return
 			
 			else:
