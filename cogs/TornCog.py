@@ -89,12 +89,20 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					print('The error is as follows: ' + API_DOC['error'])
 					return
 				else:
-					await ctx.send('Your battlestats are as follows, ' + user_check_doc['name'] +':')
-					await ctx.send('Strenth: ' + str(str_pull))
-					await ctx.send('Dexterity: ' + str(dex_pull))
-					await ctx.send('Defense: ' + str(def_pull))
-					await ctx.send('Speed: ' + str(spd_pull))
-					await ctx.send('Total: ' + str(total_pull))
+					
+					statsembed = discord.Embed(title=user_check_doc['name'] + '\'s stats', description="Desc", color=0x00ff00)
+					embedVar.add_field(name="Field1", value="hi", inline=False)	
+					embedVar.add_field(name="Field2", value="hi2", inline=False)
+					await ctx.send(embed=statsembed)
+					
+					
+					
+					#await ctx.send('Your battlestats are as follows, ' + user_check_doc['name'] +':')
+					#await ctx.send('Strenth: ' + str(str_pull))
+					#await ctx.send('Dexterity: ' + str(dex_pull))
+					#await ctx.send('Defense: ' + str(def_pull))
+					#await ctx.send('Speed: ' + str(spd_pull))
+					#await ctx.send('Total: ' + str(total_pull))
 					return
 			
 			else:
