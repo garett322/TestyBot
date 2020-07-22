@@ -98,7 +98,7 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					embed.add_field(name="------------------------------------------------------", value="----------------------------------------------------", inline=False)
 					embed.add_field(name='Total:', value=total_pull, inline=False)
 					await ctx.send(embed=embed)
-					await ctx.send('+----------------------+-------------+\n|         Strength         |  ' + str(str_pull) + ' |') 
+					await ctx.send('+----------------------+-------------+\n|             Strength             |  ' + str(str_pull) + ' |') 
 					return
 			 
 			else:
