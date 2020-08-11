@@ -89,16 +89,13 @@ class TornCog(commands.Cog, name = "TornCog" ):
 					print('The error is as follows: ' + API_DOC['error'])
 					return
 				else:
-					embed=discord.Embed(title=user_check_doc['name'] + '\'s Battle Stats', color=0x00ffff)
-					embed.add_field(name='Strength:', value=str_pull, inline=True)
-					embed.add_field(name='Speed:', value=spd_pull, inline=True)
-					embed.add_field(name='------------------------------------------------------', value="----------------------------------------------------", inline=False)
-					embed.add_field(name='Defense:', value=def_pull, inline=True)
-					embed.add_field(name='Dexterity', value=dex_pull, inline=True)
-					embed.add_field(name="------------------------------------------------------", value="----------------------------------------------------", inline=False)
+					embed=discord.Embed(title=user_check_doc['name'] + '\'s Battle Stats:', color=0x00ffff)
+					embed.add_field(name='Strength:', value=str_pull, inline=False)
+					embed.add_field(name='Speed:', value=spd_pull, inline=False)
+					embed.add_field(name='Defense:', value=def_pull, inline=False)
+					embed.add_field(name='Dexterity', value=dex_pull, inline=False)
 					embed.add_field(name='Total:', value=total_pull, inline=False)
 					await ctx.send(embed=embed)
-					await ctx.send('+----------------------+-------------+\n|           Strength           |  ' + str(str_pull) + ' |') 
 					return
 			 
 			else:
