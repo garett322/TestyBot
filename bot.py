@@ -30,7 +30,7 @@ async def on_command_error(ctx, error):
 
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RouletteCog')
-client.load_extension('cogs.TornCog')
+client.load_extension('cogs.GamblingCog')
 #client.load_extension('cogs.NewCog')
 
 client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XknFVQ.gZPzOHRgqOMCNkePNIpAP2iRvDk')
