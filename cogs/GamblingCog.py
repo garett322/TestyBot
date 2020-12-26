@@ -21,12 +21,12 @@ class GamblingCog(commands.Cog, name = "GamblingCog"):
 		if ctx.guild is None:
 			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
 			return
-	else :
-		#inserted_doc = KEYS.insert_one(doc)
-		#found_doc = KEYS.find_one({
-		#"discord_username": str(ctx.author.id)})
-		await ctx.send('works')
-		return
+		else :
+			#inserted_doc = KEYS.insert_one(doc)
+			#found_doc = KEYS.find_one({
+			#"discord_username": str(ctx.author.id)})
+			await ctx.send('works')
+			return
 
 def setup(bot):
 	bot.add_cog(TornCog(bot))
