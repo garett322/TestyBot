@@ -16,17 +16,21 @@ class GamblingCog(commands.Cog, name = "GamblingCog"):
 		if message.author == 'Test Bot#0806':
 			return
 
-	@commands.command(name= 'command1')
+	@commands.command(name= 'command')
 	async def command1(self, ctx):
 		if ctx.guild is None:
-			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
-			return
-		else :
-			#inserted_doc = KEYS.insert_one(doc)
-			#found_doc = KEYS.find_one({
-			#"discord_username": str(ctx.author.id)})
 			await ctx.send('works')
 			return
+		
+		else :
+			await ctx.author.send('Please only use this command in DMs ' + ctx.author.mention + '. We dont want everybodyto know your API key.')
+			return
+
 
 def setup(bot):
 	bot.add_cog(GamblingCog(bot))
+	
+	
+	
+#inserted_doc = KEYS.insert_one(doc)
+#found_doc = KEYS.find_one({"discord_username": str(ctx.author.id)})
