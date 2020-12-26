@@ -29,4 +29,4 @@ class GamblingCog(commands.Cog, name = "GamblingCog"):
 			return
 
 def setup(bot):
-	bot.add_cog(TornCog(bot))
+	bot.add_cog(GamblingCog(bot))
