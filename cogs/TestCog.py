@@ -12,9 +12,9 @@ class TestCog(commands.Cog, name = "TestCog" ):
 			return
 			
 	@commands.command(name = 'test' )
-		async def testy(self, ctx):
-			await ctx.send('It Works!')
-			return
+	async def testy(self, ctx):
+		await ctx.send('It Works!')
+		return
 
 def setup(bot):
 	bot.add_cog(TestCog(bot))
