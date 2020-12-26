@@ -14,7 +14,7 @@ class TestCog(commands.Cog, name = "TestCog" ):
     async def testy(self, ctx):
         id_pull = ctx.author.id
         user = self.bot.get_user(id_pull)
-        await ctx.send(user.mention + ' It Works!')
+        await ctx.send(id_pull + ' It Works!')
 
 def setup(bot):
     bot.add_cog(TestCog(bot))
