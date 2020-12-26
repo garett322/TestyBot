@@ -33,4 +33,4 @@ client.load_extension('cogs.RouletteCog')
 client.load_extension('cogs.GamblingCog')
 #client.load_extension('cogs.NewCog')
 
-client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XknFVQ.gZPzOHRgqOMCNkePNIpAP2iRvDk')
+client.run('5Y28m3Sykv-vE0HwAwIE3k5Njrq-jZOh.XknFVQ.gZPzOHRgqOMCNkePNIpAP2iRvDk')
