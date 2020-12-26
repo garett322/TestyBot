@@ -12,8 +12,8 @@ class TestCog(commands.Cog, name = "TestCog" ):
 
     @commands.command(name = 'test' )
     async def testy(self, ctx):
-        id = ctx.author.id
-        user = self.bot.get_user(id)
+        id_pull = ctx.author.id
+        user = self.bot.get_user(id_pull)
         await ctx.send(user.mention + ' It Works!')
 
 def setup(bot):
