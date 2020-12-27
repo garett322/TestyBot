@@ -47,10 +47,10 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			
 		if args1.lower() == 'create':
 			if not args1:
-				await ctx.send('Please say whether you want to set or delete your custom role.')
+				await ctx.send('Please say whether you want to set or delete your custom role and try again.')
 				return
 			elif not args2:
-				await ctx.send('Please input the name of your custom role.')
+				await ctx.send('Please input the name of your custom role and try again.')
 				return
 			for role in ctx.author.roles:
 				if role.name not in role_list:
@@ -62,7 +62,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				if args3 in color_list:
 					await ctx.guild.create_role(name = args2, colour = color_list[args3])
 				else:
-					await ctx.send('Please choose a supported color.')
+					await ctx.send('Please choose a supported color and try again.')
 					return
 			role = discord.utils.get(ctx.guild.roles, name = args2)
 			user = ctx.message.author
