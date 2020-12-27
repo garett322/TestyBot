@@ -22,19 +22,19 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 		else:
 			if args1.lower() == 'set':
 				for role in ctx.author.roles:
-					if role.name.lower() == msg.content.lower():
+					if role.name.lower() == args2.lower():
 						await ctx.send('You already have this role.')
 						return
 					else:
 						pass
 				if args3 == None:
-					await ctx.guild.create_role(name = msg.content)
+					await ctx.guild.create_role(name = args2)
 				else:
-					await ctx.guild.create_role(name = msg.content, color = args3)
-				role = discord.utils.get(ctx.guild.roles, name = msg.content)
+					await ctx.guild.create_role(name = args2, color = args3)
+				role = discord.utils.get(ctx.guild.roles, name = args2)
 				user = ctx.message.author
 				await user.add_roles(role)
-				await ctx.send('Your custom role {} has been created and assigned to you!'.format(msg.content))
+				await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
 				return
 			else:
 				await ctx.send('Args failure.')
