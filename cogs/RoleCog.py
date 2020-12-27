@@ -64,7 +64,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 					await ctx.guild.create_role(name = args2)
 				else:
 					if args3 in color_list:
-						await ctx.guild.create_role(name = args2, colour = color_list[args3]
+						await ctx.guild.create_role(name = args2, colour = color_list[args3])
 					else:
 						await ctx.send('Please choose a supported color.')
 						return
