@@ -6,17 +6,6 @@ from discord.ext import commands
 class RoleCog(commands.Cog, name = "RoleCog" ):
 	def __init__(self, bot):
 		self.bot = bot
-		
-		
-	def HexChk(str):
-		regex = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-		p = re.compile(regex)
-		if(str == None):
-			return False
-		if(re.search(p, str)):
-			return True
-		else:
-			return False
 
 
 	async def on_message(self, message):
@@ -25,6 +14,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 	
 	@commands.command(name = 'role' )
 	async def role(self, ctx, args1, args2, args3 = None):
+
 		if not args1:
 			await ctx.send('Please say whether you want to set or delete your custom role.')
 			return
@@ -42,6 +32,17 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				if args3 == None:
 					await ctx.guild.create_role(name = args2)
 				else:
+					
+					def HexChk(str):
+						regex = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+						p = re.compile(regex)
+						if(str == None):
+							return False
+						if(re.search(p, str)):
+							return True
+						else:
+							return False
+
 					HexResult = HexChk(args3)
 					if HexResult == False:
 						await ctx.send('Please use a valid hexadecimal color code.')
