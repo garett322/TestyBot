@@ -13,7 +13,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			return
 	
 	@commands.command(name = 'role' )
-	async def role(self, ctx, args1, args2, args3 = None):
+	async def role(self, ctx, args1, args2 = None, args3 = None):
 
 		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone'}
 
