@@ -32,23 +32,22 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				if args3 == None:
 					await ctx.guild.create_role(name = args2)
 				else:
-					color = '#' + args3
+					
 					def HexChk(chk):
-						regex = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+						color = chk.lstrip('#')
+						regex = "^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
 						p = re.compile(regex)
-						if(chk == None):
-							return False
-						if(re.search(p, chk)):
+						if(re.search(p, color)):
 							return True
 						else:
 							return False
 
 					HexResult = HexChk(color)
 					if HexResult == False:
-						await ctx.send('Please use a valid hexadecimal color code without the #.')
+						await ctx.send('Please use a valid hexadecimal color code.')
 						return
 					elif HexResult == True:
-						await ctx.guild.create_role(name = args2, color = args3)
+						await ctx.guild.create_role(name = args2, color = args3.lstrip('#'))
 					else:
 						await ctx.send('Hex check error')
 						return
