@@ -15,6 +15,37 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 	@commands.command(name = 'role' )
 	async def role(self, ctx, args1, args2, args3 = None):
 
+		color_list = {
+			'blue': discord.Colour.blue,
+			'violet': discord.Colour.blurple,
+			'dark_blue': discord.Colour.dark_blue,
+			'dark_gold': discord.Colour.dark_gold,
+			'dark_gray': discord.Colour.dark_gray,
+			'dark_grey': discord.Colour.dark_grey,
+			'dark_green': discord.Colour.dark_green,
+			'dark_magenta': discord.Colour.dark_magenta,
+			'dark_orange': discord.Colour.dark_orange,
+			'dark_purple': discord.Colour.dark_purple,
+			'dark_red': discord.Colour.dark_red,
+			'dark_teal': discord.Colour.dark_teal,
+			'darker_gray': discord.Colour.darker_gray,
+			'darker_grey': discord.Colour.darker_grey,
+			'gray': discord.Colour.gray,
+			'grey': discord.Colour.grey,
+			'green': discord.Colour.green,
+			'gold': discord.Colour.gold,
+			'light_gray': discord.Colour.light_gray,
+			'light_grey': discord.Colour.light_grey,
+			'lighter_gray': discord.Colour.lighter_gray,
+			'lighter_grey': discord.Colour.lighter_grey,
+			'magenta': discord.Colour.magenta,
+			'purple': discord.Colour.purple,
+			'orange': discord.Colour.orange,
+			'random': discord.Colour.random,
+			'red': discord.Colour.red,
+			'teal': discord.Colour.teal}
+
+
 		if not args1:
 			await ctx.send('Please say whether you want to set or delete your custom role.')
 			return
@@ -32,25 +63,10 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				if args3 == None:
 					await ctx.guild.create_role(name = args2)
 				else:
-					
-					def HexChk(chk):
-						chkstrip = chk.lstrip('#')
-						regex = "^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-						p = re.compile(regex)
-						if(re.search(p, chkstrip)):
-							return True
-						else:
-							return False
-
-					HexResult = HexChk(args3)
-					if HexResult == False:
-						await ctx.send('Please use a valid hexadecimal color code.')
-						return
-					elif HexResult == True:
-						HexColor = '0x' + args3.lstrip('#')
-						await ctx.guild.create_role(name = args2, colour = discord.Colour(int(HexColor)))
+					if args3 in color_list:
+						await ctx.guild.create_role(name = args2, colour = color_list[args3]
 					else:
-						await ctx.send('Hex check error')
+						await ctx.send('Please choose a supported color.')
 						return
 				role = discord.utils.get(ctx.guild.roles, name = args2)
 				user = ctx.message.author
