@@ -34,15 +34,15 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				else:
 					
 					def HexChk(chk):
-						color = chk.lstrip('#')
+						chkstrip = chk.lstrip('#')
 						regex = "^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
 						p = re.compile(regex)
-						if(re.search(p, color)):
+						if(re.search(p, chkstrip)):
 							return True
 						else:
 							return False
 
-					HexResult = HexChk(color)
+					HexResult = HexChk(args3)
 					if HexResult == False:
 						await ctx.send('Please use a valid hexadecimal color code.')
 						return
