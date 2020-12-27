@@ -48,7 +48,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 						return
 					elif HexResult == True:
 						HexColor = '0x' + args3.lstrip('#')
-						await ctx.guild.create_role(name = args2, colour = discord.Colour(HexColor))
+						await ctx.guild.create_role(name = args2, colour = discord.Colour(int(HexColor)))
 					else:
 						await ctx.send('Hex check error')
 						return
