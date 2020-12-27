@@ -89,7 +89,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 	@commands.command(name = 'colors', description = 'Lists the available colors for the role command.')
 	async def colors(self, ctx):
 		color_list = {'blue', 'violet', 'dark_blue', 'dark_gold', 'dark_gray', 'dark_grey', 'dark_green', 'dark_magenta', 'dark_orange', 'dark_purple', 'dark_red', 'dark_teal', 'darker_gray', 'darker_grey', 'green','gold', 'light_gray', 'light_grey', 'lighter_gray', 'lighter_grey', 'magenta', 'purple', 'orange', 'random', 'red', 'teal'}
-		await ctx.send(str(color_list).strip('{}'))
+		await ctx.send(str(color_list).strip('{}').replace("'", ''))
 		return
 		
 		
