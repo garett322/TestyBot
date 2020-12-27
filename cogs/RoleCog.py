@@ -38,10 +38,8 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 						regex = "^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
 						p = re.compile(regex)
 						if(re.search(p, chkstrip)):
-							await ctx.send('color good')
 							return True
 						else:
-							await ctx.send('color bad')
 							return False
 
 					HexResult = HexChk(args3)
@@ -50,7 +48,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 						return
 					elif HexResult == True:
 						HexColor = '0x' + args3.lstrip('#')
-						await ctx.guild.create_role(name = args2, color = HexColor)
+						await ctx.guild.create_role(name = args2, colour = discord.Colour(HexColor))
 					else:
 						await ctx.send('Hex check error')
 						return
