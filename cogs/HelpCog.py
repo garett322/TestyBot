@@ -11,7 +11,7 @@ class HelpCog(commands.Cog, name = "HelpCog" ):
 		if message.author == 'Test Bot#0806':
 			return
 	
-	@commands.command(name = 'help' )
+	@commands.command(name = 'shucks' )
 	async def h(self, ctx, args):
 		
 		Help_List = {
