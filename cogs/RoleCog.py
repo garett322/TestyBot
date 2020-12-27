@@ -17,7 +17,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			await ctx.send('No args')
 			return
 		else:
-			if lower(args) = 'set':
+			if args.lower() = 'set':
 				await ctx.send('The name of your role:')
 				def check(message):
 					try:
