@@ -17,22 +17,21 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			await ctx.send('No args')
 			return
 		else:
-		 if lower(args) = 'set'
-			await ctx.send('The name of your role:')
-			
-			def check(message):
-				try:
-					msg = await self.bot.wait_for('message', timeout=15.0, check=check)
-				except asyncio.TimeoutError:
-					await ctx.send(ctx.author.mention + 'You took too long to reply. The command has been canceled.')
-				else:
-					for role in ctx.author.roles:
-						if role.name == 'bot kings':
-							ctx.send('dope!!!')
-							return
-						else:
-							ctx.send('NOT DOPE!!!!')
-							return
+			if lower(args) = 'set':
+				await ctx.send('The name of your role:')
+				def check(message):
+					try:
+						msg = await self.bot.wait_for('message', timeout=15.0, check=check)
+					except asyncio.TimeoutError:
+						await ctx.send(ctx.author.mention + 'You took too long to reply. The command has been canceled.')
+					else:
+						for role in ctx.author.roles:
+							if role.name == 'bot kings':
+								ctx.send('dope!!!')
+								return
+							else:
+								ctx.send('NOT DOPE!!!!')
+								return
 
 
 
