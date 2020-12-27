@@ -44,7 +44,9 @@ class RoleCog(commands.Cog, name = "Roles"):
 			'random': discord.Colour.random(),
 			'red': discord.Colour.red(),
 			'teal': discord.Colour.teal()}
-			
+		if args1 == None:
+			await ctx.send('No such command. Use either ".role create" or ".role delete".')
+			return
 		if args1.lower() == 'create':
 			if not args1:
 				await ctx.send('Please say whether you want to set or delete your custom role and try again.')
