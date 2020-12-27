@@ -76,6 +76,8 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 					await role.delete()
 					#role_del = role.delete
 					await ctx.send('Your custom role "{}" has been removed.'.format(role.name))
+					return
+			await ctx.send('There weren\'t any custom roles to delete. Use ".role create" to make one.')
 			return
 				
 					
