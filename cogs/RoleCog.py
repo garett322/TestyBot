@@ -27,7 +27,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 						return
 					else:
 						pass
-				if args3 = None:
+				if args3 == None:
 					await ctx.guild.create_role(name = msg.content)
 				else:
 					await ctx.guild.create_role(name = msg.content, color = args3)
