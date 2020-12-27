@@ -29,10 +29,10 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 					for role in ctx.author.roles:
 						if role.name == 'bot kings':
 							await ctx.send('dope!!!')
-							return
 						else:
-							await ctx.send('NOT DOPE!!!! ' + role.name)
-							return
+							await ctx.send('NOT DOPE!!!!')
+					return
+				
 			else:
 				await ctx.send('Args failure.')
 
