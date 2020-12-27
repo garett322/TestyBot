@@ -36,7 +36,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 					def HexChk(chk):
 						regex = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
 						p = re.compile(regex)
-						if(str == None):
+						if(chk == None):
 							return False
 						if(re.search(p, chk)):
 							return True
