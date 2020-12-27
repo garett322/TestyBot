@@ -12,7 +12,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			return
 	
 	@commands.command(name = 'role' )
-	async def role(self, ctx, args: str, user: discord.member):
+	async def role(self, ctx, args: str):
 		if not args:
 			await ctx.send('No args')
 			return
