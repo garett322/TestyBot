@@ -15,6 +15,8 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 	@commands.command(name = 'role' )
 	async def role(self, ctx, args1, args2, args3 = None):
 
+		role_list = {	}
+
 		color_list = {
 			'blue': discord.Colour.blue(),
 			'violet': discord.Colour.blurple(),
@@ -73,7 +75,8 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				return
 					
 			else:
-				await ctx.send('Args failure.')
+				await ctx.send('Args error')
+				return
 
 
 
