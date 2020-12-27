@@ -15,7 +15,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 	@commands.command(name = 'role' )
 	async def role(self, ctx, args1, args2, args3 = None):
 
-		role_list = {	}
+		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone'}
 
 		color_list = {
 			'blue': discord.Colour.blue(),
@@ -53,13 +53,11 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			await ctx.send('Please input the name of your custom role.')
 			return
 		else:
-			if args1.lower() == 'set':
+			if args1.lower() == 'make':
 				for role in ctx.author.roles:
-					if role.name.lower() == args2.lower():
-						await ctx.send('You already have this role.')
+					if role.name not in role_list:
+						await ctx.send('You already have a cutom role. Delete your current role and try again.')
 						return
-					else:
-						pass
 				if args3 == None:
 					await ctx.guild.create_role(name = args2)
 				else:
@@ -74,8 +72,17 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
 				return
 					
+			elif args1.lower == 'delete':
+				for role in ctx.author.roles:
+					if role.name not in role_list:
+						await role.delete()
+					else:
+						await crx.send('You havent created a custom role yet.')
+				await ctx.send('Your custom role has been removed.')
+					
+					
 			else:
-				await ctx.send('Args error')
+				await ctx.send('No such command. Use either ".role make" or ".role delete".')
 				return
 
 
