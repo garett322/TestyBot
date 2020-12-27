@@ -1,3 +1,4 @@
+import re
 import discord
 from discord.ext import commands
 
@@ -5,6 +6,17 @@ from discord.ext import commands
 class RoleCog(commands.Cog, name = "RoleCog" ):
 	def __init__(self, bot):
 		self.bot = bot
+		
+		
+	def HexChk(str):
+		regex = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+		p = re.compile(regex)
+		if(str == None):
+			return False
+		if(re.search(p, str)):
+			return True
+		else:
+			return False
 
 
 	async def on_message(self, message):
@@ -12,7 +24,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			return
 	
 	@commands.command(name = 'role' )
-	async def role(self, ctx, args1, args2, args3: str = None):
+	async def role(self, ctx, args1, args2, args3 = None):
 		if not args1:
 			await ctx.send('Please say whether you want to set or delete your custom role.')
 			return
@@ -30,12 +42,16 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				if args3 == None:
 					await ctx.guild.create_role(name = args2)
 				else:
-					await ctx.guild.create_role(name = args2, color = args3)
-				role = discord.utils.get(ctx.guild.roles, name = args2)
-				user = ctx.message.author
-				await user.add_roles(role)
-				await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
-				return
+					if HexChk(args3) == False
+						await ctx.send('Please use a valid hexadecimal color code.')
+						return
+					else:
+						await ctx.guild.create_role(name = args2, color = args3)
+					role = discord.utils.get(ctx.guild.roles, name = args2)
+					user = ctx.message.author
+					await user.add_roles(role)
+					await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
+					return
 			else:
 				await ctx.send('Args failure.')
 
