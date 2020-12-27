@@ -12,12 +12,12 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			return
 	
 	@commands.command(name = 'role' )
-	async def role(self, ctx, user: discord.member, args):
+	async def role(self, ctx, args: str, user: discord.member):
 		if not args:
 			await ctx.send('No args')
 			return
 		else:
-			if str(args).lower = 'set':
+			if args.lower == 'set':
 				await ctx.send('The name of your role:')
 				def check(message):
 					try:
