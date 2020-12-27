@@ -33,12 +33,12 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 					await ctx.guild.create_role(name = args2)
 				else:
 					
-					def HexChk(str):
+					def HexChk(chk):
 						regex = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
 						p = re.compile(regex)
 						if(str == None):
 							return False
-						if(re.search(p, str)):
+						if(re.search(p, chk)):
 							return True
 						else:
 							return False
