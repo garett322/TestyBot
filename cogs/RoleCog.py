@@ -74,10 +74,8 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			for role in ctx.author.roles:
 				if role.name not in role_list:
 					await role.delete()
+					#role_del = role.delete
 					await ctx.send('Your custom role "{}" has been removed.'.format(role.name))
-				else:
-					await crx.send('You havent created a custom role yet.')
-					return
 			return
 				
 					
