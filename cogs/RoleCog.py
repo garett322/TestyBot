@@ -12,32 +12,30 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			return
 	
 	@commands.command(name = 'role' )
-	async def role(self, ctx, args):
-		if not args:
-			await ctx.send('No args')
+	async def role(self, ctx, args1, args2, args3: str = None):
+		if not args1:
+			await ctx.send('Please say whether you want to set or delete your custom role.')
+			return
+		elif not args2:
+			await ctx.send('Please input the name of your custom role.')
 			return
 		else:
-			if args.lower() == 'set':
-				await ctx.send('The name of your role:')
-				def check(message):
-					return message.author == ctx.author
-				try:
-					msg = await self.bot.wait_for('message', timeout=15.0, check=check)
-				except asyncio.TimeoutError:
-					await ctx.send(ctx.author.mention + 'You took too long to reply. The command has been canceled.')
-				else:
-					for role in ctx.author.roles:
-						if role.name.lower() == msg.content.lower():
-							await ctx.send('You already have this role.')
-							return
-						else:
-							pass
+			if args1.lower() == 'set':
+				for role in ctx.author.roles:
+					if role.name.lower() == msg.content.lower():
+						await ctx.send('You already have this role.')
+						return
+					else:
+						pass
+				if args3 = None:
 					await ctx.guild.create_role(name = msg.content)
-					role = discord.utils.get(ctx.guild.roles, name = msg.content)
-					user = ctx.message.author
-					await user.add_roles(role)
-					await ctx.send('Your custom role {} has been created and assigned to you!'.format(msg.content))
-					return
+				else:
+					await ctx.guild.create_role(name = msg.content, color = args3)
+				role = discord.utils.get(ctx.guild.roles, name = msg.content)
+				user = ctx.message.author
+				await user.add_roles(role)
+				await ctx.send('Your custom role {} has been created and assigned to you!'.format(msg.content))
+				return
 			else:
 				await ctx.send('Args failure.')
 
