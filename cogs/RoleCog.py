@@ -70,7 +70,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
 			return
 					
-		elif args1.lower == 'delete':
+		elif args1.lower() == 'delete':
 			for role in ctx.author.roles:
 				if role.name not in role_list:
 					await role.delete()
