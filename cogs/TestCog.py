@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class TestCog(commands.Cog, name = "TestCog" ):
+class TestCog(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 		
@@ -11,7 +11,7 @@ class TestCog(commands.Cog, name = "TestCog" ):
 		if message.author == 'Test Bot#0806':
 			return
 			
-	@commands.command(name = 'test' )
+	@commands.command()
 	async def testy(self, ctx):
 		await ctx.send('It Works!')
 		return
