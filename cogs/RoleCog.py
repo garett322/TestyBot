@@ -12,12 +12,12 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			return
 	
 	@commands.command(name = 'role' )
-	async def role(self, ctx, args: str):
+	async def role(self, ctx, args):
 		if not args:
 			await ctx.send('No args')
 			return
 		else:
-			if args.lower == 'set':
+			if args.lower() == 'set':
 				await ctx.send('The name of your role:')
 				def check(message):
 					return message.author == ctx.author and (message.content.lower() == 'test')
@@ -33,6 +33,8 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 						else:
 							ctx.send('NOT DOPE!!!!')
 							return
+			else:
+				await ctx.send('Args failure.')
 
 
 
