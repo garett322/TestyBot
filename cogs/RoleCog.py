@@ -12,7 +12,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 		if message.author == 'Test Bot#0806':
 			return
 	
-	@commands.command(name = 'role', description: '.role is for creating and deleting custom roles. Use ".role create (role name) (role color)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
+	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role name) (role color)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
 	async def role(self, ctx, args1, args2 = None, args3 = None):
 
 		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone'}
@@ -86,7 +86,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 			await ctx.send('No such command. Use either ".role create" or ".role delete".')
 			return
 
-	@commands.command(name = 'colors', description: 'Lists the available colors for the role command.')
+	@commands.command(name = 'colors', description = 'Lists the available colors for the role command.')
 	async def colors(self, ctx):
 		color_list = {'blue', 'violet', 'dark_blue', 'dark_gold', 'dark_gray', 'dark_grey', 'dark_green', 'dark_magenta', 'dark_orange', 'dark_purple', 'dark_red', 'dark_teal', 'darker_gray', 'darker_grey', 'green','gold', 'light_gray', 'light_grey', 'lighter_gray', 'lighter_grey', 'magenta', 'purple', 'orange', 'random', 'red', 'teal'}
 		await ctx.send(color_list.strip('{}'))
