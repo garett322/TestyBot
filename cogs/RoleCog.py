@@ -44,16 +44,15 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			'random': discord.Colour.random(),
 			'red': discord.Colour.red(),
 			'teal': discord.Colour.teal()}
-
-
-		if not args1:
-			await ctx.send('Please say whether you want to set or delete your custom role.')
-			return
-		elif not args2:
-			await ctx.send('Please input the name of your custom role.')
-			return
+			
 		else:
-			if args1.lower() == 'make':
+			if args1.lower() == 'create':
+				if not args1:
+					await ctx.send('Please say whether you want to set or delete your custom role.')
+					return
+				elif not args2:
+					await ctx.send('Please input the name of your custom role.')
+					return
 				for role in ctx.author.roles:
 					if role.name not in role_list:
 						await ctx.send('You already have a cutom role. Delete your current role and try again.')
@@ -82,7 +81,7 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 					
 					
 			else:
-				await ctx.send('No such command. Use either ".role make" or ".role delete".')
+				await ctx.send('No such command. Use either ".role create" or ".role delete".')
 				return
 
 
