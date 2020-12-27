@@ -42,16 +42,21 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 				if args3 == None:
 					await ctx.guild.create_role(name = args2)
 				else:
-					if HexChk(args3) == False
+					HexResult = HexChk(args3)
+					if HexResult == False:
 						await ctx.send('Please use a valid hexadecimal color code.')
 						return
-					else:
+					elif HexResult == True:
 						await ctx.guild.create_role(name = args2, color = args3)
+					else:
+						await ctx.send('Hex check error')
+						return
 					role = discord.utils.get(ctx.guild.roles, name = args2)
 					user = ctx.message.author
 					await user.add_roles(role)
 					await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
 					return
+					
 			else:
 				await ctx.send('Args failure.')
 
