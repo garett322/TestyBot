@@ -45,47 +45,46 @@ class RoleCog(commands.Cog, name = "RoleCog" ):
 			'red': discord.Colour.red(),
 			'teal': discord.Colour.teal()}
 			
-		else:
-			if args1.lower() == 'create':
-				if not args1:
-					await ctx.send('Please say whether you want to set or delete your custom role.')
+		if args1.lower() == 'create':
+			if not args1:
+				await ctx.send('Please say whether you want to set or delete your custom role.')
+				return
+			elif not args2:
+				await ctx.send('Please input the name of your custom role.')
+				return
+			for role in ctx.author.roles:
+				if role.name not in role_list:
+					await ctx.send('You already have a cutom role. Delete your current role and try again.')
 					return
-				elif not args2:
-					await ctx.send('Please input the name of your custom role.')
-					return
-				for role in ctx.author.roles:
-					if role.name not in role_list:
-						await ctx.send('You already have a cutom role. Delete your current role and try again.')
-						return
-				if args3 == None:
-					await ctx.guild.create_role(name = args2)
+			if args3 == None:
+				await ctx.guild.create_role(name = args2)
+			else:
+				if args3 in color_list:
+					await ctx.guild.create_role(name = args2, colour = color_list[args3])
 				else:
-					if args3 in color_list:
-						await ctx.guild.create_role(name = args2, colour = color_list[args3])
-					else:
-						await ctx.send('Please choose a supported color.')
-						return
-				role = discord.utils.get(ctx.guild.roles, name = args2)
-				user = ctx.message.author
-				await user.add_roles(role)
-				await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
-				return
+					await ctx.send('Please choose a supported color.')
+					return
+			role = discord.utils.get(ctx.guild.roles, name = args2)
+			user = ctx.message.author
+			await user.add_roles(role)
+			await ctx.send('Your custom role {} has been created and assigned to you!'.format(args2))
+			return
 					
-			elif args1.lower == 'delete':
-				for role in ctx.author.roles:
-					if role.name not in role_list:
-						await role.delete()
-						await ctx.send('Your custom role "{}" has been removed.'.format(role.name))
-					else:
-						await crx.send('You havent created a custom role yet.')
-						return
-				return
+		elif args1.lower == 'delete':
+			for role in ctx.author.roles:
+				if role.name not in role_list:
+					await role.delete()
+					await ctx.send('Your custom role "{}" has been removed.'.format(role.name))
+				else:
+					await crx.send('You havent created a custom role yet.')
+					return
+			return
 				
 					
 					
-			else:
-				await ctx.send('No such command. Use either ".role create" or ".role delete".')
-				return
+		else:
+			await ctx.send('No such command. Use either ".role create" or ".role delete".')
+			return
 
 
 
