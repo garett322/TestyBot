@@ -16,9 +16,10 @@ class RoleCog(commands.Cog, name = "Roles"):
 	async def role(self, ctx, command_type = None, role_color = None, *, role_name = None):
 
 		def color_check(inp):
-			rgb = inp.split(',')
-			for num in rgb:
-				if int(num) >= 0 and int(num) <= 255:
+			rgb_str = inp.split(',')
+			rgb_int = [int(x) for x in rgb_str]
+			for num in rgb_int:
+				if num >= 0 and num <= 255:
 					continue
 				else:
 					return False
@@ -75,7 +76,8 @@ class RoleCog(commands.Cog, name = "Roles"):
 				if role_color in color_list:
 					await ctx.guild.create_role(name = role_name, colour = color_list[role_color])
 				elif color_check(role_color) == True:
-					rgb = role_color.split(',')
+					rgb_str = role_color.split(',')
+					rgb = [int(x) for x in rgb_str]
 					await ctx.guild.create_role(name = role_name, colour = discord.Colour.from_rgb(rgb[0], rgb[1], rgb[2]))
 				else:
 					await ctx.send('Please choose a supported color and try again.')
