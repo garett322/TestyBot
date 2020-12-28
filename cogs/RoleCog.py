@@ -13,7 +13,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 			return
 	
 	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role color) (role name)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
-	async def role(self, ctx, command_type = None, role_color = None, *, role_name):
+	async def role(self, ctx, command_type = None, role_color = None, *, role_name = None):
 
 		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
 
@@ -58,7 +58,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 				if role.name not in role_list:
 					await ctx.send('You already have a cutom role. Delete your current role and try again.')
 					return
-			if not role_name:
+			if role_name == None:
 				await ctx.guild.create_role(name = role_color)
 			else:
 				if role_name in color_list:
