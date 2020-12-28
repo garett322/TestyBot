@@ -15,7 +15,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role color) (role name)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
 	async def role(self, ctx, command_type = None, role_color = None, *, role_name = None):
 
-		async def color_check(inp):
+		def color_check(inp):
 			rgb = inp.split(',')
 			for num in rgb:
 				if int(num) >= 0 and int(num) <= 255:
@@ -89,7 +89,6 @@ class RoleCog(commands.Cog, name = "Roles"):
 			for role in ctx.author.roles:
 				if role.name not in role_list:
 					await role.delete()
-					#role_del = role.delete
 					await ctx.send('Your custom role "{}" has been removed.'.format(role.name))
 					return
 			await ctx.send('There weren\'t any custom roles to delete. Use ".role create" to make one.')
