@@ -15,6 +15,17 @@ class RoleCog(commands.Cog, name = "Roles"):
 	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role color) (role name)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
 	async def role(self, ctx, command_type = None, role_color = None, *, role_name = None):
 
+		async def color_check(inp):
+			rgb = inp.split(',')
+			for num in rgb:
+				if int(num) >= 0 and <= 255:
+					continue
+				else:
+					return False
+					break
+			return True
+
+
 		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
 
 		color_list = {
@@ -63,6 +74,8 @@ class RoleCog(commands.Cog, name = "Roles"):
 			else:
 				if role_color in color_list:
 					await ctx.guild.create_role(name = role_name, colour = color_list[role_color])
+				elif color_check(role_color) == True:
+					await ctx.guild.create_role(name = role_name, colour = discord.colour.from_rgb(role_color.replace(',', ', ')))
 				else:
 					await ctx.send('Please choose a supported color and try again.')
 					return
