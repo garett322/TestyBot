@@ -15,7 +15,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role name) (role color)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
 	async def role(self, ctx, args1 = None, args2 = None, args3 = None):
 
-		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone'}
+		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
 
 		color_list = {
 			'blue': discord.Colour.blue(),
