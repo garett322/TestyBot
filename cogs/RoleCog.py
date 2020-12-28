@@ -58,11 +58,11 @@ class RoleCog(commands.Cog, name = "Roles"):
 				if role.name not in role_list:
 					await ctx.send('You already have a cutom role. Delete your current role and try again.')
 					return
-			if role_name == None:
+			if role_color == None:
 				await ctx.guild.create_role(name = role_name)
 			else:
-				if role_name in color_list:
-					await ctx.guild.create_role(name = role_name, colour = color_list[role_name])
+				if role_color in color_list:
+					await ctx.guild.create_role(name = role_name, colour = color_list[role_color])
 				else:
 					await ctx.send('Please choose a supported color and try again.')
 					return
