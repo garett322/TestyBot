@@ -18,7 +18,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 		async def color_check(inp):
 			rgb = inp.split(',')
 			for num in rgb:
-				if int(num) >= 0 and <= 255:
+				if int(num) >= 0 and int(num) <= 255:
 					continue
 				else:
 					return False
