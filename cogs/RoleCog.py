@@ -75,7 +75,8 @@ class RoleCog(commands.Cog, name = "Roles"):
 				if role_color in color_list:
 					await ctx.guild.create_role(name = role_name, colour = color_list[role_color])
 				elif color_check(role_color) == True:
-					await ctx.guild.create_role(name = role_name, colour = discord.Colour.from_rgb(role_color.replace(',', ', ')))
+					rgb = role_color.split(',')
+					await ctx.guild.create_role(name = role_name, colour = discord.Colour.from_rgb(rgb[0], rgb[1], rgb[2])
 				else:
 					await ctx.send('Please choose a supported color and try again.')
 					return
