@@ -8,7 +8,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 
 
 	async def on_message(self, message):
-		if message.author == 'Test Bot#0806':
+		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands-beta':
 			return
 	
 	@commands.command(name = 'vcstart' )
