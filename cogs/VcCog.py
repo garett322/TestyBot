@@ -16,7 +16,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	@client.event
 	async def on_voice_state_update(member, before, after):
 		if after is not None and before not in states:
-			for r in member.roles
+			for r in member.roles:
 				if r == 'pogrole':
 					print('POG POG')
 			return
