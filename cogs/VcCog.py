@@ -19,9 +19,9 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 			for r in member.roles:
 				if r.name == 'pogrole':
 					vc_object = member.voice.voice_channel
-					vc_connection = await client.join_voice_channel(vc_object)
+					vc_connection = await vc_object.connect()
 					audio_source = discord.FFmpegPCMAudio('cogs/vc_sounds/Spruce.mp3')
-					vc_connection.play(audio_source, after = voice_connection.disconnect())
+					vc_connection.play(audio_source, after = vc_object.disconnect())
 					return
 			return
 		else:
