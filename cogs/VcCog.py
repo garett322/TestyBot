@@ -12,13 +12,13 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 			return
 	
 	@commands.command(name = 'vcstart' )
-	async def vcstart(self, ctx, *args):
+	async def vcstart(self, ctx):
 		tex = client.voiceclients()
 		await ctx.send(tex)
         
 
 def setup(bot):
-	bot.add_cog(TestCog(bot))
+	bot.add_cog(VcCog(bot))
 
 
 
