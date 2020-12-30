@@ -27,7 +27,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 					while not vc_connection.is_done:
 						await asyncio.sleep(1)
 					start.stop()
-          await vc_connection.disconnect()
+					await vc_connection.disconnect()
 					return
 			return
 		else:
