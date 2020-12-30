@@ -8,12 +8,11 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 		self.bot = bot
 		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
 
-
 	async def on_message(self, message):
 		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands':
 			return
-		
-	@bot.event
+
+
 	async def on_voice_state_update(member, before, after):
 		if after is not None and before not in states:
 			for r in member.roles:
