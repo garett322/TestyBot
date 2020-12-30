@@ -15,7 +15,9 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	@commands.command(name = 'vcstart' )
 	async def vcstart(self, ctx):
 		voice_channel_list = ctx.guild.voice_channels
-		await ctx.send(voice_channel_list)
+		for x in voice_channel_list
+			await ctx.send(x)
+		return
 		
 def setup(bot):
 	bot.add_cog(VcCog(bot))
