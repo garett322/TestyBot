@@ -10,23 +10,33 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 
 	@commands.Cog.listener()
 	async def on_message(self, message):
-		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands':
+		if message.author == 'Test Bot#0806':
 			return
 
 	@commands.Cog.listener()
 	async def on_voice_state_update(self, member, before, after):
-		#if before is None and after is not None:
-		for r in member.roles:
-			if r.name == 'pogrole':
-				print('POG POG')
-		return
-	#	else:
-	#		return
-				
+		if not before.channel and after.channel:
+			for r in member.roles:
+				if r.name == 'pogrole':
+					vc_object = member.voice.voice_channel
+					vc_connection = await client.join_voice_channel(vc_object)
+					player = vc.create_ffmpeg_player('Spruce.mp3', after = lambda: print('{0.name}\'s vc sound finished.'.format(member))
+					player.start()
+					while not player.is_done():
+						await asyncio.sleep(1)
+					player.stop()
+       		await vc_connection.disconnect()
+       	return
+       	return
+		else:
+			return
 	        
 	
 	@commands.command(name = 'vcstart' )
 	async def vcstart(self, ctx):
+		if message.channel.name != 'bot-commands-beta':
+			return
+		
 		voice_channel_list = ctx.guild.voice_channels
 		for x in voice_channel_list:
 			await ctx.send('channel id: {0.id}'.format(x))
@@ -50,12 +60,6 @@ def setup(bot):
 
 
 
-# @client.command(
-#    name='vuvuzela',
-#    description='Plays an awful vuvuzela in the voice channel',
-#    pass_context=True,
-#)
-#async def vuvuzela(context):
 #    # grab the user who sent the command
 #    user=context.message.author
 #    voice_channel=user.voice.voice_channel
