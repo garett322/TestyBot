@@ -23,8 +23,9 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 					vc_object = member.voice.channel
 					vc_connection = await vc_object.connect()
 					audio_source = discord.FFmpegPCMAudio('./vc_sounds/Spruce.mp3')
+					await asyncio.sleep(1)
 					start = vc_connection.play(audio_source, after = None)
-					await asyncio.sleep(9)
+					await asyncio.sleep(10)
 					stop = vc_connection.stop()
 					await vc_connection.disconnect()
 					return
