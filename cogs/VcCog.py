@@ -19,7 +19,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 		if not before.channel and after.channel:
 			for r in member.roles:
 				if r.name == 'pogrole':
-					discord.opus.load_opus()
+					discord.opus.load_opus(name = 'opus')
 					if not discord.opus.is_loaded():
 						raise RunTimeError('Opus failed to load')
 						return
