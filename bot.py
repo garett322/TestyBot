@@ -8,7 +8,7 @@ async def on_ready():
 	
 @client.event
 async def on_message(message):
-	if (message.channel.name == 'bot-commands') or (message.guild is None):
+	if (message.channel.name == 'bot-commands') or (message.guild is None) or (message.channel.name == 'bot-commands-beta'):
         	pass
 	else:
 		if message.content.startswith('.'):
