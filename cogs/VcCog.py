@@ -18,7 +18,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 		for x in voice_channel_list:
 			await ctx.send('channel id: {0.id}'.format(x))
 			mem = x.members
-			for m in mem
+			for m in mem:
 				await ctx.send('members: {0.name}'.format(m))
 		return
 		
