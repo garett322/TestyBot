@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import ChannelType
 
 
 class VcCog(commands.Cog, name = "VC Entrance Sound" ):
@@ -8,15 +9,14 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 
 
 	async def on_message(self, message):
-		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands-beta':
+		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands':
 			return
 	
 	@commands.command(name = 'vcstart' )
 	async def vcstart(self, ctx):
-		tex = client.voiceclients()
-		await ctx.send(tex)
-        
-
+		channels = [c.name for c in ctx.message.server.channels if c.type==ChannelType.voice]
+		await ctx.send(channels)
+		
 def setup(bot):
 	bot.add_cog(VcCog(bot))
 
