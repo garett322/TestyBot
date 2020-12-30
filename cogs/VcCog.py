@@ -20,7 +20,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 				if r.name == 'pogrole':
 					vc_object = member.voice.voice_channel
 					vc_connection = await client.join_voice_channel(vc_object)
-					player = vc.create_ffmpeg_player('Spruce.mp3', after = lambda: print('{0.name}\'s vc sound finished.'.format(member))
+					player = vc.create_ffmpeg_player('cogs/vc_sounds/Spruce.mp3', after = lambda: print('{0.name}\'s vc sound finished.'.format(member))
 					player.start()
 					while not player.is_done():
 						await asyncio.sleep(1)
