@@ -6,11 +6,24 @@ from discord import ChannelType
 class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	def __init__(self, bot):
 		self.bot = bot
+		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
 
 
 	async def on_message(self, message):
 		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands':
 			return
+		
+	@client.event
+	async def on_voice_state_update(member, before, after):
+		if after is not None and before is not in states:
+			for r in member.roles
+				if r == 'pogrole':
+					print('POG POG')
+			return
+		else:
+			return
+				
+	        
 	
 	@commands.command(name = 'vcstart' )
 	async def vcstart(self, ctx):
