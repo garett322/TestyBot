@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import ChannelType
+import asyncio
 
 
 class VcCog(commands.Cog, name = "VC Entrance Sound" ):
