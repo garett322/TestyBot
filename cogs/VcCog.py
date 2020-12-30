@@ -36,7 +36,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	
 	@commands.command(name = 'vcstart' )
 	async def vcstart(self, ctx):
-		if message.channel.name != 'bot-commands-beta':
+		if ctx.channel.name != 'bot-commands-beta':
 			return
 		
 		voice_channel_list = ctx.guild.voice_channels
