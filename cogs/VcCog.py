@@ -14,13 +14,13 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 
 
 	async def on_voice_state_update(member, before, after):
-		if after is not None and before not in states:
-			for r in member.roles:
-				if r == 'pogrole':
-					print('POG POG')
-			return
-		else:
-			return
+		#if before is None and after is not None:
+		for r in member.roles:
+			if r == 'pogrole':
+				print('POG POG')
+		return
+	#	else:
+	#		return
 				
 	        
 	
