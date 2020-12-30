@@ -7,9 +7,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	def __init__(self, bot):
 		self.bot = bot
 		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
-		discord.opus.load_opus()
-		if not discord.opus.is_loaded():
-			raise RunTimeError('Opus failed to load')
+		
 
 	@commands.Cog.listener()
 	async def on_message(self, message):
@@ -21,6 +19,10 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 		if not before.channel and after.channel:
 			for r in member.roles:
 				if r.name == 'pogrole':
+					discord.opus.load_opus()
+					if not discord.opus.is_loaded():
+						raise RunTimeError('Opus failed to load')
+						return
 					vc_object = member.voice.channel
 					vc_connection = await vc_object.connect()
 					audio_source = discord.FFmpegPCMAudio('./vc_sounds/Spruce.mp3')
