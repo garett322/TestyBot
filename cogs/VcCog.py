@@ -7,6 +7,9 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	def __init__(self, bot):
 		self.bot = bot
 		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
+		discord.opus.load_opus()
+		if not discord.opus.is_loaded():
+			raise RunTimeError('Opus failed to load')
 
 	@commands.Cog.listener()
 	async def on_message(self, message):
