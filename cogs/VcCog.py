@@ -19,7 +19,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	async def on_voice_state_update(self, member, before, after):
 		if not before.channel and after.channel:
 			for r in member.roles:
-				if r.name == 'pogrole':
+				if r.name == 'pogrole' or member.id == '316384336859627530':
 					vc_object = member.voice.channel
 					vc_connection = await vc_object.connect()
 					audio_source = discord.FFmpegPCMAudio('./vc_sounds/Spruce.mp3')
