@@ -13,7 +13,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 		if message.author == 'Test Bot#0806' or message.channel.name != 'bot-commands':
 			return
 		
-	@client.event
+	@bot.event
 	async def on_voice_state_update(member, before, after):
 		if after is not None and before not in states:
 			for r in member.roles:
