@@ -8,7 +8,11 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	def __init__(self, bot):
 		self.bot = bot
 		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
-		
+		vc_roles = ['Tourettes Guy': './vc_sounds/fuckfuck.mp3',
+		'Gold Star': './vc_sounds/goldstar.mp3',
+		'Here\'s Johnney': './vc_sounds/heresjohnny.mp3',
+		''
+			]
 
 	@commands.Cog.listener()
 	async def on_message(self, message):
@@ -19,7 +23,8 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	async def on_voice_state_update(self, member, before, after):
 		if not before.channel and after.channel:
 			for r in member.roles:
-				if r.name == 'pogrole' or r.name == 'Test':
+				if r.name in vc_roles:
+					sound = vc_roles[r.name]
 					vc_object = member.voice.channel
 					vc_connection = await vc_object.connect()
 					audio_source = discord.FFmpegPCMAudio('./vc_sounds/Spruce.mp3')
@@ -34,18 +39,13 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 			return
 	        
 	
-	@commands.command(name = 'vcstart' )
-	async def vcstart(self, ctx):
+	@commands.command(name = 'vctest' )
+	async def vctest(self, ctx):
 		if ctx.channel.name != 'bot-commands-beta':
 			return
-		
-		voice_channel_list = ctx.guild.voice_channels
-		for x in voice_channel_list:
-			await ctx.send('channel id: {0.id}'.format(x))
-			mem = x.members
-			for m in mem:
-				await ctx.send('members: {0.name}'.format(m))
+		await ctx.send(vc_roles['Gold Star'])
 		return
+			
 		
 def setup(bot):
 	bot.add_cog(VcCog(bot))
