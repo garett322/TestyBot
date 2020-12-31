@@ -40,7 +40,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	
 	@commands.command(name = 'vctest' )
 	async def vctest(self, ctx):
-		if ctx.channel.name != 'bot-commands' and ctx.channel.name != 'bot-commands-beta:
+		if ctx.channel.name != 'bot-commands' and ctx.channel.name != 'bot-commands-beta':
 			return
 		
 		vc_roles = {'Tourettes Guy': './vc_sounds/fuckfuck.mp3',
