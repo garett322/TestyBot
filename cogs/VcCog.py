@@ -42,6 +42,12 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	async def vctest(self, ctx):
 		if ctx.channel.name != 'bot-commands-beta':
 			return
+		
+		vc_roles = {'Tourettes Guy': './vc_sounds/fuckfuck.mp3',
+		'Gold Star': './vc_sounds/goldstar.mp3',
+		'Here\'s Johnney': './vc_sounds/heresjohnny.mp3'
+		}
+		
 		await ctx.send(vc_roles['Gold Star'])
 		return
 			
