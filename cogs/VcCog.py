@@ -10,8 +10,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
 		vc_roles = ['Tourettes Guy': './vc_sounds/fuckfuck.mp3',
 		'Gold Star': './vc_sounds/goldstar.mp3',
-		'Here\'s Johnney': './vc_sounds/heresjohnny.mp3',
-		''
+		'Here\'s Johnney': './vc_sounds/heresjohnny.mp3'
 			]
 
 	@commands.Cog.listener()
