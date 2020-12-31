@@ -7,15 +7,6 @@ import asyncio
 class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	def __init__(self, bot):
 		self.bot = bot
-		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
-		vc_roles = {'MoFo': './vc_sounds/fuckfuck.mp3',
-		'Best RL Player': './vc_sounds/goldstar.mp3',
-		'Spoopy Bois': './vc_sounds/heresjohnny.mp3',
-		'Kitten': './vc_sounds/meow.mp3',
-		'Einstein Gang': './vc_sounds/einstein.mp3',
-		'Sages Hoes': './vc_sounds/hoes.mp3',
-		'Big Dick Energy': './vc_sounds/suck_a_dick.mp3'
-		}
 
 	@commands.Cog.listener()
 	async def on_message(self, message):
@@ -26,6 +17,16 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	async def on_voice_state_update(self, member, before, after):
 		if not before.channel and after.channel:
 			for r in member.roles:
+				
+				vc_roles = {'MoFo': './vc_sounds/fuckfuck.mp3',
+						'Best RL Player': './vc_sounds/goldstar.mp3',
+						'Spoopy Bois': './vc_sounds/heresjohnny.mp3',
+						'Kitten': './vc_sounds/meow.mp3',
+						'Einstein Gang': './vc_sounds/einstein.mp3',
+						'Sages Hoes': './vc_sounds/hoes.mp3',
+						'Big Dick Energy': './vc_sounds/suck_a_dick.mp3'
+						}
+				
 				if r.name in vc_roles:
 					sound = vc_roles[r.name]
 					vc_object = member.voice.channel
@@ -40,55 +41,5 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 			return
 		else:
 			return
-	        
-	
-	@commands.command(name = 'vctest' )
-	async def vctest(self, ctx):
-		if ctx.channel.name != 'bot-commands' and ctx.channel.name != 'bot-commands-beta':
-			return
-		
-		vc_roles = {'Tourettes Guy': './vc_sounds/fuckfuck.mp3',
-		'Gold Star': './vc_sounds/goldstar.mp3',
-		'Here\'s Johnney': './vc_sounds/heresjohnny.mp3'
-		}
-		
-		await ctx.send(vc_roles['Gold Star'])
-		return
-			
-		
 def setup(bot):
 	bot.add_cog(VcCog(bot))
-
-
-
-
-
-
-
-
-
-
-
-
-
-#    # grab the user who sent the command
-#    user=context.message.author
-#    voice_channel=user.voice.voice_channel
-#    channel=None
-#    # only play music if user is in a voice channel
-#    if voice_channel!= None:
-#        # grab user's voice channel
-#        channel=voice_channel.name
-#        await client.say('User is in channel: '+ channel)
-#        # create StreamPlayer
-#        vc= await client.join_voice_channel(voice_channel)
-#        player = vc.create_ffmpeg_player('vuvuzela.mp3', after=lambda: print('done'))
-#        player.start()
-#        while not player.is_done():
-#            await asyncio.sleep(1)
-#        # disconnect after the player has finished
-#        player.stop()
-#        await vc.disconnect()
-#    else:
-#        await client.say('User is not
-        
