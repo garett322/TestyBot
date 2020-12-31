@@ -8,9 +8,13 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	def __init__(self, bot):
 		self.bot = bot
 		states = ['deaf', 'mute', 'self_mute', 'self_deaf', 'self_stream', 'self_video', 'afk']
-		vc_roles = {'Tourettes Guy': './vc_sounds/fuckfuck.mp3',
-		'Gold Star': './vc_sounds/goldstar.mp3',
-		'Here\'s Johnney': './vc_sounds/heresjohnny.mp3'
+		vc_roles = {'MoFo': './vc_sounds/fuckfuck.mp3',
+		'Best RL Player': './vc_sounds/goldstar.mp3',
+		'Spoopy Bois': './vc_sounds/heresjohnny.mp3',
+		'Kitten': './vc_sounds/meow.mp3',
+		'Einstein Gang': './vc_sounds/einstein.mp3',
+		'Sages Hoes': './vc_sounds/hoes.mp3',
+		'Big Dick Energy': './vc_sounds/suck_a_dick.mp3'
 		}
 
 	@commands.Cog.listener()
@@ -26,7 +30,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 					sound = vc_roles[r.name]
 					vc_object = member.voice.channel
 					vc_connection = await vc_object.connect()
-					audio_source = discord.FFmpegPCMAudio('./vc_sounds/fuckfuck.mp3')
+					audio_source = discord.FFmpegPCMAudio(sound)
 					await asyncio.sleep(1)
 					start = vc_connection.play(audio_source, after = None)
 					await asyncio.sleep(10)
