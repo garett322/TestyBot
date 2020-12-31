@@ -23,7 +23,7 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 						'Spoopy Bois': './vc_sounds/heresjohnny.mp3',
 						'Kitten': './vc_sounds/meow.mp3',
 						'Einstein Gang': './vc_sounds/einstein.mp3',
-						'Sages Hoes': './vc_sounds/hoes.mp3',
+						'Sage\'s Hoes': './vc_sounds/hoes.mp3',
 						'Big Dick Energy': './vc_sounds/suck_a_dick.mp3'
 						}
 				
