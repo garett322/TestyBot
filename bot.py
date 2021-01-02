@@ -9,6 +9,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	if message.channel.type is discord.ChannelType.private:
+		await ctx.send('dope')
 		pass
 	else:
 		if (message.channel.name == 'bot-commands') or (message.guild is None) or (message.channel.name == 'bot-commands-beta'):
