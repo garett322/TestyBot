@@ -93,7 +93,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 					
 		elif command_type.lower() == 'delete':
 			for role in ctx.author.roles:
-				if role.name not in honran_role_list and role.name not in sage_role_list::
+				if role.name not in honran_role_list and role.name not in sage_role_list:
 					await role.delete()
 					await ctx.send('Your custom role "{}" has been removed.'.format(role.name))
 					return
