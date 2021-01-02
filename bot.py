@@ -8,15 +8,18 @@ async def on_ready():
 	
 @client.event
 async def on_message(message):
-	if (message.channel.name == 'bot-commands') or (message.guild is None) or (message.channel.name == 'bot-commands-beta'):
-        	pass
+	if message.channel.type is discord.ChannelType.private:
+		pass
 	else:
-		if message.content.startswith('.'):
-			await message.author.send('Please use the bot-commands channel. Thanks!')
-			return
+		if (message.channel.name == 'bot-commands') or (message.guild is None) or (message.channel.name == 'bot-commands-beta'):
+			pass
 		else:
-			return
-	await client.process_commands(message)
+			if message.content.startswith('.'):
+				await message.author.send('Please use the bot-commands channel. Thanks!')
+				return
+			else:
+				return
+		await client.process_commands(message)
 
 	
 @client.event
@@ -27,7 +30,7 @@ async def on_command_error(ctx, error):
 	return
 	
 	
-
+client.load_extension('cogs.MoveCog')
 client.load_extension('cogs.TestCog')
 #client.load_extension('cogs.RouletteCog')
 #client.load_extension('cogs.GamblingCog')
