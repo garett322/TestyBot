@@ -15,8 +15,10 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 	async def test(self, ctx, args = None):
 		if args == None:
 			return
-		user_get = bot.get_user(args)
+		serverID = self.client.fetch_guild('735757023303565352')
+		user_get = serverID.get_member(args)
 		if not user_get.voice.channel:
+			await ctx.send('No')
 			return
 		channel_get = user_get.voice.channel
 		if ctx.channel.type is discord.ChannelType.private and ctx.author.id == '316384336859627530':
