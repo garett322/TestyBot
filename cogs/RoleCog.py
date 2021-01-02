@@ -28,7 +28,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 
 
 		honran_role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
-		sage_role_list = {'@everyone', 'n00b', 'Pickle', 'BetterTTV', 'Twitch Subscriber: Tier 1', 'Twitch Subscriber: Tier 2', 'Twitch Subscriber: Tier 3', 'Purity', 'Spruce\'s Bot', 'Kitten', 'Big Dick Energy Fam', 'Controller of Robots', 'Test(again)', 'Spoopy Bois', 'Best RL Player', 'MoFo', 'Einstein Gang', 'Sage\'s Hoes', 'MEE6', '😍 Admin 😍 ', '💩 Poophead 💩', '❤️ Mod ❤️', '🤖 MafiaBot 🤖', '🤖 Bot 🤖', '⭐ Subscriber ⭐ ')
+		sage_role_list = {'@everyone', 'n00b', 'Pickle', 'BetterTTV', 'Twitch Subscriber: Tier 1', 'Twitch Subscriber: Tier 2', 'Twitch Subscriber: Tier 3', 'Purity', 'Spruce\'s Bot', 'Kitten', 'Big Dick Energy Fam', 'Controller of Robots', 'Test(again)', 'Spoopy Bois', 'Best RL Player', 'MoFo', 'Einstein Gang', 'Sage\'s Hoes', 'MEE6', '😍 Admin 😍 ', '💩 Poophead 💩', '❤️ Mod ❤️', '🤖 MafiaBot 🤖', '🤖 Bot 🤖', '⭐ Subscriber ⭐ '}
 		color_list = {
 			'blue': discord.Colour.blue(),
 			'violet': discord.Colour.blurple(),
