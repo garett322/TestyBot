@@ -27,8 +27,8 @@ class RoleCog(commands.Cog, name = "Roles"):
 			return True
 
 
-		role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
-
+		honran_role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
+		sage_role_list = {'@everyone', 'n00b', 'Pickle', 'BetterTTV', 'Twitch Subscriber: Tier 1', 'Twitch Subscriber: Tier 2', 'Twitch Subscriber: Tier 3', 'Purity', 'Spruce\'s Bot', 'Kitten', 'Big Dick Energy Fam', 'Controller of Robots', 'Test(again)', 'Spoopy Bois', 'Best RL Player', 'MoFo', 'Einstein Gang', 'Sage\'s Hoes', 'MEE6', '😍 Admin 😍 ', '💩 Poophead 💩', '❤️ Mod ❤️', '🤖 MafiaBot 🤖', '🤖 Bot 🤖', '⭐ Subscriber ⭐ ')
 		color_list = {
 			'blue': discord.Colour.blue(),
 			'violet': discord.Colour.blurple(),
@@ -67,8 +67,11 @@ class RoleCog(commands.Cog, name = "Roles"):
 				await ctx.send('Please input the name of your custom role and try again.')
 				return
 			for role in ctx.author.roles:
-				if role.name not in role_list:
+				if role.name not in honran_role_list and role.name not in sage_role_list:
 					await ctx.send('You already have a cutom role. Delete your current role and try again.')
+					return
+				elif role.name in honran_role_list or role.name in sage_role_list:
+					await ctx.send('Please create a role that doesn\'t already exist.')
 					return
 			if role_color == None:
 				await ctx.guild.create_role(name = role_name)
