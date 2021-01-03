@@ -49,4 +49,4 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 		return
 
 def setup(bot):
-	bot.add_cog(SkeletonCog(bot))
+	bot.add_cog(TrollCog(bot))
