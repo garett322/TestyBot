@@ -29,7 +29,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				await ctx.send('LIAR. YOU\'RE NOT A TREE AND YOU KNOW IT. GUARDS, ARREST {} FOR IMPERSONATING A TREE.'.format(msg.author))
 				return
 			elif msg.content.lower() == 'n' or msg.content.lower() == 'no':
-				await ctx.send('That\'s what I thought.)
+				await ctx.send('That\'s what I thought.')
 				return
 
 
