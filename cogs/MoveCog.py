@@ -15,7 +15,7 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 	async def test(self, ctx, args = None):
 		if args == None:
 			return
-		serverID = await bot.get_server('735757023303565352')
+		serverID = await self.bot.get_server('735757023303565352')
 		user_get = serverID.get_member(args)
 		if not user_get.voice.channel:
 			await ctx.send('Selected user isn\'t in a vc.')
@@ -34,7 +34,7 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 		
 	@commands.command(name = 'check' )
 	async def check(self, ctx, args):
-		serverID = await bot.get_server('735757023303565352')
+		serverID = await self.bot.get_server('735757023303565352')
 		user_get = serverID.get_member(ctx.author.id)
 		for role in user_get.roles:
 			if role.name == 'The Holy Tree':
