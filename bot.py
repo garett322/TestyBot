@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
-client = commands.Bot(command_prefix = ".", selfbot = 'false')
+intents = discord.Intents.all()
+client = commands.Bot(command_prefix = ".", selfbot = 'false', intents = intents)
 
 @client.event
 async def on_ready():
