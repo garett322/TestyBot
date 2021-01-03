@@ -23,7 +23,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 			try:
 				msg = await client.wait_for('message', check=check(context.author), timeout=10)
 			except asyncio.TimeoutError:
-				await ctx.send('No answer eh? In the future, don\'t waste my fuckin time.)
+				await ctx.send('No answer eh? In the future, don\'t waste my fuckin time.')
 				return
 			if msg.content.lower() == 'y' or msg.conent.lower() == 'yes':
 				await ctx.send('LIAR. YOU\'RE NOT A TREE AND YOU KNOW IT. GUARDS, ARREST {} FOR IMPERSONATING A TREE.'.format(msg.author))
