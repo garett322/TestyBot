@@ -12,10 +12,6 @@ class GamblingCog(commands.Cog, name = "GamblingCog"):
 	def __init__(self, bot):
 		self.bot = bot
 
-	async def on_message(self, message):
-		if message.author == 'Test Bot#0806':
-			return
-
 	@commands.command(name= 'command')
 	async def command1(self, ctx):
 		if ctx.guild is None:

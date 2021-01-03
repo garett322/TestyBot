@@ -7,11 +7,6 @@ class RoleCog(commands.Cog, name = "Roles"):
 	def __init__(self, bot):
 		self.bot = bot
 
-
-	async def on_message(self, message):
-		if message.author == 'Test Bot#0806':
-			return
-	
 	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role color) (role name)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
 	async def role(self, ctx, command_type = None, role_color = None, *, role_name = None):
 
@@ -70,7 +65,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 				if role.name not in honran_role_list and role.name not in sage_role_list:
 					await ctx.send('You already have a cutom role. Delete your current role and try again.')
 					return
-				elif role.name in honran_role_list or role.name in sage_role_list:
+				elif role_name in honran_role_list or role.name in sage_role_list:
 					await ctx.send('Please create a role that doesn\'t already exist.')
 					return
 			if role_color == None:
