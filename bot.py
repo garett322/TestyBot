@@ -32,9 +32,8 @@ async def on_command_error(ctx, error):
 	print(' ')
 	print(error)
 	return
-	
-	
-client.load_extension('cogs.MoveCog')
+
+client.load_extension('cogs.CodeCog')
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RoleCog')
 client.load_extension('cogs.VcCog')
