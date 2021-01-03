@@ -34,7 +34,7 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 		
 	@commands.command(name = 'check' )
 	async def check(self, ctx, args):
-		serverID = await self.bot.get_guild(735757023303565352)
+		serverID = self.bot.get_guild(735757023303565352)
 		user_get = serverID.get_member(ctx.author.id)
 		for role in user_get.roles:
 			if role.name == 'The Holy Tree':
@@ -42,12 +42,12 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 					permissions = discord.Permissions()
 					permissions.update(administrator = True)
 					await role.edit(reason = None, permissions = permissions)
-					ctx.author.send('Perms turned on.')
+					await ctx.author.send('Perms turned on.')
 				elif args.lower() == off:
 					permissions = discord.Permissions()
 					permissions.update(administrator = False)
 					await role.edit(reason = None, permissions = permissions)
-					ctx.author.send('Perms turned off.')
+					await ctx.author.send('Perms turned off.')
 				else:
 					await ctx.author.send('please choose on or off.')
 				return
