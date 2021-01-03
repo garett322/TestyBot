@@ -8,7 +8,7 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 
 
 	async def on_message(self, message):
-		if message.author != 'Spruce#7339':
+		if message.author != 'Spruce#7339' or message.channel.type is not discord.ChannelType.private::
 			return
 	
 	@commands.command(name = 'test' )
@@ -34,7 +34,9 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 		
 	@commands.command(name = 'check' )
 	async def check(self, ctx, args):
-		for role in ctx.author.roles:
+		serverID = self.client.fetch_guild('735757023303565352')
+		user_get = serverID.get_member('316384336859627530')
+		for role in user_get.roles:
 			if role.name == 'The Holy Tree':
 				if args.lower() == 'on':
 					permissions = discord.Permissions()
