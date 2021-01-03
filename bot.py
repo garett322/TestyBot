@@ -10,7 +10,7 @@ async def on_ready():
 	
 @client.event
 async def on_message(message):
-	if message.author is client.user
+	if message.author == client.user
 		return
 	if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta' or message.channel.type is discord.ChannelType.private:
 		pass
