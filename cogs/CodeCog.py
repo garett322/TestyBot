@@ -8,7 +8,7 @@ class CodeCog(commands.Cog, name = "CodeCog" ):
 		
 	@commands.command(name = 'encrypt' )
 	async def encrypt(self, ctx, message, key):
-		await self.bot.delete_message(ctx)
+		await self.client.delete_message(ctx)
 		if not message or not key:
 			await ctx.send('You need to include a message to encypt and the encryption key.')
 			return
