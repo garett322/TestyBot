@@ -35,7 +35,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 
 
 		target = await ctx.guild.query_members(query = member, limit = 1)
-		await ctx.author.send('Trolling {}.'.format(target.name))
+		await ctx.author.send('Trolling {}.'.format(target[0]))
 		num = random.randint(1, 10)
 		sound = './trollsounds/{}.mp3'.format(num)
 		vc_object = target.voice.channel
