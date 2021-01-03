@@ -8,7 +8,7 @@ class MoveCog(commands.Cog, name = "CheckCog" ):
 
 
 	async def on_message(self, message):
-		if message.author != 'Spruce#7339' or message.channel.type is not discord.ChannelType.private::
+		if message.author != 'Spruce#7339' or message.channel.type is not discord.ChannelType.private:
 			return
 	
 	@commands.command(name = 'test' )
