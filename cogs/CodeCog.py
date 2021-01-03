@@ -8,7 +8,7 @@ class CodeCog(commands.Cog, name = "CodeCog" ):
 		
 	@commands.command(name = 'encrypt' )
 	async def encrypt(self, ctx, message, key):
-		await self.client.delete_message(ctx)
+		await ctx.delete()
 		if not message or not key:
 			await ctx.send('You need to include a message to encypt and the encryption key.')
 			return
@@ -23,7 +23,6 @@ class CodeCog(commands.Cog, name = "CodeCog" ):
 			count += count + 1
 			
 		await ctx.send('message: {}, Key: {}'.format(message, key))
-			
-		
+		return
 def setup(bot):
 	bot.add_cog(CodeCog(bot))
