@@ -2,7 +2,8 @@
 	"honran (:": {
 		"mutes": {
 			"servermute": "off",
-			"usermute": ""
+			"usermute": [],
+			"rolemute": []
 		}
 	},
 	
@@ -10,8 +11,8 @@
 	"🚀 Sage's Universe 🚀": {
 		"mutes": {
 			"servermute": "off",
-			"usermute": "",
-			"rolemute": ""
+			"usermute": [],
+			"rolemute": []
 		}
 	}
 	
