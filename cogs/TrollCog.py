@@ -35,7 +35,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 
 
 		for user in ctx.guild.members:
-			if user.id == 684444511861997680 or not user.voice.channel:
+			if user.id == 684444511861997680 or not user.voice:
 				continue
 			if user.name.lower().startswith(member.lower()):
 				await ctx.author.send('Do you want to troll {}?'.format(user.name))
