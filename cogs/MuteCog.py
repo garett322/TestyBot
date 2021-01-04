@@ -10,6 +10,8 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 		
 	@commands.Cog.listener()
 	async def on_message(self, message):
+		if message.author is client.user:
+			return
 		for role in message.author.roles:
 			if role.name == 'A Fuckin Chad':
 				pass
