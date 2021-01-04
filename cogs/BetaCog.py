@@ -33,7 +33,7 @@ class BetaCog(commands.Cog, name = "BetaCog" ):
 					return
 			else:
 				await ctx.send('Something fucked up. I have no clue what tho.')
-        return
+				return
 
 def setup(bot):
 	bot.add_cog(BetaCog(bot))
