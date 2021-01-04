@@ -33,7 +33,7 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 					return
 
 	@commands.command(name = 'mute' )
-	async def mute(self, ctx, choice, *muted: discord.Member = None):
+	async def mute(self, ctx, choice, *, muted: discord.Member = None):
 		for role in ctx.author.roles:
 			if role.name == 'A Fuckin Chad':
 				await ctx.message.delete()
