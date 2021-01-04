@@ -67,8 +67,10 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				return
 		await ctx.author.send('No user found.')
 		return
-	@commands.command(name = 'troll' )
-	async def troll(self, ctx):
+	
+	
+	@commands.command(name = 'rekt' )
+	async def rekt(self, ctx):
 		await ctx.send('It\'s still not a command Sage. Get fuckin rekt.')
 
 def setup(bot):
