@@ -14,10 +14,10 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 			
 			def check(author):
 				def inner_check(message): 
-					if message.author != author:
-						return False
-					else:
+					if message.author == author:
 						return True
+					else:
+						return False
 				return inner_check
 				
 			try:
@@ -33,20 +33,34 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				return
 
 
-
-		target = await ctx.guild.query_members(query = member, limit = 1)
-		await ctx.author.send('Trolling {}.'.format(target[0]))
-		num = random.randint(1, 10)
-		sound = './trollsounds/{}.mp3'.format(num)
-		vc_object = target.voice.channel
-		vc_connection = await vc_object.connect()
-		audio_source = discord.FFmpegPCMAudio(sound)
-		await asyncio.sleep(2)
-		start = vc_connection.play(audio_source, after = None)
-		await asyncio.sleep(10)
-		stop = vc_connection.stop()
-		await vc_connection.disconnect()
-		return
+		for user in ctx.guild.members:
+			if user.name.startswith(member)
+				await ctx.author.send('Do you want to troll {}?'.format(user.name))
+				
+				def check(author):
+					def inner_check(message):
+						if message.author == author and message.content.lower() == "y":
+							return True
+						else:
+							return False
+					return inner_check
+				
+				try:
+					msg = await client.wait_for('message', check=check(context.author), timeout=10)
+				except asyncio.TimeoutError:
+					await ctx.send('Troll cancelled.')
+					return
+				num = random.randint(1, 10)
+				sound = './trollsounds/{}.mp3'.format(num)
+				vc_object = target.voice.channel
+				vc_connection = await vc_object.connect()
+				audio_source = discord.FFmpegPCMAudio(sound)
+				await asyncio.sleep(2)
+				start = vc_connection.play(audio_source, after = None)
+				await asyncio.sleep(10)
+				stop = vc_connection.stop()
+				await vc_connection.disconnect()
+				return
 
 def setup(bot):
 	bot.add_cog(TrollCog(bot))
