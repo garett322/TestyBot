@@ -16,9 +16,9 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 		else:
 			with open('./config/config.json', 'r') as f:
 				config = json.load(f)
-			usermutes = config[ctx.guild.id][mutes][usermute]
-			servermute = config[ctx.guild.id][mutes][servermute]
-			rolemutes = config[ctx.guild.id][mutes][rolemute]
+			usermutes = config[message.guild.id][mutes][usermute]
+			servermute = config[message.guild.id][mutes][servermute]
+			rolemutes = config[message.guild.id][mutes][rolemute]
 			if servermute == 'on':
 				await message.delete()
 				return
@@ -34,7 +34,7 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 	async def mute(self, ctx, choice, muted = None):
 		for role in ctx.author.roles:
 			if role.name == 'A Fuckin Chad':
-				await ctx.delete()
+				await ctx.message.delete()
 				with open('./config/config.json', 'r') as f:
 					config = json.load(f)
 					

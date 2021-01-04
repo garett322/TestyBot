@@ -33,7 +33,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				await ctx.send('That\'s what I thought.')
 				return
 
-		await ctx.delete()
+		await ctx.message.delete()
 		for user in ctx.guild.members:
 			if user.id == 684444511861997680 or not user.voice:
 				continue
