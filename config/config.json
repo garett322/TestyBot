@@ -12,7 +12,8 @@
 		"name": "🚀Sage's Universe🚀",
 		"mutes": {
 			"servermute": "off",
-			"usermute": ""
+			"usermute": "",
+			"rolemute": ""
 		}
 	}
 	
