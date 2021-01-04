@@ -7,7 +7,7 @@ import asyncio
 class TrollCog(commands.Cog, name = "TrollCog" ):
 	def __init__(self, bot):
 		self.bot = bot
-		
+
 	@commands.command(name = 'troll' )
 	async def troll(self, ctx, *, member):
 		if ctx.author.id != 316384336859627530:
@@ -79,5 +79,17 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 	async def rekt(self, ctx):
 		await ctx.send('It\'s still not a command Sage. Get fuckin rekt.')
 
+	@commands.command(name = 'epic' )
+	async def epic(self, ctx):
+		if ctx.author.name == 'Spruce#7339':
+			sage = ctx.message.server.get_member("464988691950075914")
+			sage.edit(mute=True, deafen = True)
+			return
+
 def setup(bot):
 	bot.add_cog(TrollCog(bot))
+	
+	
+	if member.id == "464988691950075914":
+			counter = 0
+			while counter < 10:
