@@ -33,7 +33,7 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 					return
 
 	@commands.command(name = 'mute' )
-	async def mute(self, ctx, choice, muted = None):
+	async def mute(self, ctx, choice, *muted: discord.Member = None):
 		for role in ctx.author.roles:
 			if role.name == 'A Fuckin Chad':
 				await ctx.message.delete()
@@ -54,11 +54,11 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 				elif choice == 'user':
 					usermutes = config[ctx.guild.name]["mutes"]["usermute"]
 					if muted in usermutes:
-						usermutes.remove(member.name)
+						usermutes.remove(muted.name)
 						config[ctx.guild.name]["mutes"]["usermute"] = usermutes
 						await ctx.author.send('{} has been unmuted'.format(muted))
 					else:
-						usermutes.append(member.name)
+						usermutes.append(muted.name)
 						config[ctx.guild.name]["mutes"]["usermute"] = usermutes
 						await ctx.author.send('{} has been muted.'.format(muted))
 					with open('./config/config.json', 'w') as f:
@@ -67,11 +67,11 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 				elif choice == 'role':
 					rolemutes = config[ctx.guild.name]["mutes"]["rolemute"]
 					if muted in rolemutes:
-						rolemutes.remove(member.name)
+						rolemutes.remove(muted.name)
 						config[ctx.guild.name]["mutes"]["rolemute"] = rolemutes
 						await ctx.author.send('The {} role has been unmuted'.format(muted))
 					else:
-						rolemutes.append(member.name)
+						rolemutes.append(muted.name)
 						config[ctx.guild.name]["mutes"]["rolemute"] = rolemutes
 						await ctx.author.send('The {} role has been muted.'.format(muted))
 					with open('./config/config.json', 'w') as f:
