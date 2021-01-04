@@ -83,13 +83,8 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 	async def epic(self, ctx):
 		if ctx.author.name == 'Spruce#7339':
 			sage = ctx.message.server.get_member("464988691950075914")
-			sage.edit(mute=True, deafen = True)
+			sage.edit(mute=True)
 			return
 
 def setup(bot):
 	bot.add_cog(TrollCog(bot))
-	
-	
-	if member.id == "464988691950075914":
-			counter = 0
-			while counter < 10:
