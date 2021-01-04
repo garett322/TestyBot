@@ -37,7 +37,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 		for user in ctx.guild.members:
 			if user.id == 684444511861997680 or not user.voice.channel:
 				continue
-			if user.name.startswith(member):
+			if user.name.lower().startswith(member.lower()):
 				await ctx.author.send('Do you want to troll {}?'.format(user.name))
 				
 				def check(author):
@@ -49,7 +49,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 					return inner_check
 				
 				try:
-					msg = await self.bot.wait_for('message', check=check(context.author), timeout=10)
+					msg = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
 				except asyncio.TimeoutError:
 					await ctx.send('Troll cancelled.')
 					return
