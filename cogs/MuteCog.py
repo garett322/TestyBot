@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
+import json
 
 
-class SkeletonCog(commands.Cog, name = "SkeletonCog" ):
+class MuteCog(commands.Cog, name = "MuteCog" ):
 	def __init__(self, bot):
 		self.bot = bot
 		
@@ -79,4 +80,4 @@ class SkeletonCog(commands.Cog, name = "SkeletonCog" ):
 			return
 		
 def setup(bot):
-	bot.add_cog(SkeletonCog(bot))
+	bot.add_cog(MuteCog(bot))
