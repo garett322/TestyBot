@@ -22,7 +22,7 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 			if servermute == 'on':
 				await message.delete()
 				return
-			elif message.author in usermutes:
+			elif message.author.name in usermutes:
 				await message.delete()
 				return
 			for role in message.author.roles:
@@ -52,11 +52,11 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 				elif choice == 'user':
 					usermutes = config[ctx.guild.name]["mutes"]["usermute"]
 					if muted in usermutes:
-						usermutes.remove(member)
+						usermutes.remove(member.name)
 						config[ctx.guild.name]["mutes"]["usermute"] = usermutes
 						await ctx.author.send('{} has been unmuted'.format(muted))
 					else:
-						usermutes.append(member)
+						usermutes.append(member.name)
 						config[ctx.guild.name]["mutes"]["usermute"] = usermutes
 						await ctx.author.send('{} has been muted.'.format(muted))
 					with open('./config/config.json', 'w') as f:
@@ -65,11 +65,11 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 				elif choice == 'role':
 					rolemutes = config[ctx.guild.name]["mutes"]["rolemute"]
 					if muted in rolemutes:
-						rolemutes.remove(member)
+						rolemutes.remove(member.name)
 						config[ctx.guild.name]["mutes"]["rolemute"] = rolemutes
 						await ctx.author.send('The {} role has been unmuted'.format(muted))
 					else:
-						rolemutes.append(member)
+						rolemutes.append(member.name)
 						config[ctx.guild.name]["mutes"]["rolemute"] = rolemutes
 						await ctx.author.send('The {} role has been muted.'.format(muted))
 					with open('./config/config.json', 'w') as f:
