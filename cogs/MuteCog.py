@@ -4,13 +4,13 @@ import json
 #import requests
 import pymongo
 from pymongo import MongoClient
-mclient = MongoClient("mongodb+srv://garett322:spruce1253@botcluster.wshor.mongodb.net/API?retryWrites=true&w=majority")
+mclient = MongoClient('mongodb+srv://garett322:spruce1253@botcluster.wshor.mongodb.net/ServerConfig?retryWrites=true&w=majority
 DB = mclient.ServerConfig
 ConfigDB = DB.Config
 
 def ConfigUpdate(file):
 	try:
-		inserted_doc = Config.insert_one(file)
+		inserted_doc = Config.update_one(file)
 		return True
 	except:
 		return False
@@ -21,6 +21,11 @@ def ConfigSearch(item):
 		return found
 	except:
 		return False
+		
+def TargetCheck(target):
+	try:
+		user = commands.converter.MemberConverter().convert(target)
+	
 
 
 
@@ -38,17 +43,17 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 				break
 		else:
 			config = ConfigSearch({"name": message.guild.name})
-			usermutes = config["Usermutes"]
-			servermute = config["Servermute"]
-			rolemutes = config["Rolemutes"]
-			if servermute == 'on':
+			usermutes_og = config["Usermutes"]
+			servermute_og = config["Servermute"]
+			rolemutes_og = config["Rolemutes"]
+			if servermute_og == 'on':
 				await message.delete()
 				return
-			elif message.author.name in usermutes:
+			elif message.author.name in usermutes_og:
 				await message.delete()
 				return
 			for role in message.author.roles:
-				if role.name in rolemutes:
+				if role.name in rolemutes_og:
 					await message.delete()
 					return
 		return
@@ -60,37 +65,38 @@ class MuteCog(commands.Cog, name = "MuteCog" ):
 				await ctx.message.delete()
 				
 				config = ConfigSearch({"name": message.guild.name})
-				usermutes = config["Usermutes"]
-				servermute = config["Servermute"]
-				rolemutes = config["Rolemutes"]
+				usermutes_og = config["Usermutes"]
+				servermute_og = config["Servermute"]
+				rolemutes_og = config["Rolemutes"]
 					
 				if choice == 'all':
-					if servermute == 'on':
-						config["Servermute"] = 'off'
+					if servermute_og == 'on':
+						servermute_new = 'off'
 						await ctx.author.send('Server mute removed.')
-						updated_file = config["Servermute"]
-					elif servermute == 'off':
-						config["Servermute"] = 'on'
+					elif servermute_og == 'off':
+						servermute_new = 'on'
 						await ctx.author.send('Server mute applied.')
-						updated_file = config["Servermute"]
+					updated_file = {"Servermute": servermute_new}
 				elif choice == 'user':
-					if muted in usermutes:
-						usermutes.remove(muted.name)
-						updated_file = usermutes
+					if muted in usermutes_og:
+						usermutes_new = usermutes_og
+						usermutes_new.remove(muted.name)
 						await ctx.author.send('{} has been unmuted'.format(muted))
 					else:
-						usermutes.append(muted.name)
-						updated_file = usermutes
+						usermutes_new = usermutes_og
+						usermutes_new.append(muted.name)
 						await ctx.author.send('{} has been muted.'.format(muted))
+					updated_file = {"Usermutes": usermutes_new}
 				elif choice == 'role':
-					if muted in rolemutes:
-						rolemutes.remove(muted.name)
-						updated_file = rolemutes
+					if muted in rolemutes_og:
+						rolemutes_new = rolemutes_og
+						rolemutes_new.remove(muted.name)
 						await ctx.author.send('The {} role has been unmuted'.format(muted))
 					else:
-						rolemutes.append(muted.name)
-						updated_file = rolemutes
+						rolemutes_new = rolemutes_og
+						rolemutes_new.append(muted.name)
 						await ctx.author.send('The {} role has been muted.'.format(muted))
+					updated_file = {"Rolemutes": rolemutes_new}
 				Update = ConfigUpdate(updated_file)
 				return
 		else:
