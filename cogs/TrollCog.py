@@ -35,6 +35,8 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 
 
 		for user in ctx.guild.members:
+			if user.id == 684444511861997680:
+				continue
 			if user.name.startswith(member):
 				await ctx.author.send('Do you want to troll {}?'.format(user.name))
 				
