@@ -1,14 +1,7 @@
 import discord
 from discord.ext import commands
 
-def TargetCheck(target):
-	try:
-		user = commands.converter.MemberConverter().convert(target)
-		return user
-	try:
-		role = commands.converter.MemberConverter().convert(target)
-		return role
-	return False
+
 			
 			
 class BetaCog(commands.Cog, name = "BetaCog" ):
@@ -22,11 +15,12 @@ class BetaCog(commands.Cog, name = "BetaCog" ):
 			try:
 				user = commands.converter.MemberConverter().convert(target)
 				return user
-			try:
-				role = commands.converter.MemberConverter().convert(target)
-				return role
-			return False
-			
+			except:
+				try:
+					role = commands.converter.MemberConverter().convert(target)
+					return role
+				except:
+					return False
 			
 		target_result = TargetCheck(target)
 		if target_result == False:
