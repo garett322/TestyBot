@@ -39,5 +39,7 @@ client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RoleCog')
 client.load_extension('cogs.VcCog')
 client.load_extension('cogs.TrollCog')
+client.load_extension('cogs.MuteCog')
+
 
 client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XkMX2A.vfQROSktnxjkOTP5mWV4Y6eY_Ks')
