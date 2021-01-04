@@ -9,7 +9,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 		self.bot = bot
 		
 	@commands.command(name = 'troll' )
-	async def troll(self, ctx, member):
+	async def troll(self, ctx, *, member):
 		if ctx.author.id != 316384336859627530:
 			await ctx.send('Only trees can use this command. Are you a tree? y/n:')
 			
