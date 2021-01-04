@@ -33,7 +33,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				await ctx.send('That\'s what I thought.')
 				return
 
-
+		await ctx.delete()
 		for user in ctx.guild.members:
 			if user.id == 684444511861997680 or not user.voice:
 				continue
@@ -42,8 +42,14 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				
 				def check(author):
 					def inner_check(message):
-						if message.author == author and message.content.lower() == "y":
-							return True
+						if message.author == author:
+							if message.content.lower() == "y":
+								if message.channel.type is discord.ChannelType.private:
+									return True
+								else:
+									return False
+							else:
+								return False
 						else:
 							return False
 					return inner_check
