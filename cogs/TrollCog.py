@@ -34,7 +34,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 
 
 		for user in ctx.guild.members:
-			if user.name.startswith(member)
+			if user.name.startswith(member):
 				await ctx.author.send('Do you want to troll {}?'.format(user.name))
 				
 				def check(author):
