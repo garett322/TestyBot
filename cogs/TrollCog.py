@@ -22,7 +22,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				return inner_check
 				
 			try:
-				msg = await client.wait_for('message', check=check(context.author), timeout=10)
+				msg = await self.bot.wait_for('message', check=check(context.author), timeout=10)
 			except asyncio.TimeoutError:
 				await ctx.send('No answer eh? In the future, don\'t waste my fuckin time.')
 				return
@@ -35,7 +35,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 
 
 		for user in ctx.guild.members:
-			if user.id == 684444511861997680:
+			if user.id == 684444511861997680 or not user.voice.channel:
 				continue
 			if user.name.startswith(member):
 				await ctx.author.send('Do you want to troll {}?'.format(user.name))
@@ -49,13 +49,14 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 					return inner_check
 				
 				try:
-					msg = await client.wait_for('message', check=check(context.author), timeout=10)
+					msg = await self.bot.wait_for('message', check=check(context.author), timeout=10)
 				except asyncio.TimeoutError:
 					await ctx.send('Troll cancelled.')
 					return
+				
 				num = random.randint(1, 10)
 				sound = './trollsounds/{}.mp3'.format(num)
-				vc_object = target.voice.channel
+				vc_object = user.voice.channel
 				vc_connection = await vc_object.connect()
 				audio_source = discord.FFmpegPCMAudio(sound)
 				await asyncio.sleep(2)
@@ -64,6 +65,11 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				stop = vc_connection.stop()
 				await vc_connection.disconnect()
 				return
+		await ctx.author.send('No user found.')
+		return
+	@commands.command(name = 'troll' )
+	async def troll(self, ctx):
+		await ctx.send('It\'s still not a command Sage. Get fuckin rekt.')
 
 def setup(bot):
 	bot.add_cog(TrollCog(bot))
