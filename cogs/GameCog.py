@@ -7,10 +7,11 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		self.bot = bot
 		
 	@commands.command(name = 'game' )
-	async def game(self, ctx, num_length = 4):
+	async def game(self, ctx, num_len_str = '4'):
 		num_max = '9'
-		while len(num_max) < num_length:
-			num_max += num_max + '9'
+		num_len = int(num_len_str)
+		while len(num_max) < num_len:
+			num_max += str(num_max) + '9'
 		num_max += int(num_max)
 		await ctx.send(num_max)
 		return
