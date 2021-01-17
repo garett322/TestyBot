@@ -22,7 +22,7 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 				return inner_check
 				
 			try:
-				msg = await self.bot.wait_for('message', check=check(context.author), timeout=10)
+				msg = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
 			except asyncio.TimeoutError:
 				await ctx.send('No answer eh? In the future, don\'t waste my fuckin time.')
 				return
