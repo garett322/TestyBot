@@ -12,9 +12,9 @@ class TestCog(commands.Cog):
 		return
 	
 	@commands.command()
-	async def avatar(self, ctx):
+	async def avatar(self, ctx, *, member):
 		for user in ctx.guild.members:
-			if user.id == 684444511861997680 or not user.voice:
+			if user.id == 684444511861997680:
 				continue
 			if user.name.lower().startswith(member.lower()):
 				pfp = user.avatar_url
