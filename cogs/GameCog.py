@@ -35,11 +35,19 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		except asyncio.TimeoutError:
 			await ctx.send('You didn\'t guess in time {}. Game has been cancelled'.format(ctx.author.name))
 			return
+		return
 		
 		def guess_chk(guess, answer):
-			
-		
-		guess_result = guess_chk(msg, num_gen)
+			if guess == answer:
+				return True
+			for answer_digit in answer:
+				digit_num = 0
+				while digit_num != 1:
+					digit_num = digit_num + 1
+				return False
+					
+					
+		#guess_result = guess_chk(msg, num_gen)
 		
 		
 
