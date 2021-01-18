@@ -18,7 +18,10 @@ class TestCog(commands.Cog):
 				continue
 			if user.name.lower().startswith(member.lower()):
 				pfp = user.avatar_url
+				embed = discord.Embed(title="test", description='test', color=0xecce8b)
+				embed.set_image(url=(pfp))
 				await ctx.send(pfp)
+				await embed.send()
 				return
 		return
 
