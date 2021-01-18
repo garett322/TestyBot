@@ -9,7 +9,7 @@ class RoleCog(commands.Cog, name = "Roles"):
 
 	@commands.command(name = 'role', description = '.role is for creating and deleting custom roles. Use ".role create (role color) (role name)" to create a custom role. To see the list of available colors use ".colors". Use ".role delete" to delete your current custom role.')
 	async def role(self, ctx, command_type = None, role_color = None, *, role_name = None):
-		if ctx.guild.id == slayer_guild_id:
+		if ctx.guild.id == '741497827967893507':
 			return
 		def color_check(inp):
 			rgb_str = inp.split(',')
@@ -26,7 +26,6 @@ class RoleCog(commands.Cog, name = "Roles"):
 		honran_role_list = {'KingHon', 'bot kings', 'kool kids', 'Channel Points', 'stream gang', 'Server Booster', '@everyone', 'Bot Tester'}
 		sage_guild_id = '735757023303565352'
 		sage_role_list = {'@everyone', 'n00b', 'Pickle', 'BetterTTV', 'Twitch Subscriber: Tier 1', 'Twitch Subscriber: Tier 2', 'Twitch Subscriber: Tier 3', 'Purity', 'Spruce\'s Bot', 'Kitten', 'Big Dick Energy Fam', 'Controller of Robots', 'Test(again)', 'Spoopy Bois', 'Best RL Player', 'MoFo', 'Einstein Gang', 'Sage\'s Hoes', 'MEE6', '😍 Admin 😍 ', '💩 Poophead 💩', '❤️ Mod ❤️', '🤖 MafiaBot 🤖', '🤖 Bot 🤖', '⭐ Subscriber ⭐ '}
-		slayer_guild_id = '741497827967893507'
 		
 		color_list = {
 			'blue': discord.Colour.blue(),
