@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import asyncio
 
 class GameCog(commands.Cog, name = "GameCog" ):
 	def __init__(self, bot):
@@ -35,19 +36,48 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		except asyncio.TimeoutError:
 			await ctx.send('You didn\'t guess in time {}. Game has been cancelled'.format(ctx.author.name))
 			return
-		return
+		if isinstance(msg, int) == False or len(msg) > num_len:
+			await ctx.send('Please guess a number that is between 1 and {}. Game has been cancelled'.format(num_max))
+			return
+		while len(msg) < num_len:
+			msg = str(msg)
+			msg = '0' + msg
+			msg = int(msg)
 		
-		def guess_chk(guess, answer):
+		def guess_chk(guess_int, answer_int):
+			guess = str(guess_int)
+			answer = str(answer_int)
 			if guess == answer:
-				return True
-			for answer_digit in answer:
-				digit_num = 0
-				while digit_num != 1:
-					digit_num = digit_num + 1
-				return False
-					
-					
-		#guess_result = guess_chk(msg, num_gen)
+				return (guess, 'n/a', 'n/a')
+			i = 1
+			result = ''
+			result_okay = ''
+			result_bad = ''
+			while i < len(answer):
+				if guess[i] == answer[i]:
+					result_good = result_good + guess[i]
+					result_okay = result_okay + '_'
+					result_bad = result_bad + '_'
+					i = i + 1
+					continue
+				for answer_digit in answer:
+					if guess[i] == answer_digit:
+						result_good = result_good + '_'
+						result_okay = result_okay + guess[i]
+						result_bad = result_bad + '_'
+						break
+				else:
+					result_good = result_good + '_'
+					result_okay = result_okay + '_'
+					result_bad = result_bad + guess[i]
+				i = i + 1
+				continue
+			return (result_good, result_okay, result_bad)
+
+
+		(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
+		await ctx.send('{}, {}, {}'.format(good_result, okay_result, bad_result))
+		return
 		
 		
 
