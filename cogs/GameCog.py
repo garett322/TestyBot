@@ -9,8 +9,12 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		
 	@commands.command(name = 'game' )
 	async def game(self, ctx, num_len_str = '4'):
+		try:
+			num_len = int(num_len_str)
+		except ValueError:
+			await ctx.send('Please only use valid numbers for the number of digits of the answer. Game has been cancelled')
+			return
 		num_max_str = '9'
-		num_len = int(num_len_str)
 		while len(num_max_str) < num_len:
 			num_max_str = num_max_str + '9'
 		num_max = int(num_max_str)
@@ -54,7 +58,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			if guess == answer:
 				return (guess, 'n/a', 'n/a')
 			i = 1
-			result = ''
+			result_good = ''
 			result_okay = ''
 			result_bad = ''
 			while i < len(answer):
