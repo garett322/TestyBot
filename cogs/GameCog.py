@@ -41,12 +41,12 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		except ValueError:
 			await ctx.send('Please only guess numbers. Game has been cancelled')
 			return
+		msg = str(msg)
 		if len(msg) > num_len:
 			await ctx.send('Please guess a number that is between 1 and {}. Game has been cancelled'.format(num_max))
 			return
 		while len(msg) < num_len:
-			msg = '0' + str(msg)
-			msg = int(msg)
+			msg = '0' + msg
 		
 		def guess_chk(guess_int, answer_int):
 			guess = str(guess_int)
