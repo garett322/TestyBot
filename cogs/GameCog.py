@@ -64,19 +64,19 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			while i < len(answer):
 				if guess[i] == answer[i]:
 					result_good = result_good + guess[i]
-					result_okay = result_okay + '*'
-					result_bad = result_bad + '*'
+					result_okay = result_okay + '-'
+					result_bad = result_bad + '-'
 					i = i + 1
 					continue
 				for answer_digit in answer:
 					if guess[i] == answer_digit:
-						result_good = result_good + '*'
+						result_good = result_good + '-'
 						result_okay = result_okay + guess[i]
-						result_bad = result_bad + '*'
+						result_bad = result_bad + '-'
 						break
 				else:
-					result_good = result_good + '*'
-					result_okay = result_okay + '*'
+					result_good = result_good + '-'
+					result_okay = result_okay + '-'
 					result_bad = result_bad + guess[i]
 				i = i + 1
 				continue
