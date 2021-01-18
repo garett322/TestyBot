@@ -32,12 +32,12 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			
 		await ctx.send('You have 10 seconds to guess a number.')
 		try:
-			msg = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
+			msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
 		except asyncio.TimeoutError:
 			await ctx.send('You didn\'t guess in time {}. Game has been cancelled'.format(ctx.author.name))
 			return
 		try:
-			msg = int(msg)
+			msg = int(msg_obj.content)
 		except ValueError:
 			await ctx.send('Please only guess numbers. Game has been cancelled')
 			return
