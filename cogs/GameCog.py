@@ -57,26 +57,26 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			answer = str(answer_int)
 			if guess == answer:
 				return (guess, 'n/a', 'n/a')
-			i = 1
+			i = 0
 			result_good = ''
 			result_okay = ''
 			result_bad = ''
 			while i < len(answer):
 				if guess[i] == answer[i]:
 					result_good = result_good + guess[i]
-					result_okay = result_okay + '_'
-					result_bad = result_bad + '_'
+					result_okay = result_okay + '*'
+					result_bad = result_bad + '*'
 					i = i + 1
 					continue
 				for answer_digit in answer:
 					if guess[i] == answer_digit:
-						result_good = result_good + '_'
+						result_good = result_good + '*'
 						result_okay = result_okay + guess[i]
-						result_bad = result_bad + '_'
+						result_bad = result_bad + '*'
 						break
 				else:
-					result_good = result_good + '_'
-					result_okay = result_okay + '_'
+					result_good = result_good + '*'
+					result_okay = result_okay + '*'
 					result_bad = result_bad + guess[i]
 				i = i + 1
 				continue
@@ -84,7 +84,8 @@ class GameCog(commands.Cog, name = "GameCog" ):
 
 
 		(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
-		await ctx.send('{}, {}, {}'.format(good_result, okay_result, bad_result))
+		await ctx.send('Good: {}, Okay: {}, Bad: {}'.format(good_result, okay_result, bad_result))
+		await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
 		return
 		
 		
