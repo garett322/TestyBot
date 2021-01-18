@@ -23,7 +23,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		while len(num_gen_str) < num_len:
 			num_gen_str = '0' + num_gen_str
 		num_gen = int(num_gen_str)
-		
+
 
 
 		def check(author):
@@ -33,24 +33,6 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				else:
 					return False
 			return inner_check
-			
-		await ctx.send('You have 10 seconds to guess a number.')
-		try:
-			msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
-		except asyncio.TimeoutError:
-			await ctx.send('You didn\'t guess in time {}. Game has been cancelled'.format(ctx.author.name))
-			return
-		try:
-			msg = int(msg_obj.content)
-		except ValueError:
-			await ctx.send('Please only guess numbers. Game has been cancelled')
-			return
-		msg = str(msg)
-		if len(msg) > num_len:
-			await ctx.send('Please guess a number that is between 1 and {}. Game has been cancelled'.format(num_max))
-			return
-		while len(msg) < num_len:
-			msg = '0' + msg
 		
 		def guess_chk(guess_int, answer_int):
 			guess = str(guess_int)
@@ -64,31 +46,53 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			while i < len(answer):
 				if guess[i] == answer[i]:
 					result_good = result_good + guess[i]
-					result_okay = result_okay + '-'
-					result_bad = result_bad + '-'
 					i = i + 1
 					continue
 				for answer_digit in answer:
 					if guess[i] == answer_digit:
 						result_good = result_good + '-'
 						result_okay = result_okay + guess[i]
-						result_bad = result_bad + '-'
 						break
 				else:
 					result_good = result_good + '-'
-					result_okay = result_okay + '-'
 					result_bad = result_bad + guess[i]
 				i = i + 1
 				continue
 			return (result_good, result_okay, result_bad)
 
 
-		(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
-		await ctx.send('Good: {}, Okay: {}, Bad: {}'.format(good_result, okay_result, bad_result))
-		await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
+
+		tries = 1
+		while tries > 0:
+			await ctx.send('You have 10 seconds to guess a number.')
+			try:
+				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
+			except asyncio.TimeoutError:
+				await ctx.send('You didn\'t guess in time {}. Game has been cancelled'.format(ctx.author.mention))
+				return
+			try:
+				msg = int(msg_obj.content)
+			except ValueError:
+				await ctx.send('Please only guess numbers.')
+				return
+			msg = str(msg)
+			if len(msg) > num_len:
+				await ctx.send('Please guess a number that is between 1 and {}.'.format(num_max))
+				return
+			while len(msg) < num_len:
+				msg = '0' + msg
+				
+			(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
+			
+			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
+			
+			if okay_result == 'n/a'and bad_result == 'n/a':
+				await ctx.send('Correct! The number was {}. You got it right in {} tries.'.format(num_gen, tries))
+				return
+			else:
+				await ctx.send('Correct: {}, Wrong Place: {}, Wrong: {}'.format(good_result, okay_result, bad_result))
+				tries = tries + 1
 		return
-		
-		
 
 def setup(bot):
 	bot.add_cog(GameCog(bot))
