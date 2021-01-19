@@ -21,7 +21,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		init_num_gen = random.randint(1, num_max)
 		num_gen_str = str(init_num_gen)
 		await ctx.send(num_len)
-		await ctx.send(init_num_len)
+		await ctx.send(init_num_gen)
 		await ctx.send(num_gen_str)
 		while len(num_gen_str) < num_len:
 			num_gen_str = '0' + num_gen_str
