@@ -16,8 +16,22 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			return
 		num_len = len(num_max_str)
 		num_gen = str(random.randint(1, num_max))
-		while len(num_gen) < num_len or len(set(num_gen)) < len(num_gen):
-			num_gen = str(random.randint(1, num_max))
+		while len(num_gen) < num_len:
+			num_gen = '0' + num_gen
+		if len(set(num_gen)) < len(num_gen):
+			s = 0
+			repeated_digits = []
+			while s < len(num_gen):
+				if s == 0:
+					num_gen_mod = num_gen[1:]
+				elif s == (len(num_gen)-1):
+					num_gen_mod = num_gen[0:]
+				else:
+					num_gen_mod = num_gen[0:s] + num_gen[s+1:]
+				if num_gen[s] in num_gen_mod:
+					repeated_digits = repeated_digits.append(num_gen[s])
+				s = s + 1
+			repeated_digits = set(repeated_digits)
 
 
 
@@ -29,14 +43,15 @@ class GameCog(commands.Cog, name = "GameCog" ):
 					return False
 			return inner_check
 		
-		def guess_chk(guess, answer):
+		def guess_chk(guess, answer, repeated_digits):
 			answer_len = len(answer)
 			if guess == answer:
-				return (guess, 'n/a', 'n/a')
+				return (guess, 'n/a', 'n/a', 'n/a')
 			i = 0
 			result_good = ''
 			result_okay = ''
 			result_bad = ''
+			repeated = []
 			while i < answer_len:
 				if guess[i] == answer[i]:
 					result_good = result_good + guess[i]
@@ -49,8 +64,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				else:
 					result_good = result_good + '-'
 					result_bad = result_bad + guess[i]
+				if answer[i] in repeated_digits:
+					repeated = repeated.append(answer[i])
 				i = i + 1
-			return (result_good, result_okay, result_bad)
+			return (result_good, result_okay, result_bad, repeated)
 
 
 		good_result_list = '-' * num_len
@@ -79,10 +96,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				msg = '0' + msg
 			
 			tries = tries + 1
-			(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
-			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
+			(good_result, okay_result, bad_result, repeated) = guess_chk(msg, num_gen, repeated_digits)
+			await ctx.send('Answer: {}'.format(num_gen))
 			embed = discord.Embed(title = 'Guessing Game', author = ctx.author.name, color = discord.Colour.blue())
-			if okay_result == 'n/a'and bad_result == 'n/a':
+			if okay_result == 'n/a'and bad_result == 'n/a' and repeated == 'n/a':
 				embed.clear_fields()
 				embed.add_field(name = 'CORRECT!', value = 'You won!', inline = False)
 				embed.add_field(name = 'Answer:', value = msg, inline = False)
@@ -132,14 +149,22 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						z = z + 1
 					okay_result_list = str(set(okay_result_list)).strip('{}')
 				
-				if okay_result_list == '[]':
+				if repeated == []:
+					pass
+				else:
+					repeated = str(set(repeated)).strip('{}')
+				
+				if repeated == '[]' or repeated == '':
+					repeated = 'None'
+				if okay_result_list == '[]' or okay_result_list == '':
 					okay_result_list = 'None'
-				if bad_result_list == '':
+				if bad_result_list == '[]' or bad_result_list == '':
 					bad_result_list = 'None'
 				embed.clear_fields()
 				embed.add_field(name = 'Answer:', value = good_result_list, inline = False)
 				embed.add_field(name = 'Right number, wrong place:', value = okay_result_list, inline = False)
 				embed.add_field(name = 'Wrong numbers:', value = bad_result_list, inline = False)
+				embed.add_field(name = 'Repeated Digits:', value = repeated, inline = False)
 				await ctx.send(embed = embed)
 		return
 
