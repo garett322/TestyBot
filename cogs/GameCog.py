@@ -14,14 +14,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		except ValueError:
 			await ctx.send('Please use a valid number for the answer length. Game has been cancelled.')
 			return
-		num_max_str = '9'
-		while len(num_max_str) < num_len:
-			num_max_str = num_max_str + '9'
-		num_max = int(num_max_str)
+		num_max = int('9' * num_len)
 		init_num_gen = random.randint(1, num_max)
-		num_gen = str(init_num_gen)
-		while len(num_gen) < num_len:
-			num_gen = '0' + num_gen
+		num_gen_str = str(init_num_gen)
+		num_gen = ('0' * (num_len - 1)) + num_gen
 
 
 
@@ -91,14 +87,12 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			embed = discord.Embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
 			if okay_result == 'n/a'and bad_result == 'n/a':
 				embed.clear_fields()
-				embed.add_field('Answer:', msg, inline = False)
-				embed.add_field('Tries:', tries, inline = False)
+				embed.add_field(name = 'Answer:', value = msg, inline = False)
+				embed.add_field(name = 'Tries:', value = tries, inline = False)
 				await ctx.send(embed = embed)
 				return
 			else:
 				x = 0
-				await ctx.send(good_result_list)
-				await ctx.send(good_result)
 				while x < num_len:
 					if good_result == '':
 						break
@@ -132,9 +126,9 @@ class GameCog(commands.Cog, name = "GameCog" ):
 							bad_result = bad_result[1:]
 				
 				embed.clear_fields()
-				embed.add_field('Answer:', good_result_list, inline = False)
-				embed.add_field('Right number, wrong place:', okay_result, inline = False)
-				embed.add_field('Wrong numbers:', bad_result_list, inline = False)
+				embed.add_field(name = 'Answer:', value = good_result_list, inline = False)
+				embed.add_field(name = 'Right number, wrong place:', value = okay_result, inline = False)
+				embed.add_field(name = 'Wrong numbers:', value = bad_result_list, inline = False)
 				await ctx.send(embed = embed)
 				tries = tries + 1
 		return
