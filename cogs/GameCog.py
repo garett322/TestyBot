@@ -125,7 +125,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 							continue
 						elif len(bad_result) > 1:
 							bad_result = bad_result[1:]
-				
+				if okay_result == '':
+					okay_result == 'None'
+				if bad_result_list == '':
+					bad_result_list = 'None'
 				embed.clear_fields()
 				embed.add_field(name = 'Answer:', value = good_result_list, inline = False)
 				embed.add_field(name = 'Right number, wrong place:', value = okay_result, inline = False)

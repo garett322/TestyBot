@@ -7,7 +7,7 @@ class TestCog(commands.Cog):
 		self.bot = bot
 
 	@commands.command()
-	async def testy(self, ctx):
+	async def test(self, ctx):
 		await ctx.send('It Works!')
 		return
 	
@@ -20,8 +20,7 @@ class TestCog(commands.Cog):
 				pfp = user.avatar_url
 				embed = discord.Embed(title="test", description='test', color=0xecce8b)
 				embed.set_image(url=(pfp))
-				await ctx.send(pfp)
-				await embed.send()
+				await ctx.send(embed = embed)
 				return
 		return
 

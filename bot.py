@@ -24,6 +24,8 @@ async def on_message(message):
 				return
 			else:
 				return
+	if message.content.startswith('.'):
+		print(message.content)
 	await client.process_commands(message)
 
 	
@@ -35,13 +37,12 @@ async def on_message(message):
 #	return
 
 
-client.load_extension('cogs.BetaCog')
+
 client.load_extension('cogs.CodeCog')
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.RoleCog')
 client.load_extension('cogs.VcCog')
 client.load_extension('cogs.TrollCog')
-#client.load_extension('cogs.MuteCog')
 client.load_extension('cogs.GameCog')
 
 client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XkMX2A.vfQROSktnxjkOTP5mWV4Y6eY_Ks')
