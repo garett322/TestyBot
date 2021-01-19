@@ -8,13 +8,13 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		self.bot = bot
 		
 	@commands.command(name = 'game' )
-	async def game(self, ctx, num_len_str = '4'):
+	async def game(self, ctx, num_max_str = '100'):
 		try:
-			num_len = int(num_len_str)
+			num_max = int(num_max_str)
 		except ValueError:
-			await ctx.send('Please use a valid number for the answer length. Game has been cancelled.')
+			await ctx.send('Please use a valid number for the maximum number. Game has been cancelled.')
 			return
-		num_max = int('9' * num_len)
+		num_len = len(num_max_str)
 		init_num_gen = random.randint(1, num_max)
 		num_gen = str(init_num_gen)
 		while len(num_gen) < num_len:
@@ -60,9 +60,9 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		bad_result_list = ''
 		tries = 0
 		while True:
-			await ctx.send('You have 15 seconds to guess a number between 1 and {}. Say "cancel" to cancel the game.'.format(num_max))
+			await ctx.send('You have 30 seconds to guess a number between 1 and {}. Say "cancel" to cancel the game.'.format(num_max))
 			try:
-				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=15)
+				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=30)
 			except asyncio.TimeoutError:
 				await ctx.send('Time ran out. Game has been cancelled')
 				return
@@ -112,7 +112,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						pass
 					else:
 						y = 0
-						while y < len(bad_result)
+						while y < len(bad_result):
 							if bad_result[y] in bad_result_list:
 								pass
 							else:
