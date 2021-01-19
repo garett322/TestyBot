@@ -40,7 +40,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			answer_len = len(answer)
 			if guess == answer:
 				return (guess, 'n/a', 'n/a')
-			i = 0
+			i = 1
 			result_good = ''
 			result_okay = ''
 			result_bad = ''
