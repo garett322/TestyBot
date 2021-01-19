@@ -34,34 +34,34 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			answer_len = len(answer)
 			if guess == answer:
 				return (guess, 'n/a', 'n/a')
-			i = 1
+			i = 0
 			result_good = ''
 			result_okay = ''
 			result_bad = ''
-			while i <= answer_len:
-				if guess[0] == answer[0]:
-					result_good = result_good + guess[0]
-				elif guess[0] in answer:
+			while i < answer_len:
+				if guess[i] == answer[i]:
+					result_good = result_good + guess[i]
+				elif guess[i] in answer:
 					result_good = result_good + '-'
 					if result_okay == '':
-						result_okay = guess[0]
+						result_okay = guess[i]
+					elif guess[i] in result_okay:
+						pass
 					else:
-						result_okay = result_okay + ', ' + guess[0]
+						result_okay = result_okay + ', ' + guess[i]
 				else:
 					result_good = result_good + '-'
-					result_bad = result_bad + guess[0]
-				if i == answer_len:
-					pass
-				else:
-					guess = guess[1:]
-					answer = answer[1:]
+					if result_bad == '':
+						result_bad = guess[i]
+					elif guess[i] in result_bad:
+						pass
+					else:
+						result_bad = result_bad + ', ' + guess[i]
 				i = i + 1
 			return (result_good, result_okay, result_bad)
 
-		good_result_list = '-' * num_len
-		bad_result_list = ''
-		tries = 1
-		while tries > 0:
+		tries = 0
+		while True:
 			await ctx.send('You have 15 seconds to guess a number between 1 and {}. Say "cancel" to cancel the game.'.format(num_max))
 			try:
 				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=15)
@@ -82,7 +82,8 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				continue
 			while len(msg) < num_len:
 				msg = '0' + msg
-				
+			
+			tries = tries + 1
 			(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
 			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
 			embed = discord.Embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
@@ -93,48 +94,15 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				await ctx.send(embed = embed)
 				return
 			else:
-				x = 0
-				while x < num_len:
-					if good_result == '':
-						break
-					elif good_result[x] == '-' or good_result[x] == good_result_list[x]:
-						x = x + 1
-						continue
-					else:
-						if x == 0:
-							good_result_list = good_result[x] + good_result_list[x+1:]
-						elif x == (num_len - 1):
-							good_result_list = good_result_list[0:x] + good_result[x]
-						else:
-							good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
-					x = x + 1
-						
-				if bad_result == '':
-					pass
-				else:
-					while len(bad_result) > 0:
-						if bad_result[0] in bad_result_list:
-							pass
-						else:
-							if bad_result_list == '':
-								bad_result_list = bad_result[0]
-							else:
-								bad_result_list = bad_result_list + ', ' + bad_result[0]
-						if len(bad_result) == 1:
-							bad_result = ''
-							continue
-						elif len(bad_result) > 1:
-							bad_result = bad_result[1:]
 				if okay_result == '':
-					okay_result == 'None'
-				if bad_result_list == '':
-					bad_result_list = 'None'
+					okay_result = 'None'
+				if bad_result == '':
+					bad_result = 'None'
 				embed.clear_fields()
-				embed.add_field(name = 'Answer:', value = good_result_list, inline = False)
+				embed.add_field(name = 'Answer:', value = good_result, inline = False)
 				embed.add_field(name = 'Right number, wrong place:', value = okay_result, inline = False)
-				embed.add_field(name = 'Wrong numbers:', value = bad_result_list, inline = False)
+				embed.add_field(name = 'Wrong numbers:', value = bad_result, inline = False)
 				await ctx.send(embed = embed)
-				tries = tries + 1
 		return
 
 def setup(bot):
