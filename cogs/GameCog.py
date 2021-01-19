@@ -29,7 +29,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				else:
 					num_gen_mod = num_gen[0:s] + num_gen[s+1:]
 				if num_gen[s] in num_gen_mod:
-					repeated_digits = repeated_digits.append(num_gen[s])
+					if repeated_digits == '[]':
+						repeated_digits = [num_gen[s]]
+					else:
+						repeated_digits = repeated_digits.append(num_gen[s])
 				s = s + 1
 			repeated_digits = set(repeated_digits)
 
@@ -65,7 +68,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 					result_good = result_good + '-'
 					result_bad = result_bad + guess[i]
 				if answer[i] in repeated_digits:
-					repeated = repeated.append(answer[i])
+					if repeated == '[]':
+						repeated = [answer[i]]
+					else:
+						repeated = repeated.append(answer[i])
 				i = i + 1
 			return (result_good, result_okay, result_bad, repeated)
 
@@ -132,7 +138,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						if bad_result[y] in bad_result_list:
 							pass
 						else:
-							bad_result_list = bad_result_list.append(bad_result[y])
+							if bad_result_list == '[]':
+								bad_result_list = [bad_result[y]]
+							else:
+								bad_result_list = bad_result_list.append(bad_result[y])
 						y = y + 1
 					bad_result_list = str(set(bad_result_list)).strip('{}')
 				
@@ -145,7 +154,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						if okay_result[z] in okay_result_list:
 							pass
 						else:
-							okay_result_list = okay_result_list.append(okay_result[z])
+							if okay_result_list == '[]':
+								okay_result_list = [okay_result[z]]
+							else:
+								okay_result_list = okay_result_list.append(okay_result[z])
 						z = z + 1
 					okay_result_list = str(set(okay_result_list)).strip('{}')
 				
