@@ -44,7 +44,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			result_good = ''
 			result_okay = ''
 			result_bad = ''
-			while i < answer_len:
+			while i <= answer_len:
 				if guess[0] == answer[0]:
 					result_good = result_good + guess[0]
 					guess = guess[1:]
