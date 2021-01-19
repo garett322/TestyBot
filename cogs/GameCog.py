@@ -8,7 +8,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		self.bot = bot
 		
 	@commands.command(name = 'game' )
-	async def game(self, ctx, num_max_str = '100'):
+	async def game(self, ctx, num_max_str = '1000'):
 		try:
 			num_max = int(num_max_str)
 		except ValueError:
@@ -17,6 +17,9 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		num_len = len(num_max_str)
 		init_num_gen = random.randint(1, num_max)
 		num_gen = str(init_num_gen)
+		
+    if len(set(num_gen)) < len(num_gen):
+	
 		while len(num_gen) < num_len:
 			num_gen = '0' + num_gen
 
@@ -43,12 +46,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 					result_good = result_good + guess[i]
 				elif guess[i] in answer:
 					result_good = result_good + '-'
-					if result_okay == '':
-						result_okay = guess[i]
-					elif guess[i] in result_okay:
+					if guess[i] in result_okay:
 						pass
 					else:
-						result_okay = result_okay + ', ' + guess[i]
+						result_okay = result_okay + guess[i]
 				else:
 					result_good = result_good + '-'
 					result_bad = result_bad + guess[i]
@@ -57,7 +58,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 
 
 		good_result_list = '-' * num_len
-		bad_result_list = ''
+		bad_result_list = []
 		tries = 0
 		while True:
 			await ctx.send('You have 30 seconds to guess a number between 1 and {}. Say "cancel" to cancel the game.'.format(num_max))
@@ -92,8 +93,8 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				embed.add_field(name = 'Tries:', value = tries, inline = False)
 				await ctx.send(embed = embed)
 				return
+			
 			else:
-				
 				if good_result == good_result_list:
 					pass
 				else:
@@ -109,6 +110,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 							else:
 								good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
 						x = x + 1
+				
 				if bad_result == '':
 					pass
 				else:
@@ -117,20 +119,30 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						if bad_result[y] in bad_result_list:
 							pass
 						else:
-							if bad_result_list == '':
-								bad_result_list = bad_result[y]
-							else:
-								bad_result_list = bad_result[y] + ', ' + bad_result_list
+							bad_result_list = bad_result_list.append(bad_result[y])
 						y = y + 1
-											
-											
+					bad_result_list = str(set(bad_result_list)).strip('{}')
+				
+				okay_result_list = []
 				if okay_result == '':
-					okay_result = 'None'
+					pass
+				else:
+					z = 0
+					while z < len(okay_result):
+						if okay_result[z] in okay_result_list:
+							pass
+						else:
+							okay_result_list = okay_result_list.append(okay_result[z])
+						z = z + 1
+					okay_result_list = str(set(okay_result_list)).strip('{}')
+				
+				if okay_result_list == '[]':
+					okay_result_list = 'None'
 				if bad_result_list == '':
 					bad_result_list = 'None'
 				embed.clear_fields()
 				embed.add_field(name = 'Answer:', value = good_result_list, inline = False)
-				embed.add_field(name = 'Right number, wrong place:', value = okay_result, inline = False)
+				embed.add_field(name = 'Right number, wrong place:', value = okay_result_list, inline = False)
 				embed.add_field(name = 'Wrong numbers:', value = bad_result_list, inline = False)
 				await ctx.send(embed = embed)
 		return
