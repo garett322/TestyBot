@@ -29,7 +29,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				else:
 					num_gen_mod = num_gen[0:s] + num_gen[s+1:]
 				if num_gen[s] in num_gen_mod:
-					if repeated_digits == '[]':
+					if len(repeated_digits) == 0:
 						repeated_digits = [num_gen[s]]
 					else:
 						repeated_digits = repeated_digits.append(num_gen[s])
@@ -68,7 +68,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 					result_good = result_good + '-'
 					result_bad = result_bad + guess[i]
 				if answer[i] in repeated_digits:
-					if repeated == '[]':
+					if len(repeated) == 0:
 						repeated = [answer[i]]
 					else:
 						repeated = repeated.append(answer[i])
@@ -130,7 +130,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 								good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
 						x = x + 1
 				
-				if bad_result == '':
+				if bad_result == '' or len(bad_result_list) == 0:
 					pass
 				else:
 					y = 0
@@ -138,10 +138,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						if bad_result[y] in bad_result_list:
 							pass
 						else:
-							if bad_result_list == '[]':
-								bad_result_list = [bad_result[y]]
-							else:
-								bad_result_list = bad_result_list.append(bad_result[y])
+							bad_result_list = bad_result_list.append(bad_result[y])
 						y = y + 1
 					bad_result_list = str(set(bad_result_list)).strip('{}')
 				
@@ -151,17 +148,17 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				else:
 					z = 0
 					while z < len(okay_result):
-						if okay_result[z] in okay_result_list:
-							pass
+						if len(bad_result_list) == 0:
+							bad_result_list = [bad_result[y]]
 						else:
-							if okay_result_list == '[]':
-								okay_result_list = [okay_result[z]]
+							if okay_result[z] in okay_result_list:
+								pass
 							else:
 								okay_result_list = okay_result_list.append(okay_result[z])
 						z = z + 1
 					okay_result_list = str(set(okay_result_list)).strip('{}')
 				
-				if repeated == []:
+				if len(repeated) == 0:
 					pass
 				else:
 					repeated = str(set(repeated)).strip('{}')
