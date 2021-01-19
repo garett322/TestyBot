@@ -128,7 +128,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				embed.add_field('Answer:', good_result_list, inline = False)
 				embed.add_field('Right number, wrong place:', okay_result, inline = False)
 				embed.add_field('Wrong number:', bad_result_list, inline = False)
-				await embed.send()
+				await ctx.send(embed = embed)
 				tries = tries + 1
 		return
 
