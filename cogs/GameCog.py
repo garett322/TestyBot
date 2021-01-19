@@ -51,15 +51,13 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						result_okay = result_okay + ', ' + guess[i]
 				else:
 					result_good = result_good + '-'
-					if result_bad == '':
-						result_bad = guess[i]
-					elif guess[i] in result_bad:
-						pass
-					else:
-						result_bad = result_bad + ', ' + guess[i]
+					result_bad = result_bad + result_bad
 				i = i + 1
 			return (result_good, result_okay, result_bad)
 
+
+		good_result_list = '-' * num_len
+		bad_result_list = ''
 		tries = 0
 		while True:
 			await ctx.send('You have 15 seconds to guess a number between 1 and {}. Say "cancel" to cancel the game.'.format(num_max))
@@ -94,6 +92,37 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				await ctx.send(embed = embed)
 				return
 			else:
+				
+				if good_result == good_result_list:
+					pass
+				else:
+					x = 0
+					while x < num_len:
+						if good_result[x] == '-' or good_result[x] == good_result_list[x]:
+							pass
+						else:
+							if x == 0:
+								good_result_list = good_result[x] + good_result_list[x+1:]
+							elif x == (num_len - 1):
+								good_result_list = good_result_list[0:x] + good_result[x]
+							else:
+								good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
+						x = x + 1
+					if bad_result == '':
+						pass
+					else:
+						y = 0
+						while y < len(bad_result)
+							if bad_result[y] in bad_result_list:
+								pass
+							else:
+								if bad_result_list == '':
+									bad_result_list = bad_result[y]
+								else:
+									bad_result_list = bad_result[y] + ', ' + bad_result_list
+							y = y + 1
+											
+											
 				if okay_result == '':
 					okay_result = 'None'
 				if bad_result == '':
