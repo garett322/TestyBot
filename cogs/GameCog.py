@@ -103,7 +103,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			else:
 				x = 0
 				while x <= num_len:
-					if good_result[i] == '-' or good_result[x] == good_result_list[x]:
+					if good_result[x] == '-' or good_result[x] == good_result_list[x]:
 						continue
 					else:
 						good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
