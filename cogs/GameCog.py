@@ -12,7 +12,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		try:
 			num_len = int(num_len_str)
 		except ValueError:
-			await ctx.send('Please only use valid numbers for the number of digits of the answer. Game has been cancelled')
+			await ctx.send('Please use a valid number for the answer length. Game has been cancelled.')
 			return
 		num_max_str = '9'
 		while len(num_max_str) < num_len:
@@ -37,60 +37,98 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		def guess_chk(guess_int, answer_int):
 			guess = str(guess_int)
 			answer = str(answer_int)
+			answer_len = len(answer)
 			if guess == answer:
 				return (guess, 'n/a', 'n/a')
 			i = 0
 			result_good = ''
 			result_okay = ''
 			result_bad = ''
-			while i < len(answer):
-				if guess[i] == answer[i]:
-					result_good = result_good + guess[i]
+			while i < answer_len:
+				if guess[0] == answer[0]:
+					result_good = result_good + guess[0]
+					guess = guess[1:]
+					answer = answer[1:]
 					i = i + 1
 					continue
-				for answer_digit in answer:
-					if guess[i] == answer_digit:
-						result_good = result_good + '-'
-						result_okay = result_okay + guess[i]
-						break
+				if guess[0] in answer:
+					result_good = result_good + '-'
+					if result_okay == '':
+						result_okay = guess[0]
+					else:
+						result_okay = result_okay + ', ' + guess[0]
+					guess = guess[1:]
+					answer = answer[1:]
 				else:
 					result_good = result_good + '-'
-					result_bad = result_bad + guess[i]
+					result_bad = result_bad + guess[0]
+					guess = guess[1:]
+					answer = answer[1:]
 				i = i + 1
-				continue
 			return (result_good, result_okay, result_bad)
 
-
-
+		good_result_list = ''
+		bad_result_list = ''
 		tries = 1
 		while tries > 0:
-			await ctx.send('You have 10 seconds to guess a number.')
+			await ctx.send('You have 15 seconds to guess a number. Say "cancel" to cancel the game.')
 			try:
-				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
+				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=15)
 			except asyncio.TimeoutError:
-				await ctx.send('You didn\'t guess in time {}. Game has been cancelled'.format(ctx.author.mention))
+				await ctx.send('Time ran out. Game has been cancelled')
+				return
+			if msg_obj.content.lower() == 'cancel':
+				await ctx.send('Game has been cancelled.')
 				return
 			try:
 				msg = int(msg_obj.content)
 			except ValueError:
 				await ctx.send('Please only guess numbers.')
-				return
+				continue
 			msg = str(msg)
 			if len(msg) > num_len:
 				await ctx.send('Please guess a number that is between 1 and {}.'.format(num_max))
-				return
+				continue
 			while len(msg) < num_len:
 				msg = '0' + msg
 				
 			(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
-			
 			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
-			
+			embed = discord.embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
 			if okay_result == 'n/a'and bad_result == 'n/a':
-				await ctx.send('Correct! The number was {}. You got it right in {} tries.'.format(num_gen, tries))
+				embed.add_field('Answer:', msg, inline = False)
+				embed.add_field('Tries:', tries, inline = False)
+				await embed.send()
 				return
 			else:
-				await ctx.send('Correct: {}, Wrong Place: {}, Wrong: {}'.format(good_result, okay_result, bad_result))
+				x = 0
+				while x <= num_len:
+					if good_result[i] == '-' or good_result[x] == good_result_list[x]:
+						continue
+					else:
+						good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
+					x = x + 1
+						
+				if bad_result == '':
+					pass
+				else:
+					while len(bad_result) > 0:
+						if bad_result[0] in bad_result_list:
+							bad_result = bad_result[1:]
+						else:
+							if bad_result_list == '':
+								bad_result_list = bad_result[0]
+							else:
+								bad_result_list = bad_result_list + ', ' + bad_result[0]
+						if len(bad_result) > 0:
+							bad_result = bad_result[1:]
+						else:
+							pass
+				
+				embed.add_field('Answer:', good_result_list, inline = False)
+				embed.add_field('Right number, wrong place:', okay_result, inline:False)
+				embed.add_field('Wrong number:', bad_result_list, inline = False)
+				await embed.send()
 				tries = tries + 1
 		return
 
