@@ -18,8 +18,6 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		while len(num_max_str) < num_len:
 			num_max_str = num_max_str + '9'
 		num_max = int(num_max_str)
-		
-		init_num_gen = 1
 		init_num_gen = random.randint(1, num_max)
 		num_gen = str(init_num_gen)
 		while len(num_gen) < num_len:
@@ -99,8 +97,12 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				return
 			else:
 				x = 0
+				await ctx.send(good_result_list)
+				await ctx.send(good_result)
 				while x <= num_len:
-					if good_result[x] == '-' or good_result[x] == good_result_list[x]:
+					if good_result == '':
+						break
+					elif good_result[x] == '-' or good_result[x] == good_result_list[x]:
 						x = x + 1
 						continue
 					else:
