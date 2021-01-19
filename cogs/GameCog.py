@@ -99,14 +99,19 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				x = 0
 				await ctx.send(good_result_list)
 				await ctx.send(good_result)
-				while x <= num_len:
+				while x < num_len:
 					if good_result == '':
 						break
 					elif good_result[x] == '-' or good_result[x] == good_result_list[x]:
 						x = x + 1
 						continue
 					else:
-						good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
+						if x == 0:
+							good_result_list = good_result[x] + good_result_list[x+1:]
+						elif x == (num_len - 1):
+							good_result_list = good_result_list[0:x] + good_result[x]
+						else:
+							good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
 					x = x + 1
 						
 				if bad_result == '':
@@ -114,7 +119,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				else:
 					while len(bad_result) > 0:
 						if bad_result[0] in bad_result_list:
-							bad_result = bad_result[1:]
+							pass
 						else:
 							if bad_result_list == '':
 								bad_result_list = bad_result[0]
@@ -129,7 +134,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				embed.clear_fields()
 				embed.add_field('Answer:', good_result_list, inline = False)
 				embed.add_field('Right number, wrong place:', okay_result, inline = False)
-				embed.add_field('Wrong number:', bad_result_list, inline = False)
+				embed.add_field('Wrong numbers:', bad_result_list, inline = False)
 				await ctx.send(embed = embed)
 				tries = tries + 1
 		return
