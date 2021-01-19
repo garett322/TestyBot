@@ -18,9 +18,9 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		num_gen = str(random.randint(1, num_max))
 		while len(num_gen) < num_len:
 			num_gen = '0' + num_gen
+		repeated_digits = []
 		if len(set(num_gen)) < len(num_gen):
 			s = 0
-			repeated_digits = []
 			while s < len(num_gen):
 				if s == 0:
 					num_gen_mod = num_gen[1:]
