@@ -105,6 +105,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				x = 0
 				while x <= num_len:
 					if good_result[x] == '-' or good_result[x] == good_result_list[x]:
+						x = x + 1
 						continue
 					else:
 						good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
@@ -124,10 +125,8 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						if len(bad_result) == 1:
 							bad_result = ''
 							continue
-						elif len(bad_result) > 0:
+						elif len(bad_result) > 1:
 							bad_result = bad_result[1:]
-						else:
-							pass
 				
 				embed.clear_fields()
 				embed.add_field('Answer:', good_result_list, inline = False)
