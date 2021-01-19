@@ -51,7 +51,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 						result_okay = result_okay + ', ' + guess[i]
 				else:
 					result_good = result_good + '-'
-					result_bad = result_bad + result_bad
+					result_bad = result_bad + guess[i]
 				i = i + 1
 			return (result_good, result_okay, result_bad)
 
@@ -125,12 +125,12 @@ class GameCog(commands.Cog, name = "GameCog" ):
 											
 				if okay_result == '':
 					okay_result = 'None'
-				if bad_result == '':
-					bad_result = 'None'
+				if bad_result_list == '':
+					bad_result_list = 'None'
 				embed.clear_fields()
-				embed.add_field(name = 'Answer:', value = good_result, inline = False)
+				embed.add_field(name = 'Answer:', value = good_result_list, inline = False)
 				embed.add_field(name = 'Right number, wrong place:', value = okay_result, inline = False)
-				embed.add_field(name = 'Wrong numbers:', value = bad_result, inline = False)
+				embed.add_field(name = 'Wrong numbers:', value = bad_result_list, inline = False)
 				await ctx.send(embed = embed)
 		return
 
