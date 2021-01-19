@@ -15,13 +15,9 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			await ctx.send('Please use a valid number for the maximum number. Game has been cancelled.')
 			return
 		num_len = len(num_max_str)
-		init_num_gen = random.randint(1, num_max)
-		num_gen = str(init_num_gen)
-		
-    if len(set(num_gen)) < len(num_gen):
-	
-		while len(num_gen) < num_len:
-			num_gen = '0' + num_gen
+		num_gen = str(random.randint(1, num_max))
+		while len(num_gen) < num_len or len(set(num_gen)) < len(num_gen):
+			num_gen = str(random.randint(1, num_max))
 
 
 
