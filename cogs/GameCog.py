@@ -94,7 +94,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				
 			(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
 			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
-			embed = discord.embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
+			embed = discord.Embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
 			if okay_result == 'n/a'and bad_result == 'n/a':
 				embed.add_field('Answer:', msg, inline = False)
 				embed.add_field('Tries:', tries, inline = False)
