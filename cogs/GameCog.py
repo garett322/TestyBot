@@ -20,15 +20,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		num_max = int(num_max_str)
 		
 		init_num_gen = 1
-		
-		#init_num_gen = random.randint(1, num_max)
-		num_gen_str = str(init_num_gen)
-		while len(num_gen_str) < num_len:
-			num_gen_str = '0' + num_gen_str
-			num_gen = int(num_gen_str)
-			
-			await ctx.send('+1 num gen')
-		await ctx.send(num_gen)
+		init_num_gen = random.randint(1, num_max)
+		num_gen = str(init_num_gen)
+		while len(num_gen) < num_len:
+			num_gen = '0' + num_gen
 
 
 
@@ -40,9 +35,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 					return False
 			return inner_check
 		
-		def guess_chk(guess_int, answer_int):
-			guess = str(guess_int)
-			answer = str(answer_int)
+		def guess_chk(guess, answer):
 			answer_len = len(answer)
 			if guess == answer:
 				return (guess, 'n/a', 'n/a')
