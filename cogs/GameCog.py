@@ -16,8 +16,9 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			return
 		num_max = int('9' * num_len)
 		init_num_gen = random.randint(1, num_max)
-		num_gen_str = str(init_num_gen)
-		num_gen = ('0' * (num_len - 1)) + num_gen
+		num_gen = str(init_num_gen)
+		while len(num_gen) < num_len:
+			num_gen = '0' + num_gen
 
 
 
@@ -61,7 +62,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		bad_result_list = ''
 		tries = 1
 		while tries > 0:
-			await ctx.send('You have 15 seconds to guess a number. Say "cancel" to cancel the game.')
+			await ctx.send('You have 15 seconds to guess a number between 1 and {}. Say "cancel" to cancel the game.'.format(num_max))
 			try:
 				msg_obj = await self.bot.wait_for('message', check=check(ctx.author), timeout=15)
 			except asyncio.TimeoutError:
