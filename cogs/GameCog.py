@@ -18,15 +18,16 @@ class GameCog(commands.Cog, name = "GameCog" ):
 		while len(num_max_str) < num_len:
 			num_max_str = num_max_str + '9'
 		num_max = int(num_max_str)
-		init_num_gen = random.randint(1, num_max)
+		
+		init_num_gen = 1
+		
+		#init_num_gen = random.randint(1, num_max)
 		num_gen_str = str(init_num_gen)
-		await ctx.send(num_len)
-		await ctx.send(init_num_gen)
-		await ctx.send(num_gen_str)
 		while len(num_gen_str) < num_len:
 			num_gen_str = '0' + num_gen_str
+			num_gen = int(num_gen_str)
+			
 			await ctx.send('+1 num gen')
-		num_gen = int(num_gen_str)
 		await ctx.send(num_gen)
 
 
