@@ -67,7 +67,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 				i = i + 1
 			return (result_good, result_okay, result_bad)
 
-		good_result_list = ''
+		good_result_list = '-' * num_len
 		bad_result_list = ''
 		tries = 1
 		while tries > 0:
@@ -96,9 +96,10 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
 			embed = discord.Embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
 			if okay_result == 'n/a'and bad_result == 'n/a':
+				embed.clear_fields()
 				embed.add_field('Answer:', msg, inline = False)
 				embed.add_field('Tries:', tries, inline = False)
-				await embed.send()
+				await ctx.send(embed = embed)
 				return
 			else:
 				x = 0
@@ -120,11 +121,15 @@ class GameCog(commands.Cog, name = "GameCog" ):
 								bad_result_list = bad_result[0]
 							else:
 								bad_result_list = bad_result_list + ', ' + bad_result[0]
-						if len(bad_result) > 0:
+						if len(bad_result) == 1:
+							bad_result = ''
+							continue
+						elif len(bad_result) > 0:
 							bad_result = bad_result[1:]
 						else:
 							pass
 				
+				embed.clear_fields()
 				embed.add_field('Answer:', good_result_list, inline = False)
 				embed.add_field('Right number, wrong place:', okay_result, inline = False)
 				embed.add_field('Wrong number:', bad_result_list, inline = False)
