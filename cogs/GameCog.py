@@ -84,7 +84,7 @@ class GameCog(commands.Cog, name = "GameCog" ):
 			tries = tries + 1
 			(good_result, okay_result, bad_result) = guess_chk(msg, num_gen)
 			await ctx.send('Guess: {}, Answer: {}'.format(msg, num_gen))
-			embed = discord.Embed(title = 'Guessing Game', author = ctx.author, color = discord.Colour.blue())
+			embed = discord.Embed(title = 'Guessing Game', author = ctx.author.name, color = discord.Colour.blue())
 			if okay_result == 'n/a'and bad_result == 'n/a':
 				embed.clear_fields()
 				embed.add_field(name = 'Answer:', value = msg, inline = False)
@@ -108,19 +108,19 @@ class GameCog(commands.Cog, name = "GameCog" ):
 							else:
 								good_result_list = good_result_list[0:x] + good_result[x] + good_result_list[x+1:]
 						x = x + 1
-					if bad_result == '':
-						pass
-					else:
-						y = 0
-						while y < len(bad_result):
-							if bad_result[y] in bad_result_list:
-								pass
+				if bad_result == '':
+					pass
+				else:
+					y = 0
+					while y < len(bad_result):
+						if bad_result[y] in bad_result_list:
+							pass
+						else:
+							if bad_result_list == '':
+								bad_result_list = bad_result[y]
 							else:
-								if bad_result_list == '':
-									bad_result_list = bad_result[y]
-								else:
-									bad_result_list = bad_result[y] + ', ' + bad_result_list
-							y = y + 1
+								bad_result_list = bad_result[y] + ', ' + bad_result_list
+						y = y + 1
 											
 											
 				if okay_result == '':
