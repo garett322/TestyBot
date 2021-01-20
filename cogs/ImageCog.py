@@ -16,10 +16,11 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 		draw.text((100, 250), 'world', font=font)
 		temp_jpg = tempfile.NamedTemporaryFile(suffix='.jpg')
 		im.save(temp_jpg, 'JPEG')
-		file = discord.File(temp_jpg, filename = 'image.jpg')
+		file = discord.File(temp_jpg.name, filename = 'image.jpg')
 		embed = discord.Embed(title = 'test', color = discord.Colour.red())
 		embed.set_image(url='attachment://image.jpg')
 		await ctx.send(embed=embed)
+		temp_jpg.close()
 		return
 		
 		
