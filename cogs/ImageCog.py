@@ -12,7 +12,7 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 	async def image(self, ctx):
 		im = Image.open("./images/BreakingNews.jpg")
 		draw = ImageDraw.Draw(im)
-		font = ImageFont.truetype('news-cycle.ttf', 100)
+		font = ImageFont.truetype('./fonts/news-cycle.ttf', 100)
 		draw.text((100, 250), "world", font=font)
 		im.save('./testy.jpg')
 		file = discord.File('./testy.jpg', filename = 'image.jpg')
