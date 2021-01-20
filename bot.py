@@ -13,17 +13,12 @@ async def on_ready():
 async def on_message(message):
 	if message.author is client.user:
 		return
-	if message.channel.type is discord.ChannelType.private or message.author.id == '316384336859627530':
-		pass
-	elif message.channel.type is discord.ChannelType.text:
-		if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
+	if message.content.startswith('.'):
+		if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta' or message.author.id == '316384336859627530':
 			pass
 		else:
-			if message.content.startswith('.'):
-				await message.author.send('Please use the bot-commands channel. Thanks!')
-				return
-			else:
-				return
+			await message.author.send('Please use the bot-commands channel. Thanks!')
+			return
 	if message.content.startswith('.'):
 		print('{0} used the command: {1}'.format(message.author.name, message.content))
 	await client.process_commands(message)
