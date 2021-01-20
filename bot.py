@@ -5,7 +5,7 @@ client = commands.Bot(command_prefix = ".", intents = intents)
 
 @client.event
 async def on_ready():
-	print('Logged in as {0.user}'.format(client))
+	print('Logged in as {}'.format(client.user))
 	user = await client.fetch_user('316384336859627530')
 	await user.send('Bot is ready to go!')
 	
