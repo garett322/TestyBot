@@ -25,7 +25,7 @@ async def on_message(message):
 			else:
 				return
 	if message.content.startswith('.'):
-		print(message.content)
+		print('{0} used the command: {1}'.format(message.author.name, message.content))
 	await client.process_commands(message)
 
 	
