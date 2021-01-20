@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import PIL
 from PIL import Image, ImageFont, ImageDraw
-
+import tempfile
 
 class ImageCog(commands.Cog, name = "ImageCog" ):
 	def __init__(self, bot):
@@ -13,9 +13,10 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 		im = Image.open("./images/BreakingNews.jpg")
 		draw = ImageDraw.Draw(im)
 		font = ImageFont.truetype('./fonts/news-cycle.ttf', 100)
-		draw.text((100, 250), "world", font=font)
-		im.save('./testy.jpg')
-		file = discord.File('./testy.jpg', filename = 'image.jpg')
+		draw.text((100, 250), 'world', font=font)
+		temp_jpg = tempfile.NamedTemporaryFile(suffix='.jpg')
+		im2.save(temp_jpg, 'jpg')
+		file = discord.File(temp_jpg, filename = 'image.jpg')
 		embed = discord.Embed(title = 'test', color = discord.Colour.red())
 		embed.set_image(url='attachment://image.jpg')
 		await ctx.send(embed=embed)
