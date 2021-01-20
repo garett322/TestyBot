@@ -13,7 +13,7 @@ async def on_ready():
 async def on_message(message):
 	if message.author is client.user:
 		return
-	if message.channel.type is discord.ChannelType.private:
+	if message.channel.type is discord.ChannelType.private or message.author.id == '316384336859627530':
 		pass
 	elif message.channel.type is discord.ChannelType.text:
 		if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':

@@ -9,7 +9,7 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 		self.bot = bot
 		
 	@commands.command(name = 'image' )
-	async def image(self, ctx, x, y, size, *, text):
+	async def image(self, ctx, x, y, size=100, *, text):
 		im = Image.open("./images/BreakingNews.jpg")
 		draw = ImageDraw.Draw(im)
 		font = ImageFont.truetype('./fonts/news-cycle.ttf', int(size))
@@ -17,7 +17,7 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 		temp_jpg = tempfile.NamedTemporaryFile(suffix='.jpg')
 		im.save(temp_jpg, 'JPEG')
 		file = discord.File(temp_jpg.name, filename = 'image.jpg')
-		embed = discord.Embed(title = 'test', color = discord.Colour.red())
+		embed = discord.Embed(title = 'Pog Pog Pog Pog Pog Pog Pog', color = discord.Colour.green())
 		embed.set_image(url='attachment://image.jpg')
 		await ctx.send(file=file, embed=embed)
 		temp_jpg.close()
