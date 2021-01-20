@@ -15,7 +15,7 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 		font = ImageFont.truetype('./fonts/news-cycle.ttf', 100)
 		draw.text((100, 250), 'world', font=font)
 		temp_jpg = tempfile.NamedTemporaryFile(suffix='.jpg')
-		im.save(temp_jpg, 'jpg')
+		im.save(temp_jpg, 'JPEG')
 		file = discord.File(temp_jpg, filename = 'image.jpg')
 		embed = discord.Embed(title = 'test', color = discord.Colour.red())
 		embed.set_image(url='attachment://image.jpg')
