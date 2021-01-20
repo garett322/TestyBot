@@ -9,11 +9,11 @@ class ImageCog(commands.Cog, name = "ImageCog" ):
 		self.bot = bot
 		
 	@commands.command(name = 'image' )
-	async def image(self, ctx, x, y, **text):
+	async def image(self, ctx, x, y, size, *, text):
 		im = Image.open("./images/BreakingNews.jpg")
 		draw = ImageDraw.Draw(im)
-		font = ImageFont.truetype('./fonts/news-cycle.ttf', 100)
-		draw.text((x, y), text, font=font, fill=black)
+		font = ImageFont.truetype('./fonts/news-cycle.ttf', size)
+		draw.text((x, y), text, font=font, fill='black')
 		temp_jpg = tempfile.NamedTemporaryFile(suffix='.jpg')
 		im.save(temp_jpg, 'JPEG')
 		file = discord.File(temp_jpg.name, filename = 'image.jpg')
