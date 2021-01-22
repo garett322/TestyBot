@@ -3,24 +3,50 @@ from discord.ext import commands
 import PIL
 from PIL import Image, ImageFont, ImageDraw
 import tempfile
+import urllib2
+from urllib.parse import urlparse
+import requests
+import shutil
 
-class ImageCog(commands.Cog, name = "ImageCog" ):
-	def __init__(self, bot):
-		self.bot = bot
+
+class ImageCog(commands.Cog, name = "ImageCog"):
+			def __init__(self, bot):
+			self.bot = bot
 		
-	@commands.command(name = 'image' )
-	async def image(self, ctx, x, y, size=100, *, text):
-		im = Image.open("./images/BreakingNews.jpg")
+		@ commands.command(name = 'image')
+		async def image(self, ctx, url, x_coord, y_coord, size = 100, * , text):
+			try:
+			urllib2.urlopen(url)
+		except urllib2.HTTPError, error:
+			print(error.code)
+		except urllib2.URLError, error:
+			print(error.args)
+		file = requests.get(url)
+		parsed_url = urlparse(url)
+		filename = parsed_url.rsplit('/')[-1]
+		filetype = filename.rsplit('.')[-1]
+		original = tempfile.NamedTemporaryFile(suffix = '.{}'.format(filetype))
+		with open(original, 'wb') as f:
+			shutil.copyfileobj(file.raw, f)
+		im = Image.open(original)
 		draw = ImageDraw.Draw(im)
 		font = ImageFont.truetype('./fonts/news-cycle.ttf', int(size))
-		draw.text((int(x), int(y)), text, font=font, fill='black')
-		temp_jpg = tempfile.NamedTemporaryFile(suffix='.jpg')
-		im.save(temp_jpg, 'JPEG')
-		file = discord.File(temp_jpg.name, filename = 'image.jpg')
-		embed = discord.Embed(title = 'Pog Pog Pog Pog Pog Pog Pog', color = discord.Colour.green())
-		embed.set_image(url='attachment://image.jpg')
-		await ctx.send(file=file, embed=embed)
-		temp_jpg.close()
+		draw.text((int(x_coord), int(y_coord)), text, font = font, fill = 'black')
+		if filetype.lower() == 'jpg':
+			edited = tempfile.NamedTemporaryFile(suffix = '.jpg')
+			im.save(edited, 'JPEG')
+		elif filetype.lower() == 'png'
+			edited = tempfile.NamedTemporaryFile(suffix = '.png')
+			im.save(edited, 'PNG')
+		else:
+			await ctx.send('I don\'t recognize that file type. Please try a different picture.')
+			return
+		file = discord.File(edited.name, filename = 'image.jpg')
+		embed = discord.Embed(color = discord.Colour.green())
+		embed.set_image(url = 'attachment://image.jpg')
+		await ctx.send(file = file, embed = embed)
+		original.close()
+		edited.close()
 		return
 		
 		
