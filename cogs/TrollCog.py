@@ -79,53 +79,6 @@ class TrollCog(commands.Cog, name = "TrollCog" ):
 	async def rekt(self, ctx):
 		await ctx.send('It\'s still not a command Sage. Get fuckin rekt.')
 		return
-
-
-	@commands.command(name = 'earrape' )
-	async def earrape(self, ctx, *, member):
-		if ctx.author.id != 316384336859627530:
-			await ctx.send('Only trees can use this command.')
-			return
-		
-		await ctx.message.delete()
-		for user in ctx.guild.members:
-			if user.id == 684444511861997680 or not user.voice:
-				continue
-			if user.name.lower().startswith(member.lower()):
-				await ctx.author.send('Do you want to troll {}?'.format(user.name))
-				
-				def check(author):
-					def inner_check(message):
-						if message.author == author:
-							if message.content.lower() == "y":
-								if message.channel.type is discord.ChannelType.private:
-									return True
-								else:
-									return False
-							else:
-								return False
-						else:
-							return False
-					return inner_check
-				
-				try:
-					msg = await self.bot.wait_for('message', check=check(ctx.author), timeout=10)
-				except asyncio.TimeoutError:
-					await ctx.send('Troll cancelled.')
-					return
-				
-				sound = './trollsounds/Earrape.mp3'
-				vc_object = user.voice.channel
-				vc_connection = await vc_object.connect()
-				audio_source = discord.FFmpegPCMAudio(sound)
-				await asyncio.sleep(2)
-				start = vc_connection.play(audio_source, after = None)
-				await asyncio.sleep(12)
-				stop = vc_connection.stop()
-				await vc_connection.disconnect()
-				return
-		await ctx.author.send('No user found.')
-		return
-
+	
 def setup(bot):
 	bot.add_cog(TrollCog(bot))
