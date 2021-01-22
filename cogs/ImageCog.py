@@ -17,9 +17,9 @@ class ImageCog(commands.Cog, name = "ImageCog"):
 	async def image(self, ctx, url, x_coord, y_coord, size = 100, * , text):
 		try:
 			urllib2.urlopen(url)
-		except urllib2.HTTPError, error:
+		except urllib2.HTTPError:
 			await ctx.send('I couldn\'t find that url. Please try again.')
-		except urllib2.URLError, error:
+		except urllib2.URLError:
 			await ctx.send('I couldn\'t find that url. Please try again.')
 		file = requests.get(url)
 		parsed_url = urlparse(url)
