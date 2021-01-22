@@ -35,7 +35,7 @@ class ImageCog(commands.Cog, name = "ImageCog"):
 		if filetype.lower() == 'jpg':
 			edited = tempfile.NamedTemporaryFile(suffix = '.jpg')
 			im.save(edited, 'JPEG')
-		elif filetype.lower() == 'png'
+		elif filetype.lower() == 'png':
 			edited = tempfile.NamedTemporaryFile(suffix = '.png')
 			im.save(edited, 'PNG')
 		else:
