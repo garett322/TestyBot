@@ -16,7 +16,7 @@ async def on_ready():
 async def on_message(message):
 	if message.author is client.user:
 		return
-	if not message.content.startswith('.')
+	if not message.content.startswith('.'):
 		return
 	if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
 		pass
@@ -28,22 +28,23 @@ async def on_message(message):
 
 	
 @client.event
-async def on_command_error(ctx, error):
+async def on_command_error(ctx,error):
 	exc_type, exc_obj, tb = sys.exc_info()
 	f = tb.tb_frame
 	lineno = tb.tb_lineno
 	filename = f.f_code.co_filename
 	linecache.checkcache(filename)
 	line = linecache.getline(filename, lineno, f.f_globals)
-	print('ERROR IN {}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
+	print('ERROR IN {}, LINE {} "{}": {}'.format(filename, lineno, line.strip(), exc_obj))
 	for channel in ctx.guild.channels:
 		if channel.name == 'errors':
-			await channel.send('ERROR IN {}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_ob)
+			await channel.send('ERROR IN {}, LINE {} "{}": {}'.format(filename, lineno, line.strip(), exc_ob))
 	if isinstance(error, commands.CommandNotFound):
 		await ctx.send('Command not found.')
-		return
 	else:
 		await ctx.send('Unknown error encountered. Check logs or try again.')
+	return
+
 
 client.load_extension('cogs.ImageCog')
 client.load_extension('cogs.TestCog')
