@@ -16,6 +16,8 @@ async def on_ready():
 async def on_message(message):
 	if message.author is client.user:
 		return
+	if not message.content.startswith('.')
+		return
 	if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
 		pass
 	else:
