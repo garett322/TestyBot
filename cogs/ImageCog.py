@@ -10,17 +10,17 @@ import shutil
 
 
 class ImageCog(commands.Cog, name = "ImageCog"):
-			def __init__(self, bot):
-			self.bot = bot
+	def __init__(self, bot):
+		self.bot = bot
 		
-		@ commands.command(name = 'image')
-		async def image(self, ctx, url, x_coord, y_coord, size = 100, * , text):
-			try:
+	@ commands.command(name = 'image')
+	async def image(self, ctx, url, x_coord, y_coord, size = 100, * , text):
+		try:
 			urllib2.urlopen(url)
 		except urllib2.HTTPError, error:
-			print(error.code)
+			await ctx.send('I couldn\'t find that url. Please try again.')
 		except urllib2.URLError, error:
-			print(error.args)
+			await ctx.send('I couldn\'t find that url. Please try again.')
 		file = requests.get(url)
 		parsed_url = urlparse(url)
 		filename = parsed_url.rsplit('/')[-1]
