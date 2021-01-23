@@ -14,7 +14,7 @@ class ImageCog(commands.Cog, name = "ImageCog"):
 	@ commands.command(name = 'image')
 	async def image(self, ctx, url = None, x_coord = 0, y_coord = 0, size = 1, * , text = ':)'):
 		if url == None:
-			await ctx send('You need to give me the link to an image you want to use.')
+			await ctx.send('You need to give me the link to an image you want to use.')
 		file = requests.get(url, stream = True)
 		if file.status_code == 200:
 			pass
