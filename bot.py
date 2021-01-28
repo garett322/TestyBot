@@ -46,12 +46,12 @@ async def on_command_error(ctx,error):
 	return
 
 
-client.load_extension('cogs.ImageCog')
+#client.load_extension('cogs.ImageCog')
 client.load_extension('cogs.TestCog')
-client.load_extension('cogs.RoleCog')
-client.load_extension('cogs.VcCog')
-client.load_extension('cogs.TrollCog')
+#client.load_extension('cogs.RoleCog')
+#client.load_extension('cogs.VcCog')
+#client.load_extension('cogs.TrollCog')
 #client.load_extension('cogs.GameCog')
 #client.load_extension('cogs.CodeCog')
-
+client.load_extension('cogs.TriviaCog')
 client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XkMX2A.vfQROSktnxjkOTP5mWV4Y6eY_Ks')
