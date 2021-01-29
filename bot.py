@@ -10,7 +10,7 @@ logger.setLevel(logging.WARNING)
 handler = logging.StreamHandler()
 handler.setLevel(logging.WARNING)
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s - LINE %(lineno)d', datefmt='%m/%d/%Y %I:%M:%S %p')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: ', datefmt='%m/%d/%Y %I:%M:%S %p')
 handler.setFormatter(formatter)
 
 logger.addHandler(handler)
@@ -37,10 +37,10 @@ async def on_message(message):
 	await client.process_commands(message)
 
 	
-#@client.event
-#async def on_command_error(ctx, error):
-	#logger.warning()
-	#return
+@client.event
+async def on_command_error(ctx, error):
+	logger.warning('{} on Line {}'.format(message, lineno))
+	return
 	
 
 
