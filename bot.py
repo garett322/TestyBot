@@ -4,7 +4,7 @@ from discord.ext import commands
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix = ".", intents = intents)
 
-
+logging.basicConfig(level=logging.INFO)
 
 
 @client.event
@@ -13,13 +13,13 @@ async def on_ready():
 	user = await client.fetch_user('316384336859627530')
 	await user.send('Bot is ready to go!')
 	
-	logger = logging.getLogger('discord')
-	logger.setLevel(logging.DEBUG)
-	handler = logging.StreamHandler()
-	handler.setLevel(logging.WARNING)
-	formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s - %(lineno)d', datefmt='%m/%d/%Y %I:%M:%S %p')
-	handler.setFormatter(formatter)
-	logger.addHandler(handler)
+	#logger = logging.getLogger('discord')
+	#logger.setLevel(logging.DEBUG)
+	#handler = logging.StreamHandler()
+	#handler.setLevel(logging.WARNING)
+	#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s - %(lineno)d', datefmt='%m/%d/%Y %I:%M:%S %p')
+	#handler.setFormatter(formatter)
+	#logger.addHandler(handler)
 	
 @client.event
 async def on_message(message):
@@ -36,10 +36,10 @@ async def on_message(message):
 	await client.process_commands(message)
 
 	
-#@client.event
-#async def on_command_error(ctx, error):
-	#logger.warning('')
-	#return
+@client.event
+async def on_command_error(ctx, error):
+	
+	return
 	
 
 

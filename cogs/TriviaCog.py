@@ -19,12 +19,15 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 		
 	@trivia.command(name = 'start')
 	async def start(self, ctx):
-		token_api = requests.get(token_url)
+		token_response = requests.get(token_url)
+		token_api = token_response.json()
 		token = token_api['token']
-		categories_api = requests.get(categories_url)
+		categories_response = requests.get(categories_url)
+		categories_api = categories_url.json()
 		category_names = categories_api['trivia_categories']['name']
 		await ctx.send('Please choose a category:')
 		await ctx.send(category_names)
+		await ctx.send(token)
 		return
 		
 
