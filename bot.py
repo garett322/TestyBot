@@ -37,9 +37,10 @@ async def on_message(message):
 	await client.process_commands(message)
 
 	
-@client.event
-async def on_command_error(ctx, error):
-	return
+#@client.event
+#async def on_command_error(ctx, error):
+	#logger.warning()
+	#return
 	
 
 
