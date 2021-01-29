@@ -4,7 +4,7 @@ from discord.ext import commands
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix = ".", intents = intents)
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 
 @client.event
