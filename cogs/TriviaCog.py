@@ -13,16 +13,19 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 		
 	@commands.group(name = 'trivia')
 	async def trivia(self, ctx):
-		
-		@trivia.command(name = 'start')
-		async def start(self, ctx):
-			token_api = requests.get(token_url)
-			token = token_api['token']
-			categories_api = requests.get(categories_url)
-			category_names = categories_api['trivia_categories']['name']
-			await ctx.send('Please choose a category:')
-			await ctx.send(category_names)
+		if ctx.invoked_subcommand is None:
+			await ctx.send('Invalid trivia command')
 			return
+		
+	@trivia.command(name = 'start')
+	async def start(self, ctx):
+		token_api = requests.get(token_url)
+		token = token_api['token']
+		categories_api = requests.get(categories_url)
+		category_names = categories_api['trivia_categories']['name']
+		await ctx.send('Please choose a category:')
+		await ctx.send(category_names)
+		return
 		
 
 

@@ -5,12 +5,12 @@ intents = discord.Intents.all()
 client = commands.Bot(command_prefix = ".", intents = intents)
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.DEBUG)
 
 handler = logging.StreamHandler()
 handler.setLevel(logging.WARNING)
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: ', datefmt='%m/%d/%Y %I:%M:%S %p')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s - %(lineno)d', datefmt='%m/%d/%Y %I:%M:%S %p')
 handler.setFormatter(formatter)
 
 logger.addHandler(handler)
@@ -37,10 +37,10 @@ async def on_message(message):
 	await client.process_commands(message)
 
 	
-@client.event
-async def on_command_error(ctx, error):
-	logger.warning('{} on Line {}'.format(message, lineno))
-	return
+#@client.event
+#async def on_command_error(ctx, error):
+	#logger.warning('')
+	#return
 	
 
 
