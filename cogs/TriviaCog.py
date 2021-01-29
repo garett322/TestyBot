@@ -6,13 +6,7 @@ categories_url = 'https://opentdb.com/api_category.php'
 questions_url = 'https://opentdb.com/api.php?amount={}&category={}&difficulty={}'
 token_url = 'https://opentdb.com/api_token.php?command=request'
 
-logger = logging.getLogger('trivia')
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s - %(lineno)d', datefmt='%m/%d/%Y %I:%M:%S %p')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+
 
 
 class TriviaCog(commands.Cog, name = 'Trivia' ):
