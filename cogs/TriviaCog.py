@@ -21,6 +21,8 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 		
 	@trivia.command(name = 'start')
 	async def start(self, ctx):
+		await ctx.send('trivia subcommand works')
+		return
 		token_response = requests.get(token_url)
 		token_api = token_response.json()
 		token = token_api['token']

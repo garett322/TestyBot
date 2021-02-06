@@ -1,4 +1,4 @@
-import logging
+import os
 import discord
 from discord.ext import commands
 intents = discord.Intents.all()
@@ -35,4 +35,5 @@ client.load_extension('cogs.TestCog')
 client.load_extension('cogs.ErrorCog')
 client.load_extension('cogs.TriviaCog')
 
-client.run('Njc2ODk3NDE2NjQwOTg3MTQ3.XkMX2A.vfQROSktnxjkOTP5mWV4Y6eY_Ks')
+
+client.run(os.environ.get('BOT_TOKEN'))

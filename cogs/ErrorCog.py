@@ -32,7 +32,7 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 			return
 		
 		if isinstance(error, commands.DisabledCommand):
-			await ctx.send(f'{ctx.command} has been disabled.')
+			await ctx.send('{} has been disabled.'.format(ctx.command))
 		
 		elif isinstance(error, commands.NoPrivateMessage):
 			try:
@@ -41,7 +41,7 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 				pass
 		
 		elif isinstance(error, commands.BadArgument):
-			await ctx.send('That argument didn\'t work. Please try again with a different argument.')
+			await ctx.send('That argument didn\'t work. Please try the command again with a different argument.')
 		
 		else:
 			print('Ignoring exception in command {}:'.format(ctx.command))
