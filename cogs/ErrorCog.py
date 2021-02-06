@@ -8,15 +8,6 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 	
 	@commands.Cog.listener()
 	async def on_command_error(self, ctx, error):
-		"""
-		The event triggered when an error is raised while invoking a command.
-		Parameters
-		------------
-		ctx: commands.Context
-		The context used for command invocation.
-		error: commands.CommandError
-		The Exception raised.
-			"""
 		
 		if hasattr(ctx.command, 'on_error'):
 			return
@@ -44,11 +35,11 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 			await ctx.send('That argument didn\'t work. Please try the command again with a different argument.')
 		
 		else:
-			spruce = ctx.message.server.get_member('316384336859627530')
-			await ctx.send('An unknown error occurred. {} will fix it soon.'.format(spruce.mention()))
-			await spruce.send('Error occured. Command: .{}; Server: {}; User: {}. Check logs.'.format(ctx.command, ctx.guild, ctx.author))
 			print(error)
-		
+			spruce = ctx.guild.get_member('316384336859627530')
+			await ctx.send(f'An unknown error occurred. {spruce.mention()} will fix it soon.')
+			await spruce.send(f'Error occured. Command: .{ctx.command}; Server: {ctx.guild}; User: {ctx.author}. Check logs.')
+			
 		return
 	
 	
