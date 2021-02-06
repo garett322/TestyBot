@@ -4,7 +4,6 @@ import requests
 
 categories_url = 'https://opentdb.com/api_category.php'
 questions_url = 'https://opentdb.com/api.php?amount={}&category={}&difficulty={}'
-token_url = 'https://opentdb.com/api_token.php?command=request'
 
 
 
@@ -16,22 +15,19 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 	@commands.group(name = 'trivia')
 	async def trivia(self, ctx):
 		if ctx.invoked_subcommand is None:
-			await ctx.send('Invalid trivia command')
+			await ctx.send('The available options for trivia are: start.')
 			return
 		
 	@trivia.command(name = 'start')
 	async def start(self, ctx):
-		await ctx.send('trivia subcommand works')
-		return
-		token_response = requests.get(token_url)
-		token_api = token_response.json()
-		token = token_api['token']
 		categories_response = requests.get(categories_url)
 		categories_api = categories_url.json()
-		category_names = categories_api['trivia_categories']['name']
+		category_list = ''
+		for category in catagories_api:
+			category_list = category_list + ', ' + category['name']
+		category_list = category_list.strip(', ')
 		await ctx.send('Please choose a category:')
-		await ctx.send(category_names)
-		await ctx.send(token)
+		await ctx.send(category_list)
 		return
 		
 
