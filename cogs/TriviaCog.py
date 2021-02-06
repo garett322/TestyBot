@@ -127,9 +127,6 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		await ctx.send('Please choose a category:')
 		await ctx.send(category_list)
 		return
-	
-	@trivia.command
-		
 
 
 def setup(bot):
