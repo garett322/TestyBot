@@ -47,6 +47,6 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 			print('Ignoring exception in command {}:'.format(ctx.command))
 		
 		return
-	def setup(bot):
-		bot.add_cog(ErrorCog(bot))
+def setup(bot):
+	bot.add_cog(ErrorCog(bot))
 	
