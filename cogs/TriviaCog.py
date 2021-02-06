@@ -23,7 +23,7 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 		categories_json = requests.get(categories_url).json
 		category_list = ''
 		
-		for category in catagories_json['trivia_categories']:
+		for category in categories_json['trivia_categories']:
 			if category['name'].startswith('Entertainment:'):
 				x = slice(13, none, none)
 				category_name = str(category['name'])[x]
