@@ -44,6 +44,7 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 			await ctx.send('That argument didn\'t work. Please try the command again with a different argument.')
 		
 		else:
+			await ctx.send('An unknown error occurred.')
 			print(error)
 		
 		return
