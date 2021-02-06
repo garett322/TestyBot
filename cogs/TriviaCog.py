@@ -20,11 +20,19 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 		
 	@trivia.command(name = 'start')
 	async def start(self, ctx):
-		categories_response = requests.get(categories_url)
-		categories_api = categories_url.json()
+		categories_json = requests.get(categories_url).json
 		category_list = ''
-		for category in catagories_api:
-			category_list = category_list + ', ' + category['name']
+		
+		for category in catagories_json['trivia_categories']:
+			if category['name'].startswith('Entertainment:'):
+				x = slice(13, none, none)
+				category_name = str(category['name'])[x]
+			else:
+				category_name = str(category['name'])
+			
+			category_list = category_list + ', ' + category_name
+			
+			
 		category_list = category_list.strip(', ')
 		await ctx.send('Please choose a category:')
 		await ctx.send(category_list)
