@@ -36,7 +36,7 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 		
 		elif isinstance(error, commands.NoPrivateMessage):
 			try:
-				await ctx.author.send(f'{ctx.command} can not be used in Private Messages.')
+				await ctx.author.send('{} can not be used in Private Messages.'.format(ctx.command))
 			except discord.HTTPException:
 				pass
 		
@@ -44,7 +44,9 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 			await ctx.send('That argument didn\'t work. Please try the command again with a different argument.')
 		
 		else:
-			await ctx.send('An unknown error occurred.')
+			spruce = await client.fetch_user('316384336859627530')
+			await ctx.send('An unknown error occurred. @Spruce#7339 will fix it soon')
+			await spruce.send('The command "{}" was used by "{}" in the server "{}" and threw an unknown error. Check logs.'.format(ctx.command, ctx.author, ctx.guild))
 			print(error)
 		
 		return

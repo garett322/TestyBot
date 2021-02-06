@@ -8,7 +8,7 @@ questions_url = 'https://opentdb.com/api.php?amount={}&category={}&difficulty={}
 
 
 
-class TriviaCog(commands.Cog, name = 'Trivia' ):
+class TriviaCog(commands.Cog, name = 'Trivia'):
 	def __init__(self, bot):
 		self.bot = bot
 		
@@ -20,7 +20,7 @@ class TriviaCog(commands.Cog, name = 'Trivia' ):
 		
 	@trivia.command(name = 'start')
 	async def start(self, ctx):
-		categories_json = requests.get(categories_url).json
+		categories_json = requests.get(categories_url).json()
 		category_list = ''
 		
 		for category in categories_json['trivia_categories']:
