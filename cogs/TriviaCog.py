@@ -25,7 +25,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		for category in categories_json['trivia_categories']:
 			if category['name'].startswith('Entertainment:'):
-				x = slice(13, none, none)
+				x = slice(13, None, None)
 				category_name = str(category['name'])[x]
 			else:
 				category_name = str(category['name'])

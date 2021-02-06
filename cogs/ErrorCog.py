@@ -45,7 +45,7 @@ class ErrorCog(commands.Cog, name = "Error Handler"):
 		
 		else:
 			spruce = await self.bot.fetch_user('316384336859627530')
-			await ctx.send('An unknown error occurred. @Spruce#7339 will fix it soon')
+			await ctx.send('An unknown error occurred. {} will fix it soon.'.format(spruce.mention()))
 			await spruce.send('The command "{}" was used by "{}" in the server "{}" and threw an unknown error. Check logs.'.format(ctx.command, ctx.author, ctx.guild))
 			print(error)
 		
