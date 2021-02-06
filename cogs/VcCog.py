@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord import ChannelType
 import asyncio
 
 
@@ -11,9 +10,8 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 	@commands.Cog.listener()
 	async def on_voice_state_update(self, member, before, after):
 		if not before.channel and after.channel:
-			for r in member.roles:
-				
-				vc_roles = {'MoFo': './vc_sounds/fuckfuck.mp3',
+			
+			vc_roles = {'MoFo': './vc_sounds/fuckfuck.mp3',
 						'Best RL Player': './vc_sounds/goldstar.mp3',
 						'Spoopy Bois': './vc_sounds/heresjohnny.mp3',
 						'Kitten': './vc_sounds/meow.mp3',
@@ -21,7 +19,8 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 						'Sage\'s Hoes': './vc_sounds/hoes.mp3',
 						'Big Dick Energy': './vc_sounds/suck_a_dick.mp3'
 						}
-				
+						
+			for r in member.roles:
 				if r.name in vc_roles:
 					sound = vc_roles[r.name]
 					vc_object = member.voice.channel
@@ -36,5 +35,6 @@ class VcCog(commands.Cog, name = "VC Entrance Sound" ):
 			return
 		else:
 			return
+		
 def setup(bot):
 	bot.add_cog(VcCog(bot))
