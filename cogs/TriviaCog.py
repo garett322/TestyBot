@@ -114,7 +114,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		try:
 			reaction, user = await self.bot.wait_for('reaction_add', timeout=20.0, check=check)
 		except asyncio.TimeoutError:
-			await ctx.send('You ran out of time to answer. Next question.')
+			await ctx.send('You ran out of time to answer.')
 			return
 		else:
 			user_answer_emoji = str(reaction.emoji)
