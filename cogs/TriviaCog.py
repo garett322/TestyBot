@@ -67,6 +67,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('Unknown error.')
 			return
 		counter = 1
+		fails = 0
 		for question in questions_json['results']:
 			
 			if question['category'].startswith('Entertainment:'):
@@ -86,9 +87,9 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				embed.add_field(name = 'Answers:', value = 'True\nFalse')
 				embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
 				message = await ctx.send(embed = embed)
-				await message.add_reaction('✔️')
-				await message.add_reaction('🚫')
-				
+				await message.add_reaction('☑️')
+				await message.add_reaction('❎')
+				qtype = 1
 				
 			else:
 				answer_place = random.randint(0,3)
@@ -111,8 +112,48 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				await message.add_reaction('2️⃣')
 				await message.add_reaction('3️⃣')
 				await message.add_reaction('4️⃣')
+				qtype = 2
+				
+			emojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
+			mc_answer_emojis = {'1️⃣': 0, '2️⃣': 1, '3️⃣': 2, '4️⃣': 3}
+			tf_answer_emojis = {'☑️': 0, '❎': 1}
+			def check(reaction, user):
+				if qtype == 1:
+					return user == ctx.author and (str(reaction.emoji) is in tf_answer_emojis or str(reaction.emoji) == '⛔')
+				elif qtype == 2:
+					return user == ctx.author and (str(reaction.emoji) is in mc_answer_emojis or str(reaction.emoji) == '⛔')
+					
+			try:
+				reaction, user = await client.wait_for('reaction_add', timeout=20.0, check=check)
+			except asyncio.TimeoutError:
+				await ctx.send('You ran out of time to answer. Next question.')
+				fails = fails + 1
+				if fails == 3:
+					await ctx.send('You ran out of time 3 times in a row. Trivia has been automatically cancelled.')
+					return
+			else:
+				if qtype = 1:
+					answer_emojis = tf_answer_emojis
+				elif qtype = 2:
+					answer_emojis = tf_answer_emojis
+					
+				user_answer = str(reaction.emoji)
+				if answer_emojis[user_answer] == answer_place:
+					await ctx.send('CORRECT!')
+					await ctx.send('Next question...')
+				elif user_answer == '⛔':
+					await ctx.send('Trivia cancelled.')
+					await message.delete()
+					return
+				else:
+					await ctx.send('INCORRECT.')
+					await ctx.send(f"The correct answer was: {question['correct_answer']}.")
+					await ctx.send('Next question...')
+				fails = 0
+				
+			await asyncio.sleep(2)
+			await message.delete()
 			counter = counter + 1
-			return
 
 
 	@trivia.command(name = 'categories', description = 'Shows all available catagories.')
