@@ -78,7 +78,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			else:
 				category = str(question['category'])
 				
-			difficulty = str(question['difficulty'])[0].upper() + str(question['difficulty'])[1:])
+			difficulty = str(question['difficulty'])[0].upper() + str(question['difficulty'])[1:]
 				
 			if question['type'] == 'boolean':
 				answer_place = random.randint(1,2)
