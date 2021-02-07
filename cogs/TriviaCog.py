@@ -55,8 +55,8 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		else:
 			await ctx.send('Unknown error.')
 			return
-		
-		question_str = html.unescape(str(question_json['results'][0]['correct_answer']))
+		question_str_init = str(question_json['results'][0]['correct_answer'])
+		question_str = html.unescape(question_str_init)
 		
 		if question_json['results'][0]['category'].startswith('Entertainment:'):
 			x = slice(15, None, None)
