@@ -81,7 +81,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			if question['type'] == 'boolean':
 				answer_place = random.randint(0,1)
 				wrong_answer = question['incorrect_answers']
-				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}'
+				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}')
 				embed.add_field(name = None, value = wrong_answer[0])
 				embed.add_field(name = None, value = wrong_answer[0])
 				embed.set_field_at(index = answer_place, name = None, value = question['correct_answer'])
@@ -93,7 +93,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			else:
 				answer_place = random.randint(0,3)
 				wrong_answer_list = question['incorrect_answers']
-				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}'
+				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}')
 				i = 0
 				while i < 4:
 					embed.add_field(name = None, value = None)
