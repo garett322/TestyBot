@@ -17,7 +17,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 		for user in ctx.guild.members:
 			if user.name.lower().startswith(member.lower()):
 				pfp = user.avatar_url
-				embed = discord.Embed(title='{user.name}\'s avatar', color=0xecce8b)
+				embed = discord.Embed(title=f'{user.name}\'s avatar')
 				embed.set_image(url=(pfp))
 				await ctx.send(embed = embed)
 				return
@@ -29,7 +29,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 	@commands.command(name = 'react', description = 'A command to test reactions')
 	async def react(self, ctx):
 		msg = await ctx.send('react test')
-		asyncio.sleep(5)
+		await asyncio.sleep(5)
 		cache_msg = discord.utils.get(self.bot.cached_messages, id=msg.id) #or client.messages depending on your variable
 		for reaction in cache_msg.reactions:
 			await ctx.send(reaction)
