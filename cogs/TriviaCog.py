@@ -74,9 +74,9 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			answer_place = random.randint(1,2)
 			embed.add_field(name = 'Answers:', value = 'True\nFalse')
 			embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
-			message = await ctx.send(embed = embed)
-			await message.add_reaction('☑️')
-			await message.add_reaction('❎')
+			question_embed = await ctx.send(embed = embed)
+			await question_embed.add_reaction('☑️')
+			await question_embed.add_reaction('❎')
 			qtype = 1
 				
 		else:
