@@ -56,11 +56,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('Unknown error.')
 			return
 		
-		if '&quot;' in question_json['results'][0]['correct_answer']:
-			question_str = str(question_json['results'][0]['correct_answer']).replace("'&quot;", '')
-		else:
-			question_str = str(question_json['results'][0]['correct_answer'])
-		
+		question_str = str(question_json['results'][0]['correct_answer']).decode('utf-8', errors = 'ignore')
 		
 		if question_json['results'][0]['category'].startswith('Entertainment:'):
 			x = slice(15, None, None)
