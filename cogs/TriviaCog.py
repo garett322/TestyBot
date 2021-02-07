@@ -105,9 +105,8 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await message.add_reaction('4️⃣')
 			qtype = 2
 			
-		emojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
-		mc_answer_emojis = {'1️⃣': 0, '2️⃣': 1, '3️⃣': 2, '4️⃣': 3}
-		tf_answer_emojis = {'☑️': 0, '❎': 1}
+		mc_answer_emojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
+		tf_answer_emojis = ['☑️', '❎']
 		
 		def check(reaction, user):
 			if user == ctx.author:
@@ -122,14 +121,26 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('You ran out of time to answer. Next question.')
 			return
 		else:
-			fails = 0
+			user_answer_emoji = str(reaction.emoji)
 			if qtype == 1:
-				answer_emojis = tf_answer_emojis
+				if user_answer_emoji == '☑️':
+					user_answer_int = 0
+				elif user_answer_emoji == '❎':
+					user_answer_int = 1
 			elif qtype == 2:
-				answer_emojis = tf_answer_emojis
+				if user_answer_emoji == '1️⃣':
+					user_answer_int = 0
+				elif user_answer_emoji == '2️⃣':
+						user_answer_int = 1
+				elif user_answer_emoji == '3️⃣':
+						user_answer_int = 2
+				elif user_answer_emoji == '4️⃣':
+						user_answer_int = 3
 				
-			user_answer = str(reaction.emoji)
-			if answer_emojis[user_answer] == answer_place:
+			
+			
+				
+			if user_answer_int == answer_place:
 				await ctx.send(f'CORRECT! Good job {user.name}!')
 			else:
 				await ctx.send('INCORRECT.')
