@@ -56,6 +56,12 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('Unknown error.')
 			return
 		
+		if '&quot;' in question_json['results'][0]['correct_answer']:
+			question_str = str(question_json['results'][0]['correct_answer']).replace("'&quot;", '')
+		else:
+			question_str = str(question_json['results'][0]['correct_answer'])
+		
+		
 		if question_json['results'][0]['category'].startswith('Entertainment:'):
 			x = slice(15, None, None)
 			category = str(question_json['results'][0]['category'])[x]
@@ -85,7 +91,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			i = 0
 			while i <= 3:
 				if i == answer_place:
-					answer_list = answer_list + question_json['results'][0]['correct_answer'] + '\n'
+					answer_list = answer_list + question_str + '\n'
 				else:
 					answer_list = answer_list + wrong_answer_list[x] + '\n'
 					x = x + 1
@@ -111,7 +117,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 					return str(reaction.emoji) in mc_answer_emojis
 					
 		try:
-			reaction, user = await client.wait_for('reaction_add', timeout=20.0, check=check)
+			reaction, user = await self.bot.wait_for('reaction_add', timeout=20.0, check=check)
 		except asyncio.TimeoutError:
 			await ctx.send('You ran out of time to answer. Next question.')
 			return
@@ -127,7 +133,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				await ctx.send(f'CORRECT! Good job {user.name}!')
 			else:
 				await ctx.send('INCORRECT.')
-				await ctx.send(f"The correct answer was: {question_json['results'][0]['correct_answer']}.")
+				await ctx.send(f"The correct answer was: {question_str}.")
 
 
 	@trivia.command(name = 'categories', description = 'Shows all available catagories.')
