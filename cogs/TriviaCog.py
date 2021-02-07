@@ -136,9 +136,9 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 					await ctx.send('You ran out of time to answer. Next question.')
 			else:
 				fails = 0
-				if qtype = 1:
+				if qtype == 1:
 					answer_emojis = tf_answer_emojis
-				elif qtype = 2:
+				elif qtype == 2:
 					answer_emojis = tf_answer_emojis
 					
 				user_answer = str(reaction.emoji)
