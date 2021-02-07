@@ -3,7 +3,7 @@ from discord.ext import commands
 import requests
 import random
 import asyncio
-
+import html
 
 class TriviaCog(commands.Cog, name = 'Trivia'):
 	def __init__(self, bot):
@@ -56,7 +56,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('Unknown error.')
 			return
 		
-		question_str = str(question_json['results'][0]['correct_answer']).decode('utf-8', errors = 'ignore')
+		question_str = html.unescape(str(question_json['results'][0]['correct_answer']))
 		
 		if question_json['results'][0]['category'].startswith('Entertainment:'):
 			x = slice(15, None, None)
