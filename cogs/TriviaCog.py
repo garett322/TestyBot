@@ -66,10 +66,10 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			category = str(question_json['results'][0]['category'])
 			
 		difficulty = str(question_json['results'][0]['difficulty'])[0].upper() + str(question_json['results'][0]['difficulty'])[1:]
-			
+		
+		embed = discord.Embed(title = question_json['results'][0]['question'], description = f'Courtesy of {ctx.author.name}')
 		if question_json['results'][0]['type'] == 'boolean':
 			answer_place = random.randint(1,2)
-			embed = discord.Embed(title = question_json['results'][0]['question'])
 			embed.add_field(name = 'Answers:', value = 'True\nFalse')
 			embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
 			message = await ctx.send(embed = embed)
@@ -80,7 +80,6 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		else:
 			answer_place = random.randint(0,3)
 			wrong_answer_list = question_json['results'][0]['incorrect_answers']
-			embed = discord.Embed(title = question_json['results'][0]['question'])
 			answer_list = ''
 			x = 0
 			i = 0
@@ -88,7 +87,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				if i == answer_place:
 					answer_list = answer_list + question_json['results'][0]['correct_answer'] + '\n'
 				else:
-					answer_list = answer_list + wrong_answer_list[i] + '\n'
+					answer_list = answer_list + wrong_answer_list[x] + '\n'
 					x = x + 1
 				i = i + 1
 			embed.add_field(name = 'Answers:', value = answer_list)
