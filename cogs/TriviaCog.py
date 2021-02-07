@@ -13,14 +13,14 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 	def __init__(self, bot):
 		self.bot = bot
 		
-	@commands.group(name = 'trivia')
+	@commands.group(name = 'trivia', description = 'Trivia command')
 	async def trivia(self, ctx):
 		if ctx.invoked_subcommand is None:
 			await ctx.send('The available options for trivia are: start.')
 			return
 		
 		
-	@trivia.command(name = 'start')
+	@trivia.command(name = 'start', description = 'Starts your trivia game')
 	async def start(self, ctx, difficulty = None, questions = 5, category = None):
 		
 		if difficulty == None:
@@ -80,23 +80,31 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				
 			if question['type'] == 'boolean':
 				answer_place = random.randint(0,1)
-				embed = discord.Embed(title = f'Question {counter} of {questions}', color = discord.Colour.green())
-				embed.add_field(name = question['question'], value = None)
-				embed.add_field(name = None, value = str(question['incorrect_answers']).strip(']['))
-				embed.add_field_at(index = answer_place, name = None, value = correct_answer)
+				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}'
+				embed.add_field(name = None, value = str(question['incorrect_answers']).strip(']["'))
+				embed.add_field(name = None, value = str(question['incorrect_answers']).strip(']["'))
+				embed.set_field_at(index = answer_place, name = None, value = question['correct_answer'])
 				message = await ctx.send(embed = embed)
 				message.add_reaction('✔️')
 				message.add_reaction('🚫')
 				
+				
 			else:
 				answer_place = random.randint(0,3)
 				wrong_answer_list = question['incorrect_answers']
-				embed = discord.Embed(title = f'Question {counter} of {questions}', color = discord.Colour.green())
-				embed.add_field(name = question['question'], value = None)
-				embed.add_field(name = None, value = wrong_answer_list[0])
-				embed.add_field(name = None, value = wrong_answer_list[1])
-				embed.add_field(name = None, value = wrong_answer_list[2])
-				embed.add_field_at(index = answer_place, name = None, value = correct_answer)
+				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}'
+				i = 0
+				while i < 4:
+					embed.add_field(name = None, value = None)
+					i = i + 1
+					
+				i = 0
+				while i < 4:
+					if i == answer_place:
+						embed.insert_field_at(index = i, name = None, value = question['correct_answer'])
+					else:
+						embed.set_field_at(index = i, name = None, value = wrong_answer_list[i])
+					i = i + 1
 				message = await ctx.send(embed = embed)
 				message.add_reaction('1️⃣')
 				message.add_reaction('2️⃣')
@@ -106,7 +114,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			return
 
 
-	@trivia.command(name = 'categories')
+	@trivia.command(name = 'categories', description = 'Shows all available catagories.')
 	async def categories(self, ctx):
 		categories_json = requests.get(categories_url).json()
 		category_list = ''
