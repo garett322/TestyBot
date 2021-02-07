@@ -11,7 +11,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 		await ctx.send('Bot is up and running!')
 		return
 	
-	@commands.command(name = avatar, description = 'A command to get a user\'s avatar.')
+	@commands.command(name = 'avatar', description = 'A command to get a user\'s avatar.')
 	async def avatar(self, ctx, *, member):
 		for user in ctx.guild.members:
 			if user.name.lower().startswith(member.lower()):
