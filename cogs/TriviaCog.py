@@ -118,10 +118,11 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			mc_answer_emojis = {'1️⃣': 0, '2️⃣': 1, '3️⃣': 2, '4️⃣': 3}
 			tf_answer_emojis = {'☑️': 0, '❎': 1}
 			def check(reaction, user):
-				if qtype == 1:
-					return user == ctx.author and (str(reaction.emoji) is in tf_answer_emojis or str(reaction.emoji) == '⛔')
-				elif qtype == 2:
-					return user == ctx.author and (str(reaction.emoji) is in mc_answer_emojis or str(reaction.emoji) == '⛔')
+				if user == ctx.author:
+					if qtype == 1:
+						return str(reaction.emoji) in tf_answer_emojis or str(reaction.emoji) == '⛔'
+					elif qtype == 2:
+						return str(reaction.emoji) in mc_answer_emojis or str(reaction.emoji) == '⛔'
 					
 			try:
 				reaction, user = await client.wait_for('reaction_add', timeout=20.0, check=check)
