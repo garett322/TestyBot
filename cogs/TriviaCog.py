@@ -78,39 +78,37 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			else:
 				category = str(question['category'])
 				
+			difficulty = str(question['difficulty'])[0].upper() + str(question['difficulty'])[1:])
+				
 			if question['type'] == 'boolean':
 				answer_place = random.randint(1,2)
-				wrong_answer = question['incorrect_answers']
 				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}')
-				embed.add_field(name = None, value = wrong_answer[0])
-				embed.add_field(name = None, value = wrong_answer[0])
-				embed.set_field_at(index = answer_place, name = None, value = question['correct_answer'])
+				embed.add_field(name = 'Answers:', value = 'True\nFalse')
+				embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
 				message = await ctx.send(embed = embed)
-				message.add_reaction('✔️')
-				message.add_reaction('🚫')
+				await message.add_reaction('✔️')
+				await message.add_reaction('🚫')
 				
 				
 			else:
-				answer_place = random.randint(1,4)
+				answer_place = random.randint(0,3)
 				wrong_answer_list = question['incorrect_answers']
 				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}')
-				i = 1
-				while i != 4:
-					embed.add_field(name = None, value = None)
-					i = i + 1
-					
-				i = 1
-				while i != 4:
+				answer_list = ''
+				i = 0
+				while i < 4:
 					if i == answer_place:
-						embed.insert_field_at(index = i, name = None, value = question['correct_answer'])
+						answer_list = answer_list + question['correct_answer'] + '\n'
 					else:
-						embed.set_field_at(index = i, name = None, value = wrong_answer_list[i])
+						answer_list = answer_list + wrong_answer_list[i] + '\n'
 					i = i + 1
+				embed.add_field(name = 'Answers:', value = answer_list)
+				embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
 				message = await ctx.send(embed = embed)
-				message.add_reaction('1️⃣')
-				message.add_reaction('2️⃣')
-				message.add_reaction('3️⃣')
-				message.add_reaction('4️⃣')
+				await message.add_reaction('1️⃣')
+				await message.add_reaction('2️⃣')
+				await message.add_reaction('3️⃣')
+				await message.add_reaction('4️⃣')
 			counter = counter + 1
 			return
 
