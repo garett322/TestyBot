@@ -31,12 +31,9 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 			msg = ctx.send('react test')
 			asyncio.sleep(5)
 			cache_msg = discord.utils.get(self.bot.cached_messages, id=msg.id) #or client.messages depending on your variable
-			for react in cache_msg.reactions:
-				await ctx.send(react)
-				try:
-					await ctx.send(react.author)
-				except:
-					await ctx.send('no author')
-
+			for reaction in cache_msg.reactions:
+				await ctx.send(reaction)
+				for user in reaction.users():
+					await ctx.send(user)
 def setup(bot):
 	bot.add_cog(TestCog(bot))
