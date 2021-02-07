@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import random
-
+import asyncio
 
 
 class TriviaCog(commands.Cog, name = 'Trivia'):
