@@ -55,21 +55,21 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		else:
 			await ctx.send('Unknown error.')
 			return
-		question = question_json['results']
-		if question['category'].startswith('Entertainment:'):
+		
+		if question_json['results'][0]['category'].startswith('Entertainment:'):
 			x = slice(15, None, None)
-			category = str(question['category'])[x]
-		elif question['category'].startswith('Science:'):
+			category = str(question_json['results'][0]['category'])[x]
+		elif question_json['results'][0]['category'].startswith('Science:'):
 			x = slice(9, None, None)
-			category = str(question['category'])[x]
+			category = str(question_json['results'][0]['category'])[x]
 		else:
-			category = str(question['category'])
+			category = str(question_json['results'][0]['category'])
 			
-		difficulty = str(question['difficulty'])[0].upper() + str(question['difficulty'])[1:]
+		difficulty = str(question_json['results'][0]['difficulty'])[0].upper() + str(question_json['results'][0]['difficulty'])[1:]
 			
-		if question['type'] == 'boolean':
+		if question_json['results'][0]['type'] == 'boolean':
 			answer_place = random.randint(1,2)
-			embed = discord.Embed(title = question['question'])
+			embed = discord.Embed(title = question_json['results'][0]['question'])
 			embed.add_field(name = 'Answers:', value = 'True\nFalse')
 			embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
 			message = await ctx.send(embed = embed)
@@ -79,14 +79,14 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				
 		else:
 			answer_place = random.randint(0,3)
-			wrong_answer_list = question['incorrect_answers']
-			embed = discord.Embed(title = question['question'])
+			wrong_answer_list = question_json['results'][0]['incorrect_answers']
+			embed = discord.Embed(title = question_json['results'][0]['question'])
 			answer_list = ''
 			x = 0
 			i = 0
 			while i <= 3:
 				if i == answer_place:
-					answer_list = answer_list + question['correct_answer'] + '\n'
+					answer_list = answer_list + question_json['results'][0]['correct_answer'] + '\n'
 				else:
 					answer_list = answer_list + wrong_answer_list[i] + '\n'
 					x = x + 1
@@ -128,7 +128,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				await ctx.send(f'CORRECT! Good job {user.name}!')
 			else:
 				await ctx.send('INCORRECT.')
-				await ctx.send(f"The correct answer was: {question['correct_answer']}.")
+				await ctx.send(f"The correct answer was: {question_json['results'][0]['correct_answer']}.")
 
 
 	@trivia.command(name = 'categories', description = 'Shows all available catagories.')
