@@ -126,12 +126,15 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			try:
 				reaction, user = await client.wait_for('reaction_add', timeout=20.0, check=check)
 			except asyncio.TimeoutError:
-				await ctx.send('You ran out of time to answer. Next question.')
 				fails = fails + 1
 				if fails == 3:
 					await ctx.send('You ran out of time 3 times in a row. Trivia has been automatically cancelled.')
+					await message.delete()
 					return
+				else:
+					await ctx.send('You ran out of time to answer. Next question.')
 			else:
+				fails = 0
 				if qtype = 1:
 					answer_emojis = tf_answer_emojis
 				elif qtype = 2:
@@ -148,9 +151,8 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				else:
 					await ctx.send('INCORRECT.')
 					await ctx.send(f"The correct answer was: {question['correct_answer']}.")
-					await ctx.send('Next question...')
-				fails = 0
-				
+					await ctx.send('Next question...'
+					
 			await asyncio.sleep(2)
 			await message.delete()
 			counter = counter + 1
