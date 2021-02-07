@@ -94,29 +94,17 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				i = i + 1
 			embed.add_field(name = 'Answers:', value = answer_list)
 			embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
-			message = await ctx.send(embed = embed)
-			await message.add_reaction('1️⃣')
-			await message.add_reaction('2️⃣')
-			await message.add_reaction('3️⃣')
-			await message.add_reaction('4️⃣')
+			question_embed = await ctx.send(embed = embed)
+			await question_embed.add_reaction('1️⃣')
+			await question_embed.add_reaction('2️⃣')
+			await question_embed.add_reaction('3️⃣')
+			await question_embed.add_reaction('4️⃣')
 			qtype = 2
 			
 		mc_answer_emojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
 		tf_answer_emojis = ['☑️', '❎']
 		
-		def check(reaction, user):
-			if qtype == 1:
-				return str(reaction.emoji) in tf_answer_emojis
-			elif qtype == 2:
-				return str(reaction.emoji) in mc_answer_emojis
-					
-		try:
-			reaction, user = await self.bot.wait_for('reaction_add', timeout=20.0, check=check)
-		except asyncio.TimeoutError:
-			await ctx.send('You ran out of time to answer.')
-			return
-		else:
-			user_answer_emoji = str(reaction.emoji)
+		def answer_check(qtype, user_answer_emoji, answer_place):
 			if qtype == 1:
 				if user_answer_emoji == '☑️':
 					user_answer_int = 0
@@ -126,20 +114,62 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				if user_answer_emoji == '1️⃣':
 					user_answer_int = 0
 				elif user_answer_emoji == '2️⃣':
-						user_answer_int = 1
+					user_answer_int = 1
 				elif user_answer_emoji == '3️⃣':
-						user_answer_int = 2
+					user_answer_int = 2
 				elif user_answer_emoji == '4️⃣':
-						user_answer_int = 3
-				
-			
-			
-				
+					user_answer_int = 3
 			if user_answer_int == answer_place:
-				await ctx.send(f'CORRECT! Good job {user.name}!')
+				return True
 			else:
-				await ctx.send('INCORRECT.')
-				await ctx.send(f"The correct answer was: {question_str}.")
+				return False
+		
+		await asyncio.sleep(20)
+		cache_msg = discord.utils.get(self.bot.cached_messages, id = question_embed.id) #or client.messages depending on your variable
+		correct_users = set()
+		incorrect_users = set()
+		cheaters = set()
+		for reaction in cache_msg.reactions:
+			user_answer_emoji = str(reaction.emoji)
+			if user_answer_emoji in tf_answer_emojis or str(reaction) in mc_answer_emojis:
+				async for user in reaction.users():
+					if user == self.bot.user:
+						continue
+					check_res = answer_check(qtype, user_answer_emoji, answer_place)
+					if check_res == True:
+						correct_users.add(user)
+					elif check_res == False:
+						if user in incorrect_users:
+							continue
+						else:
+							incorrect_users.add(user)
+			else:
+				continue
+			
+		for user in correct_users:
+				if user in incorrect_users:
+					correct_users.remove(user)
+					incorrect_users.remove(user)
+					cheaters.add(user)
+		if len(correct_users) == 0:
+			correct_users = 'Nobody'
+		if len(incorrect_users) == 0:
+			incorrect_users = 'Nobody'
+		if len(cheaters) == 0:
+			cheaters = 'Nobody'
+		correct_users = str(correct_users).strip('}{')
+		incorrect_users = str(incorrect_users).strip('}{')
+		cheaters = str(cheaters).strip('}{')
+		
+		await question_embed.delete()
+		
+		embed = discord.Embed(title = 'Results!', description = question_json['results'][0]['question'])
+		embed.add_field(name = 'Right answer:', value = correct_users)
+		embed.add_field(name = 'Wrong answer:', value = incorrect_users)
+		embed.add_field(name = 'Cheaters:', value = cheaters)
+		await ctx.send(embed = embed)
+		
+		
 
 
 	@trivia.command(name = 'categories', description = 'Shows all available catagories.')
