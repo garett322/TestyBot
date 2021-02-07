@@ -95,12 +95,14 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				wrong_answer_list = question['incorrect_answers']
 				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}')
 				answer_list = ''
+				x = 0
 				i = 0
-				while i < 4:
+				while i <= 3:
 					if i == answer_place:
 						answer_list = answer_list + question['correct_answer'] + '\n'
 					else:
 						answer_list = answer_list + wrong_answer_list[i] + '\n'
+						x = x + 1
 					i = i + 1
 				embed.add_field(name = 'Answers:', value = answer_list)
 				embed.set_footer(text = f"Category: {category}; Difficulty: {difficulty}")
