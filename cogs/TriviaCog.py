@@ -80,9 +80,10 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				
 			if question['type'] == 'boolean':
 				answer_place = random.randint(0,1)
+				wrong_answer = question['incorrect_answers']
 				embed = discord.Embed(title = question['question'], description = f'Question {counter} of {questions}'
-				embed.add_field(name = None, value = str(question['incorrect_answers']).strip('][\"'))
-				embed.add_field(name = None, value = str(question['incorrect_answers']).strip('][\"'))
+				embed.add_field(name = None, value = wrong_answer[0])
+				embed.add_field(name = None, value = wrong_answer[0])
 				embed.set_field_at(index = answer_place, name = None, value = question['correct_answer'])
 				message = await ctx.send(embed = embed)
 				message.add_reaction('✔️')
