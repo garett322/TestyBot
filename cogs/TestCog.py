@@ -26,14 +26,15 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 			return
 		
 		
-		@commands.command(name = 'react', description = 'A command to test reactions')
-		async def react(self, ctx):
-			msg = ctx.send('react test')
-			asyncio.sleep(5)
-			cache_msg = discord.utils.get(self.bot.cached_messages, id=msg.id) #or client.messages depending on your variable
-			for reaction in cache_msg.reactions:
-				await ctx.send(reaction)
-				for user in reaction.users():
-					await ctx.send(user)
+	@commands.command(name = 'react', description = 'A command to test reactions')
+	async def react(self, ctx):
+		msg = ctx.send('react test')
+		asyncio.sleep(5)
+		cache_msg = discord.utils.get(self.bot.cached_messages, id=msg.id) #or client.messages depending on your variable
+		for reaction in cache_msg.reactions:
+			await ctx.send(reaction)
+			for user in reaction.users():
+				await ctx.send(user)
+				
 def setup(bot):
 	bot.add_cog(TestCog(bot))
