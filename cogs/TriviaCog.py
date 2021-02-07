@@ -105,11 +105,10 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		tf_answer_emojis = ['☑️', '❎']
 		
 		def check(reaction, user):
-			if user == ctx.author:
-				if qtype == 1:
-					return str(reaction.emoji) in tf_answer_emojis
-				elif qtype == 2:
-					return str(reaction.emoji) in mc_answer_emojis
+			if qtype == 1:
+				return str(reaction.emoji) in tf_answer_emojis
+			elif qtype == 2:
+				return str(reaction.emoji) in mc_answer_emojis
 					
 		try:
 			reaction, user = await self.bot.wait_for('reaction_add', timeout=20.0, check=check)
