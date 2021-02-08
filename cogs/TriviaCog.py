@@ -139,7 +139,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			else:
 				return False
 		
-		await asyncio.sleep(20)
+		await asyncio.sleep(15)
 		cache_msg = discord.utils.get(self.bot.cached_messages, id = question_embed.id) #or client.messages depending on your variable
 		correct_users = set()
 		incorrect_users = set()
