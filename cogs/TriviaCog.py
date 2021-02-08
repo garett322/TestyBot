@@ -57,9 +57,9 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('Unknown error.')
 			return
 		
-		question_str = html.unescape(str(question_json['results'][0]['correct_answer']))
+		question_str = html.unescape(str(question_json['results'][0]['question']))
 		
-#		question_str = str(question_json['results'][0]['correct_answer'])
+#		question_str = str(question_json['results'][0]['question'])
 #		if '&' in question_str and ';' in question_str:
 #			while question_str.find('&') != -1 and question_str.find(';') != -1:
 #				encoded_index_1 = question_str_init.find('&')
@@ -175,15 +175,13 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		incorrect_users = str(incorrect_users).strip('}{')
 		cheaters = str(cheaters).strip('}{')
 		
-		await question_embed.delete()
-		
-		embed = discord.Embed(title = 'Results!', description = queetion_str)
+		embed = discord.Embed(title = 'Results!', description = question_str)
 		embed.add_field(name = 'Right answer:', value = correct_users)
 		embed.add_field(name = 'Wrong answer:', value = incorrect_users)
 		embed.add_field(name = 'Cheaters:', value = cheaters)
+		await question_embed.delete()
 		await ctx.send(embed = embed)
-		await ctx.send()
-		
+
 
 
 	@trivia.command(name = 'categories', description = 'Shows all available catagories.')
