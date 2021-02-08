@@ -3,7 +3,6 @@ from discord.ext import commands
 import requests
 import random
 import asyncio
-import htmlentities
 import html
 
 class TriviaCog(commands.Cog, name = 'Trivia'):
@@ -59,18 +58,6 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		question_str = html.unescape(str(question_json['results'][0]['question']))
 		
-#		question_str = str(question_json['results'][0]['question'])
-#		if '&' in question_str and ';' in question_str:
-#			while question_str.find('&') != -1 and question_str.find(';') != -1:
-#				encoded_index_1 = question_str_init.find('&')
-#				encoded_index_2 = question_str_init.find(';')
-#				encoded_char = question_str_init[encoded_index_1: encoded_index_2]
-#				decoded_char = htmlentities.decode(encoded_char)
-#				try:
-#					question_str = question_str[:encoded_index_1] + decoded_char + question_str[encoded_index_2 + 1:]
-#				except IndexError:
-#					question_str = question_str[:encoded_index_1] + decoded_char
-
 
 		if question_json['results'][0]['category'].startswith('Entertainment:'):
 			x = slice(15, None, None)
@@ -166,7 +153,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		incorrect_user_list = []
 		cheater_list = []
 		for user in user_list:
-			if user in correct_user_list
+			if user in correct_user_list:
 				if user in incorrect_users:
 					cheater_list.append(user)
 				else:
