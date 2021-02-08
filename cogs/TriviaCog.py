@@ -152,20 +152,20 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 						continue
 					check_res = answer_check(qtype, user_answer_emoji, answer_place)
 					if check_res == True:
-						correct_users.add(user.name)
+						correct_users.add(user.id)
 					elif check_res == False:
 						if user in incorrect_users:
 							continue
 						else:
-							incorrect_users.add(user.name)
+							incorrect_users.add(f'<@{user.id}')
 			else:
 				continue
 			
 		for user in correct_users:
 				if user in incorrect_users:
-					correct_users.remove(user.name)
-					incorrect_users.remove(user.name)
-					cheaters.add(user.name)
+					correct_users.remove(user)
+					incorrect_users.remove(user)
+					cheaters.add(user)
 		if len(correct_users) == 0:
 			correct_users = 'Nobody'
 		if len(incorrect_users) == 0:
