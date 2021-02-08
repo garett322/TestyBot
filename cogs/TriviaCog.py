@@ -4,6 +4,7 @@ import requests
 import random
 import asyncio
 import htmlentities
+import html
 
 class TriviaCog(commands.Cog, name = 'Trivia'):
 	def __init__(self, bot):
@@ -56,17 +57,19 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			await ctx.send('Unknown error.')
 			return
 		
-		question_str = str(question_json['results'][0]['correct_answer'])
-		if '&' in question_str and ';' in question_str:
-			while question_str.find('&') != -1 and question_str.find(';') != -1:
-				encoded_index_1 = question_str_init.find('&')
-				encoded_index_2 = question_str_init.find(';')
-				encoded_char = question_str_init[encoded_index_1: encoded_index_2]
-				decoded_char = htmlentities.decode(encoded_char)
-				try:
-					question_str = question_str[:encoded_index_1] + decoded_char + question_str[encoded_index_2 + 1:]
-				except IndexError:
-					question_str = question_str[:encoded_index_1] + decoded_char
+		question_str = html.unescape(str(question_json['results'][0]['correct_answer']))
+		
+#		question_str = str(question_json['results'][0]['correct_answer'])
+#		if '&' in question_str and ';' in question_str:
+#			while question_str.find('&') != -1 and question_str.find(';') != -1:
+#				encoded_index_1 = question_str_init.find('&')
+#				encoded_index_2 = question_str_init.find(';')
+#				encoded_char = question_str_init[encoded_index_1: encoded_index_2]
+#				decoded_char = htmlentities.decode(encoded_char)
+#				try:
+#					question_str = question_str[:encoded_index_1] + decoded_char + question_str[encoded_index_2 + 1:]
+#				except IndexError:
+#					question_str = question_str[:encoded_index_1] + decoded_char
 
 
 		if question_json['results'][0]['category'].startswith('Entertainment:'):
@@ -80,7 +83,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			
 		difficulty = str(question_json['results'][0]['difficulty'])[0].upper() + str(question_json['results'][0]['difficulty'])[1:]
 		
-		embed = discord.Embed(title = question_json['results'][0]['question'], description = f'Courtesy of {ctx.author.name}')
+		embed = discord.Embed(title = question_str, description = f'Courtesy of {ctx.author.name}')
 		if question_json['results'][0]['type'] == 'boolean':
 			answer_place = random.randint(1,2)
 			embed.add_field(name = 'Answers:', value = 'True\nFalse')
@@ -174,12 +177,12 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		await question_embed.delete()
 		
-		embed = discord.Embed(title = 'Results!', description = question_json['results'][0]['question'])
+		embed = discord.Embed(title = 'Results!', description = queetion_str)
 		embed.add_field(name = 'Right answer:', value = correct_users)
 		embed.add_field(name = 'Wrong answer:', value = incorrect_users)
 		embed.add_field(name = 'Cheaters:', value = cheaters)
 		await ctx.send(embed = embed)
-		
+		await ctx.send()
 		
 
 
