@@ -19,7 +19,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		
 	@trivia.command(name = 'start', description = 'Starts your trivia game')
-	@commands.max_concurrency(1, per=BucketType.guild, *, wait=True)
+	@trivia.max_concurrency(1, per=BucketType.guild, *, wait=True)
 	async def start(self, ctx, difficulty = None, *, category = None):
 		
 		if difficulty == None:
