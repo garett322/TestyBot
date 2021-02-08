@@ -172,9 +172,9 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 			incorrect_users = 'Nobody'
 		if len(cheaters) == 0:
 			cheaters = 'Nobody'
-		correct_users = str(correct_users).strip('}{')
-		incorrect_users = str(incorrect_users).strip('}{')
-		cheaters = str(cheaters).strip('}{')
+		correct_users = str(correct_users).strip('}{').replace("'", '')
+		incorrect_users = str(incorrect_users).strip('}{').replace("'", '')
+		cheaters = str(cheaters).strip('}{').replace("'", '')
 		
 		embed = discord.Embed(title = 'Results!', description = question_str)
 		embed.add_field(name = 'Correct answer:', value = answer_str)
