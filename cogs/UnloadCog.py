@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-import ErrorCog import ErrorCog
+from ErrorCog import ErrorCog
 
 class UnloadCog(commands.Cog, name = "Cog Unloader" ):
 	def __init__(self, bot):
