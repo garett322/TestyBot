@@ -141,8 +141,8 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		await asyncio.sleep(15)
 		cache_msg = discord.utils.get(self.bot.cached_messages, id = question_embed.id) #or client.messages depending on your variable
-		correct_users = set()
-		incorrect_users = set()
+		correct_users_init = set()
+		incorrect_users_init = set()
 		cheaters = set()
 		for reaction in cache_msg.reactions:
 			user_answer_emoji = str(reaction.emoji)
@@ -152,17 +152,18 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 						continue
 					check_res = answer_check(qtype, user_answer_emoji, answer_place)
 					if check_res == True:
-						correct_users.add(f'<@{user.id}>')
+						correct_users_init.add(f'<@{user.id}>')
 					elif check_res == False:
-						if user in incorrect_users:
+						if user in incorrect_users_init:
 							continue
 						else:
-							incorrect_users.add(f'<@{user.id}>')
+							incorrect_users_init.add(f'<@{user.id}>')
 			else:
 				continue
-			
-		for user in correct_users:
-				if user in incorrect_users:
+			correct_users = correct_users_init
+			incorrect_users = incorrect_users_init
+		for user in correct_users_init:
+				if user in incorrect_users_init:
 					correct_users.remove(user)
 					incorrect_users.remove(user)
 					cheaters.add(user)
