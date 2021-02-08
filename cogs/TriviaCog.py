@@ -1,9 +1,11 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands.cooldowns import BucketType
 import requests
 import random
 import asyncio
 import html
+
 
 class TriviaCog(commands.Cog, name = 'Trivia'):
 	def __init__(self, bot):
@@ -17,6 +19,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		
 	@trivia.command(name = 'start', description = 'Starts your trivia game')
+	@commands.max_concurrency(1, per=BucketType.default, *, wait=True)
 	async def start(self, ctx, difficulty = None, *, category = None):
 		
 		if difficulty == None:
