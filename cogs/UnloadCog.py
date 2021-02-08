@@ -9,28 +9,36 @@ class UnloadCog(commands.Cog, name = "Error handler" ):
 	def __init__(self, bot):
 		self.bot = bot
 	
-	@commands.group(name = 'cog', description = 'Cog manager')
+	@commands.group(name = 'errors', description = 'Cog manager')
 	@commands.is_owner()
-	async def coggers(self, ctx):
+	async def errors(self, ctx):
 		if ctx.invoked_subcommand is None:
-			await ctx.send('The available options are: "load" and "unload"')
+			await ctx.send('The available options are: "enable" and "disable"')
 			return
 			
-	@coggers.command(name = 'unload', description = 'Unloads error handler' )
-	async def unload(self, ctx):
+	@errors.command(name = 'enable', description = 'Unloads cogs' )
+	async def enable(self, ctx):
 		try:
-			bot.remove_cog('ErrorCog')
-		except:
-			await ctx.send('ErrorCog not unloaded.')
-		
-	@coggers.command(name = 'load', description = 'Loads error handler' )
-	async def load(self, ctx):
-		try:
-			bot.add_cog(ErrorCog(bot))
-		except:
-			await ctx.send('Cog not Loaded.')
-      
-        
+			bot.load_extension(f'cogs.{cog_name}')
+		except commands.ExtensionAlreadyLoaded:
+			await ctx.send(f'{cog_name} is already loaded')
+		except commands.ExtensionNotFound:
+			await ctx.send('Cog not found')
+		else:
+			await ctx.send(f'{cog_name} has been loaded')
 
+
+	@errors.command(name = 'disable', description = 'Loads cogs' )
+	async def disable(self, ctx):
+		try:
+			bot.unload_extension(f'cogs.{cog_name}')
+		except commands.ExtensionNotLoaded:
+			await ctx.send(f'{cog_name} is already unloaded')
+		except commands.ExtensionNotFound:
+			await ctx.send('Cog not found')
+		else:
+			await ctx.send(f'{cog_name} has been unloaded')
+		
+		
 def setup(bot):
 	bot.add_cog(UnloadCog(bot))
