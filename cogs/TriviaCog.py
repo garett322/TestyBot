@@ -58,7 +58,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		question_str = str(question_json['results'][0]['correct_answer'])
 		if '&' in question_str and ';' in question_str:
-			while question_str.find('&') != -1 and question_str.find(';') != -1
+			while question_str.find('&') != -1 and question_str.find(';') != -1:
 				encoded_index_1 = question_str_init.find('&')
 				encoded_index_2 = question_str_init.find(';')
 				encoded_char = question_str_init[encoded_index_1: encoded_index_2]
