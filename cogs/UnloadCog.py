@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import sys
 
 sys.path.append('.')
 from ErrorCog import ErrorCog
