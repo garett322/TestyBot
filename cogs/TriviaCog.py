@@ -141,9 +141,10 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		await asyncio.sleep(15)
 		cache_msg = discord.utils.get(self.bot.cached_messages, id = question_embed.id) #or client.messages depending on your variable
-		correct_users_init = set()
-		incorrect_users_init = set()
+		correct_users = set()
+		incorrect_users = set()
 		cheaters = set()
+		user_list = []
 		for reaction in cache_msg.reactions:
 			user_answer_emoji = str(reaction.emoji)
 			if user_answer_emoji in tf_answer_emojis or str(reaction) in mc_answer_emojis:
@@ -152,30 +153,36 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 						continue
 					check_res = answer_check(qtype, user_answer_emoji, answer_place)
 					if check_res == True:
-						correct_users_init.add(f'<@{user.id}>')
+						correct_users.add(f'<@{user.id}>')
 					elif check_res == False:
-						if user in incorrect_users_init:
+						if user in incorrect_users:
 							continue
 						else:
-							incorrect_users_init.add(f'<@{user.id}>')
+							incorrect_users.add(f'<@{user.id}>')
+					user_list.append(f'<@{user.id}>')
 			else:
 				continue
-			correct_users = correct_users_init
-			incorrect_users = incorrect_users_init
-		for user in correct_users_init:
-				if user in incorrect_users_init:
-					correct_users.remove(user)
-					incorrect_users.remove(user)
-					cheaters.add(user)
-		if len(correct_users) == 0:
+		correct_user_list = []
+		incorrect_user_list = []
+		cheater_list = []
+		for user in user_list:
+			if user in correct_user_list
+				if user in incorrect_users:
+					cheater_list.append(user)
+				else:
+					correct_user_list.append(user)
+			else:
+				incorrect_user_list.append(user)
+				
+		if len(correct_user_list) == 0:
 			correct_users = 'Nobody'
-		if len(incorrect_users) == 0:
+		if len(incorrect_user_list) == 0:
 			incorrect_users = 'Nobody'
-		if len(cheaters) == 0:
+		if len(cheater_list) == 0:
 			cheaters = 'Nobody'
-		correct_users = str(correct_users).strip('}{').replace("'", '')
-		incorrect_users = str(incorrect_users).strip('}{').replace("'", '')
-		cheaters = str(cheaters).strip('}{').replace("'", '')
+		correct_users = str(correct_user_list).strip('][').replace("'", '')
+		incorrect_users = str(incorrect_user_list).strip('][').replace("'", '')
+		cheaters = str(cheater_list).strip('][').replace("'", '')
 		
 		embed = discord.Embed(title = 'Results!', description = question_str)
 		embed.add_field(name = 'Correct answer:', value = answer_str)
