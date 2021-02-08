@@ -95,13 +95,14 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				
 		else:
 			answer_place = random.randint(0,3)
+			answer_str = str(question_json['results'][0]['correct_answer'])
 			wrong_answer_list = question_json['results'][0]['incorrect_answers']
 			answer_list = ''
 			x = 0
 			i = 0
 			while i <= 3:
 				if i == answer_place:
-					answer_list = answer_list + question_str + '\n'
+					answer_list = answer_list + answer_str + '\n'
 				else:
 					answer_list = answer_list + wrong_answer_list[x] + '\n'
 					x = x + 1
