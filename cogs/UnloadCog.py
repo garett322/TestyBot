@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import sys
 
-sys.path.append('.')
+sys.path.append('./cogs')
 from ErrorCog import ErrorCog
 
 class UnloadCog(commands.Cog, name = "Error handler" ):
@@ -16,14 +16,14 @@ class UnloadCog(commands.Cog, name = "Error handler" ):
 			await ctx.send('The available options are: "load" and "unload"')
 			return
 			
-	@coggers.command(name = 'Unload', description = 'Unloads error handler' )
+	@coggers.command(name = 'unload', description = 'Unloads error handler' )
 	async def unload(self, ctx):
 		try:
 			bot.remove_cog('ErrorCog')
 		except:
 			await ctx.send('ErrorCog not unloaded.')
 		
-	@coggers.command(name = 'Load', description = 'Loads error handler' )
+	@coggers.command(name = 'load', description = 'Loads error handler' )
 	async def load(self, ctx):
 		try:
 			bot.add_cog(ErrorCog(bot))
