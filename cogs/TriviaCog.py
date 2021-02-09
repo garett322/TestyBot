@@ -173,10 +173,10 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		cheaters = str(cheater_list).strip('][').replace("'", '')
 		
 		embed = discord.Embed(title = 'Results!', description = question_str)
-		embed.add_field(name = 'Correct answer:', value = answer_str + '\u200b')
-		embed.add_field(name = 'Who got it right:', value = correct_users + '\u200b')
-		embed.add_field(name = 'Who got it wrong:', value = incorrect_users + '\u200b')
-		embed.add_field(name = 'Cheaters:', value = cheaters + '\u200b')
+		embed.add_field(name = 'Correct answer:', value = answer_str)
+		embed.add_field(name = 'Who got it right:', value = correct_users)
+		embed.add_field(name = 'Who got it wrong:', value = incorrect_users)
+		embed.add_field(name = 'Cheaters:', value = cheaters)
 		await question_embed.delete()
 		await ctx.send(embed = embed)
 
