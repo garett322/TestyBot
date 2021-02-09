@@ -6,13 +6,22 @@ class UnloadCog(commands.Cog, name = "Error handler" ):
 	def __init__(self, bot):
 		self.bot = bot
 	
-	@commands.group(name = 'errors', description = 'Cog manager')
+	@commands.group(name = 'cog', description = 'Cog manager')
 	@commands.is_owner()
 	async def errors(self, ctx):
 		if ctx.invoked_subcommand is None:
-			await ctx.send('The available options are: "enable" and "disable"')
+			await ctx.send('The available options are: "list", "enable", and "disable"')
 			return
 			
+			
+	@errors.command(name = 'list', description = 'Enables cogs' )
+	async def list(self, ctx):
+		ListOfCogs = self.bot.cogs
+		cog_list = []
+		for NameOfCog,TheClassOfCog in ListOfCogs.items():
+			cog_list.append(NameOfCog)
+		await ctx.send(str(cog_list).strip('][').replace("'", ''))
+
 	@errors.command(name = 'enable', description = 'Enables cogs' )
 	async def enable(self, ctx, cog_name):
 		try:
