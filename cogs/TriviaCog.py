@@ -130,14 +130,14 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				return False
 		
 		await asyncio.sleep(15)
-		cache_msg = discord.utils.get(self.bot.cached_messages, id = question_embed.id) #or client.messages depending on your variable
+		cache_msg = discord.utils.get(self.bot.cached_messages, id = question_embed.id)
 		correct_users = set()
 		incorrect_users = set()
 		cheaters = set()
 		user_list = set()
 		for reaction in cache_msg.reactions:
 			user_answer_emoji = str(reaction.emoji)
-			if user_answer_emoji in tf_answer_emojis or str(reaction) in mc_answer_emojis:
+			if user_answer_emoji in tf_answer_emojis or user_answer_emoji in mc_answer_emojis:
 				async for user in reaction.users():
 					if user == self.bot.user:
 						continue
@@ -152,27 +152,33 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 					user_list.add(f'<@{user.id}>')
 			else:
 				continue
-		correct_user_list = []
-		incorrect_user_list = []
-		cheater_list = []
+		correct_user_final = set()
+		incorrect_user_final = set()
+		cheater__final = set()
 		for user in user_list:
 			if user in correct_users:
 				if user in incorrect_users:
-					cheater_list.append(user)
+					cheater_final.add(user)
 				else:
-					correct_user_list.append(user)
+					correct_user_final.add(user)
 			else:
-				incorrect_user_list.append(user)
+				incorrect_user_final.add(user)
 				
-		if len(correct_user_list) == 0:
+		if len(correct_user_final) == 0:
 			correct_users = 'Nobody'
-		if len(incorrect_user_list) == 0:
+		else:
+			correct_users = ''.join(correct_user_final).replace('>', '> ')
+			
+		if len(incorrect_user_final) == 0:
 			incorrect_users = 'Nobody'
-		if len(cheater_list) == 0:
+		else:
+			incorrect_users = ''.join(incorrect_user_final).replace('>', '> ')
+			
+		if len(cheater_final) == 0:
 			cheaters = 'Nobody'
-		correct_users = str(correct_user_list).strip('][').replace("'", '')
-		incorrect_users = str(incorrect_user_list).strip('][').replace("'", '')
-		cheaters = str(cheater_list).strip('][').replace("'", '')
+		else:
+			cheaters = ''.join(cheater_final).replace('>', '> ')
+		
 		
 		embed = discord.Embed(title = 'Results!', description = question_str)
 		embed.add_field(name = 'Correct answer:', value = answer_str)
