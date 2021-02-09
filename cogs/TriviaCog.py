@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import requests
+import aiohttp
 import random
 import asyncio
 import html
@@ -46,8 +46,8 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				await ctx.send(f'I couldn\'t find a category called "{category}". Use the command ".trivia categories" to get a list of all available categories.')
 		
 		
-			
-		question_json = requests.get(f'https://opentdb.com/api.php?amount=1{category}{difficulty}').json()
+		async with aiohttp.ClientSession() as session:
+			question_json = async session.get(f'https://opentdb.com/api.php?amount=1{category}{difficulty}').json()
 		if question_json['response_code'] == 0:
 			pass
 		elif question_json['response_code'] == 2:
@@ -173,10 +173,10 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		cheaters = str(cheater_list).strip('][').replace("'", '')
 		
 		embed = discord.Embed(title = 'Results!', description = question_str)
-		embed.add_field(name = 'Correct answer:', value = answer_str)
-		embed.add_field(name = 'Who got it right:', value = correct_users)
-		embed.add_field(name = 'Who got it wrong:', value = incorrect_users)
-		embed.add_field(name = 'Cheaters:', value = cheaters)
+		embed.add_field(name = 'Correct answer:', value = answer_str + '\u200b')
+		embed.add_field(name = 'Who got it right:', value = correct_users + '\u200b')
+		embed.add_field(name = 'Who got it wrong:', value = incorrect_users + '\u200b')
+		embed.add_field(name = 'Cheaters:', value = cheaters + '\u200b')
 		await question_embed.delete()
 		await ctx.send(embed = embed)
 

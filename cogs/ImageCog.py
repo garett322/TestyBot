@@ -3,7 +3,7 @@ from discord.ext import commands
 import PIL
 from PIL import Image, ImageFont, ImageDraw
 import tempfile
-import requests
+import aiohttp
 import shutil
 
 
@@ -15,7 +15,9 @@ class ImageCog(commands.Cog, name = "ImageCog"):
 	async def image(self, ctx, url = None, x_coord = 0, y_coord = 0, size = 1, * , text = ':)'):
 		if url == None:
 			await ctx.send('You need to give me the link to an image you want to use.')
-		file = requests.get(url, stream = True)
+			return
+		async with aiohttp.ClientSession() as session:
+			file = async session.get(url, stream = True)
 		if file.status_code == 200:
 			pass
 		elif file.status_code == 400:
