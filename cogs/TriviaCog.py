@@ -154,7 +154,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		incorrect_user_list = []
 		cheater_list = []
 		for user in user_list:
-			if user in correct_user_list:
+			if user in correct_users:
 				if user in incorrect_users:
 					cheater_list.append(user)
 				else:
