@@ -18,8 +18,8 @@ class UnloadCog(commands.Cog, name = "Error handler" ):
 	async def list(self, ctx):
 		ListOfCogs = self.bot.cogs
 		cog_list = []
-		for NameOfCog,TheClassOfCog in ListOfCogs.items():
-			cog_list.append(NameOfCog)
+		for NameOfCog,ClassOfCog in ListOfCogs.items():
+			cog_list.append(ClasdOfCog)
 		await ctx.send(str(cog_list).strip('][').replace("'", ''))
 
 	@errors.command(name = 'enable', description = 'Enables cogs' )
