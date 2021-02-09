@@ -154,7 +154,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				continue
 		correct_user_final = set()
 		incorrect_user_final = set()
-		cheater__final = set()
+		cheater_final = set()
 		for user in user_list:
 			if user in correct_users:
 				if user in incorrect_users:
