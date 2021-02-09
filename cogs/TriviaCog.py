@@ -47,7 +47,8 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		
 		async with aiohttp.ClientSession() as session:
-			question_json = async session.get(f'https://opentdb.com/api.php?amount=1{category}{difficulty}').json()
+			question_request = async session.get(f'https://opentdb.com/api.php?amount=1{category}{difficulty}')
+			question_json = question_request.json()
 		if question_json['response_code'] == 0:
 			pass
 		elif question_json['response_code'] == 2:
