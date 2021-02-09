@@ -146,6 +146,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 						correct_users.add(f'<@{user.id}>')
 					elif check_res == False:
 						if user in incorrect_users:
+							cheaters.add(user)
 							continue
 						else:
 							incorrect_users.add(f'<@{user.id}>')
@@ -156,9 +157,15 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		incorrect_user_final = set()
 		cheater_final = set()
 		for user in user_list:
+			if user in cheaters:
+				cheater_final.add(user)
+				continue
 			if user in correct_users:
 				if user in incorrect_users:
-					cheater_final.add(user)
+					if user in cheaters:
+						continue
+					else:
+						cheater_final.add(user)
 				else:
 					correct_user_final.add(user)
 			else:
