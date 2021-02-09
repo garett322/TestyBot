@@ -188,7 +188,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		
 		
 		embed = discord.Embed(title = 'Results!', description = question_str)
-		embed.add_field(name = 'Correct answer:', value = answer_str + '\n\u200b\n\u200b')
+		embed.add_field(name = 'Correct answer:', value = answer_str + '\n\u200b')
 		embed.add_field(name = 'Who got it right:', value = correct_users)
 		embed.add_field(name = 'Who got it wrong:', value = incorrect_users)
 		embed.add_field(name = 'Cheaters:', value = cheaters)
