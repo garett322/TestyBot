@@ -72,6 +72,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		difficulty = str(question_json['results'][0]['difficulty'])[0].upper() + str(question_json['results'][0]['difficulty'])[1:]
 		
 		embed = discord.Embed(title = question_str, description = f'Courtesy of {ctx.author.name}')
+		answer_str = str(question_json['results'][0]['correct_answer'])
 		if question_json['results'][0]['type'] == 'boolean':
 			answer_place = random.randint(1,2)
 			embed.add_field(name = 'Answers:', value = 'True\nFalse')
@@ -83,7 +84,6 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 				
 		else:
 			answer_place = random.randint(0,3)
-			answer_str = str(question_json['results'][0]['correct_answer'])
 			wrong_answer_list = question_json['results'][0]['incorrect_answers']
 			answer_list = ''
 			x = 0
@@ -132,7 +132,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 		correct_users = set()
 		incorrect_users = set()
 		cheaters = set()
-		user_list = []
+		user_list = set()
 		for reaction in cache_msg.reactions:
 			user_answer_emoji = str(reaction.emoji)
 			if user_answer_emoji in tf_answer_emojis or str(reaction) in mc_answer_emojis:
@@ -147,7 +147,7 @@ class TriviaCog(commands.Cog, name = 'Trivia'):
 							continue
 						else:
 							incorrect_users.add(f'<@{user.id}>')
-					user_list.append(f'<@{user.id}>')
+					user_list.add(f'<@{user.id}>')
 			else:
 				continue
 		correct_user_list = []
