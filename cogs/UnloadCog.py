@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class UnloadCog(commands.Cog, name = "Error handler" ):
+class UnloadCog(commands.Cog, name = "Cog Manager" ):
 	def __init__(self, bot):
 		self.bot = bot
 	
@@ -14,7 +14,7 @@ class UnloadCog(commands.Cog, name = "Error handler" ):
 			return
 			
 			
-	@errors.command(name = 'list', description = 'Enables cogs' )
+	@errors.command(name = 'list', description = 'Lists cogs' )
 	async def list(self, ctx):
 		ListOfCogs = self.bot.cogs
 		cog_list = []

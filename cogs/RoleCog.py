@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class RoleCog(commands.Cog, name = "Roles"):
+class RoleCog(commands.Cog, name = "Custom Role Manager"):
 	def __init__(self, bot):
 		self.bot = bot
 

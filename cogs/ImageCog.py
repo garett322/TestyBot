@@ -6,7 +6,7 @@ import aiohttp
 import shutil
 
 
-class ImageCog(commands.Cog, name = "ImageCog"):
+class ImageCog(commands.Cog, name = "Image Manipulator"):
 	def __init__(self, bot):
 		self.bot = bot
 		
