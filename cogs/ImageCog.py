@@ -16,7 +16,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			await ctx.send('You need to give me the link to an image you want to use.')
 			return
 		async with aiohttp.ClientSession() as session:
-			file = session.get(url)
+			file = await session.get(url)
 		if file.status_code == 200:
 			pass
 		elif file.status_code == 400:
