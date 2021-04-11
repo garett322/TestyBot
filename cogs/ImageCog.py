@@ -17,31 +17,29 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			return
 		async with aiohttp.ClientSession() as session:
 			async with session.get(url) as resp:
-				await ctx.send(resp.status)
-		return
-	
+				if resp.status == 200:
+					pass
+				elif resp.status == 400:
+					await ctx.send('I couldn\'t find that url. Please try again.')
+					return
+				else:
+					await ctx.send('An unknown error has occurred.')
+					return
+		
+				image_formats = ("image/png", "image/jpeg", "image/jpg")
+				if resp.headers['content-type'] not in image_formats:
+					await ctx.send('The url you gave is not an image.')
+					return
+				else:
+					filetype = '.' + resp.headers['content-type'].slice(6, 11).strip(';')
+		
+				original = tempfile.NamedTemporaryFile(suffix = filetype)
+				with open(original, 'wb') as f:
+					resp_file = resp.read()
+					shutil.copyfileobj(resp_file, f)
+					
+					
 		"""
-		if resp.status == 200:
-			pass
-		elif resp.status == 400:
-			await ctx.send('I couldn\'t find that url. Please try again.')
-			return
-		else:
-			await ctx.send('An unknown error has occurred.')
-			return
-		
-		image_formats = ("image/png", "image/jpeg", "image/jpg")
-		if resp.headers['content-type'] not in image_formats:
-			await ctx.send('The url you gave is not an image.')
-			return
-		else:
-			filetype = '.' + resp.headers['content-type'].slice(6, 11).strip(';')
-		
-		original = tempfile.NamedTemporaryFile(suffix = filetype)
-		with open(original, 'wb') as f:
-			resp.raw.decode_content = True
-			shutil.copyfileobj(resp.raw, f)
-
 		im = Image.open(original)
 		draw = ImageDraw.Draw(im)
 		font = ImageFont.truetype('./fonts/news-cycle.ttf', int(size))
@@ -63,6 +61,15 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 		
 		return
 		"""
+		
+		final_file = discord.File(original.name, filename = 'image.jpg')
+		embed = discord.Embed(color = discord.Colour.green())
+		embed.set_image(url = 'attachment://image.jpg')
+		await ctx.send(file = final_file, embed = embed)
+		
+		original.close()
+		return
+		
 		
 		#Channel=ctx.message.channel
 		#logs = await client.logs_from(Channel, limit=20)
