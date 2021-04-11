@@ -16,10 +16,15 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			await ctx.send('You need to give me the link to an image you want to use.')
 			return
 		async with aiohttp.ClientSession() as session:
-			file = await session.get(url)
-		if file.status_code == 200:
+			response = await session.get(url)
+			await ctx.send(response.status)
+			
+		return
+	
+		"""
+		if response.status == 200:
 			pass
-		elif file.status_code == 400:
+		elif response.status == 400:
 			await ctx.send('I couldn\'t find that url. Please try again.')
 			return
 		else:
@@ -27,16 +32,16 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			return
 		
 		image_formats = ("image/png", "image/jpeg", "image/jpg")
-		if file.headers['content-type'] not in image_formats:
+		if response.headers['content-type'] not in image_formats:
 			await ctx.send('The url you gave is not an image.')
 			return
 		else:
-			filetype = '.' + file.headers['content-type'].slice(6, 11).strip(';')
+			filetype = '.' + response.headers['content-type'].slice(6, 11).strip(';')
 		
 		original = tempfile.NamedTemporaryFile(suffix = filetype)
 		with open(original, 'wb') as f:
-			file.raw.decode_content = True
-			shutil.copyfileobj(file.raw, f)
+			response.raw.decode_content = True
+			shutil.copyfileobj(response.raw, f)
 
 		im = Image.open(original)
 		draw = ImageDraw.Draw(im)
@@ -56,8 +61,9 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 		
 		original.close()
 		edited.close()
-		return
 		
+		return
+		"""
 		
 		#Channel=ctx.message.channel
 		#logs = await client.logs_from(Channel, limit=20)
