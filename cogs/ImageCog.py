@@ -16,15 +16,15 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			await ctx.send('You need to give me the link to an image you want to use.')
 			return
 		async with aiohttp.ClientSession() as session:
-			session = await session.get(url)
-			await ctx.send(session.status)
-			await session.close()
+			async with session.get(url) as resp:
+				await ctx.send(resp.status)
+				await resp.close()
 		return
 	
 		"""
-		if session.status == 200:
+		if resp.status == 200:
 			pass
-		elif session.status == 400:
+		elif resp.status == 400:
 			await ctx.send('I couldn\'t find that url. Please try again.')
 			return
 		else:
@@ -32,16 +32,16 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			return
 		
 		image_formats = ("image/png", "image/jpeg", "image/jpg")
-		if session.headers['content-type'] not in image_formats:
+		if resp.headers['content-type'] not in image_formats:
 			await ctx.send('The url you gave is not an image.')
 			return
 		else:
-			filetype = '.' + session.headers['content-type'].slice(6, 11).strip(';')
+			filetype = '.' + resp.headers['content-type'].slice(6, 11).strip(';')
 		
 		original = tempfile.NamedTemporaryFile(suffix = filetype)
 		with open(original, 'wb') as f:
-			session.raw.decode_content = True
-			shutil.copyfileobj(session.raw, f)
+			resp.raw.decode_content = True
+			shutil.copyfileobj(resp.raw, f)
 
 		im = Image.open(original)
 		draw = ImageDraw.Draw(im)
