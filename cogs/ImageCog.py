@@ -11,14 +11,13 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 		self.bot = bot
 		
 	@commands.command(name = 'image')
-	async def image(self, ctx, url = None, x_coord = 0, y_coord = 0, size = 1, * , text = ':)'):
+	async def image(self, ctx, url = 'https://cdn2.vectorstock.com/i/1000x1000/94/06/loser-hand-sign-vector-25169406.jpg', x_coord = 0, y_coord = 0, size = 1, * , text = ':)'):
 		if url == None:
 			await ctx.send('You need to give me the link to an image you want to use.')
 			return
 		async with aiohttp.ClientSession() as session:
 			async with session.get(url) as resp:
 				await ctx.send(resp.status)
-				await resp.close()
 		return
 	
 		"""
