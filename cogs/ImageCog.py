@@ -31,7 +31,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					await ctx.send('The url you gave is not an image.')
 					return
 				else:
-					filetype = '.' + str(resp.headers['content-type'])[6, 11].strip(';')
+					filetype = '.' + str(resp.headers['content-type'])[int(6), int(11)].strip(';')
 		
 				original = tempfile.NamedTemporaryFile(suffix = filetype)
 				with open(original, 'wb') as f:
