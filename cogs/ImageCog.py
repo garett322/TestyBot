@@ -32,7 +32,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					return
 				else:
 					response_headers = str(resp.headers['content-type'])
-					filetype = '.' + response_headers[6, 11].strip(';')
+					filetype = '.' + response_headers[int(6), int(11)].strip(';')
 		
 				original = tempfile.NamedTemporaryFile(suffix = filetype)
 				with open(original, 'wb') as f:
