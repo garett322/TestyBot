@@ -25,15 +25,18 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 				else:
 					await ctx.send('An unknown error has occurred.')
 					return
-		
+		"""
 				image_formats = ("image/png", "image/jpeg", "image/jpg")
 				if resp.headers['content-type'] not in image_formats:
 					await ctx.send('The url you gave is not an image.')
 					return
 				else:
+		"""
+				if True:
 					response_headers = str(resp.headers)
 					header_start_index = response_headers.find("'Content-Type': '")
 					header_end_index = response_headers.find("', 'Date'")
+					await ctx.send(header_end_index + ' ' + header_start_index)
 					response_headers = response_headers[int(header_start_index), int(header_end_index)]
 					#filetype = '.' + response_headers.strip(';')
 					await ctx.send(response_headers)
