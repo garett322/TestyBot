@@ -31,14 +31,18 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					await ctx.send('The url you gave is not an image.')
 					return
 				else:
-					response_headers = str(resp.headers['content-type'])
-					filetype = '.' + response_headers[int(6), int(11)].strip(';')
-		
+					response_headers = str(resp.headers)
+					#filetype = '.' + response_headers.strip(';')
+					await ctx.send(response_headers)
+					return
+				
+			"""[int(6), int(11)]
+			
 				original = tempfile.NamedTemporaryFile(suffix = filetype)
 				with open(original, 'wb') as f:
 					resp_file = resp.read()
 					shutil.copyfileobj(resp_file, f)
-					
+			"""
 					
 		"""
 		im = Image.open(original)
@@ -61,7 +65,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 		edited.close()
 		
 		return
-		"""
+		
 		
 		final_file = discord.File(original.name, filename = 'image.jpg')
 		embed = discord.Embed(color = discord.Colour.green())
@@ -70,7 +74,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 		
 		original.close()
 		return
-		
+	"""
 		
 		#Channel=ctx.message.channel
 		#logs = await client.logs_from(Channel, limit=20)

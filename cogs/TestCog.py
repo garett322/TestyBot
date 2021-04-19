@@ -17,7 +17,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 		for user in ctx.guild.members:
 			if user.name.lower().startswith(member.lower()):
 				pfp = user.avatar_url
-				embed = discord.Embed(title=f'{user.name}\'s avatar')
+				embed = discord.Embed(title=f'{user.name}\'s avatar.png')
 				embed.set_image(url=(pfp))
 				await ctx.send(embed = embed)
 				return
