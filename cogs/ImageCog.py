@@ -32,15 +32,15 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					return
 				else:
 		"""
-				if True:
-					response_headers = str(resp.headers)
-					header_start_index = response_headers.find("'Content-Type': '")
-					header_end_index = response_headers.find("', 'Date'")
-					await ctx.send(header_end_index + ' ' + header_start_index)
-					response_headers = response_headers[int(header_start_index), int(header_end_index)]
-					#filetype = '.' + response_headers.strip(';')
-					await ctx.send(response_headers)
-					return
+			if True:
+				response_headers = str(resp.headers)
+				header_start_index = response_headers.find("'Content-Type': '")
+				header_end_index = response_headers.find("', 'Date'")
+				await ctx.send(header_end_index + ' ' + header_start_index)
+				response_headers = response_headers[int(header_start_index), int(header_end_index)]
+				#filetype = '.' + response_headers.strip(';')
+				await ctx.send(response_headers)
+				return
 				
 			"""[int(6), int(11)]
 			
