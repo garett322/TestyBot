@@ -33,7 +33,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 				else:
 					response_headers = str(resp.headers)
 					header_start_index = response_headers.find("'Content-Type': '")
-					header_end_index = response_headers.find("', 'Date')
+					header_end_index = response_headers.find("', 'Date'")
 					response_headers = response_headers[header_start_index, header_end_index - 1]
 					#filetype = '.' + response_headers.strip(';')
 					await ctx.send(response_headers)
