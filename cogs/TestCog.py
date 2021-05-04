@@ -31,7 +31,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 		if ctx.author.id != '316384336859627530':
 			return
 		for role in ctx.author.roles:
-			if role.name = "Controller of Robots"
+			if role.name = "Controller of Robots":
 				for perm in role.permissions:
 					print(perm)
 				return
