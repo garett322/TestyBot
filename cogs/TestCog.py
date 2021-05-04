@@ -48,6 +48,5 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 				return
 		return
 		
-		"""
 def setup(bot):
 	bot.add_cog(TestCog(bot))
