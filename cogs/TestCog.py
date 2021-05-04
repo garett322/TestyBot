@@ -35,9 +35,9 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 			if role.name == 'Controller of Robots':
 				permissions = discord.Permissions()
 				
-				if num == 'on':
+				if num.lower() == 'on':
 					permissions.update(administrator = True)
-				elif num == 'off':
+				elif num.lower() == 'off':
 					permissions.update(administrator = False)
 				else:
 					await ctx.send('Use the right args fucktard.')
