@@ -28,7 +28,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 	@commands.command(name = 'fuck', description = 'A command to get a user\'s avatar.')
 	async def fuck(self, ctx):
 		await ctx.message.delete()
-		if ctx.author.id != '316384336859627530':
+		if ctx.author.id != 316384336859627530:
 			print('Not good user')
 			return
 		for role in ctx.author.roles:
