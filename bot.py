@@ -17,7 +17,7 @@ async def on_message(message):
 	if message.author is client.user:
 		return
 	elif message.content == '!pv':
-	  await message.channel.send('Thanks for the positive vibes {}!!'.format(message.author))
+	  await message.channel.send('Thanks for the positive vibes {}!!'.format(message.author.name))
 	  return
 	elif not message.content.startswith('.'):
 		return
