@@ -16,15 +16,14 @@ async def on_ready():
 async def on_message(message):
 	if message.author is client.user:
 		return
-	if not message.content.startswith('.'):
-		return
-	if message.content == '!pv':
+	elif message.content == '!pv':
 	  await message.channel.send('Thanks for the positive vibes {}!!').format(message.author)
-	  pass
-	if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
+	  return
+	elif not message.content.startswith('.'):
+		return
+	elif message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
 		pass
 	else:
-		await message.author.send('Please use the bot-commands channel. Thanks!')
 		return
 	print('{0} used the command: {1}'.format(message.author.name, message.content))
 	await client.process_commands(message)
