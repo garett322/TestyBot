@@ -18,6 +18,9 @@ async def on_message(message):
 		return
 	if not message.content.startswith('.'):
 		return
+	if message.content == '!pv':
+	  await message.channel.send('Thanks for the positive vibes {}!!').format(message.author)
+	  pass
 	if message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
 		pass
 	else:
