@@ -26,14 +26,17 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					else:
 						await ctx.send('An unknown error has occurred.')
 						return
-					await ctx.send("Got image with no errors")
 
 					image_formats = ("image/png", "image/jpeg", "image/jpg")
 					if resp.headers['content-type'] not in image_formats:
 						await ctx.send('The url you gave is not an image.')
 						return
+					else:
+						await ctx.send("Got image with no errors")
+						return
+
 			except:
-				await ctx.send("That url Doesnt exist.")
+				await ctx.send("That url doesnt exist")
 				return
 	
 	
