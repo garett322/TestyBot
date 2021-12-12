@@ -16,21 +16,32 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			await ctx.send('You need to give me the link to an image you want to use.')
 			return
 		async with aiohttp.ClientSession() as session:
-			async with session.get(url) as resp:
-				if resp.status == 200:
-					pass
-				elif resp.status == 400:
-					await ctx.send('I couldn\'t find that url. Please try again.')
-					return
-				else:
-					await ctx.send('An unknown error has occurred.')
-					return
-				await ctx.send("Got image with no errors")
+			try:	
+				async with session.get(url) as resp:
+					if resp.status == 200:
+						pass
+					elif resp.status == 400:
+						await ctx.send('I couldn\'t find that url. Please try again.')
+						return
+					else:
+						await ctx.send('An unknown error has occurred.')
+						return
+					await ctx.send("Got image with no errors")
+
+					image_formats = ("image/png", "image/jpeg", "image/jpg")
+					if resp.headers['content-type'] not in image_formats:
+						await ctx.send('The url you gave is not an image.')
+						return
+			except:
+				await ctx.send("That url Doesnt exist.")
+				return
 	
-				image_formats = ("image/png", "image/jpeg", "image/jpg")
-				if resp.headers['content-type'] not in image_formats:
-					await ctx.send('The url you gave is not an image.')
-					return
+	
+	
+	
+	
+	
+	
 	"""			
 				
 				else:
