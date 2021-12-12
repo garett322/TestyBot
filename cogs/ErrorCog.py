@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 	
 	
-class ErrorCog(commands.Cog, name = "Error Handler"):
+class ErrorCog(commands.Cog, name = "ErrorCog"):
 	def __init__(self, bot):
 		self.bot = bot
 	
