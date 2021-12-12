@@ -30,7 +30,7 @@ async def on_message(message):
 
 
 
-#client.load_extension('cogs.ImageCog')
+client.load_extension('cogs.ImageCog')
 client.load_extension('cogs.TestCog')
 #client.load_extension('cogs.RoleCog')
 #client.load_extension('cogs.VcCog')
