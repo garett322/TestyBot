@@ -16,7 +16,9 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 			await ctx.send('You need to give me the link to an image you want to use.')
 			return
 		async with aiohttp.ClientSession() as session:
-			try:	
+			
+			if True:
+			#try:	
 				async with session.get(url) as resp:
 					if resp.status == 200:
 						pass
@@ -61,9 +63,9 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					original.close()
 					return
 					
-			except:
-				await ctx.send("That url doesnt exist")
-				return
+#			except:
+#				await ctx.send("That url doesnt exist")
+#				return
 
 
 
