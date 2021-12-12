@@ -25,14 +25,20 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 				else:
 					await ctx.send('An unknown error has occurred.')
 					return
+				await ctx.send("Got image with no errors")
+				return
+		
+		
+		
+		
 		"""
 				image_formats = ("image/png", "image/jpeg", "image/jpg")
 				if resp.headers['content-type'] not in image_formats:
 					await ctx.send('The url you gave is not an image.')
 					return
 				else:
-		"""
-			if True:
+		
+		if True:
 				response_headers = str(resp.headers)
 				header_start_index = response_headers.find("'Content-Type': '")
 				header_end_index = response_headers.find("', 'Date'")
@@ -42,7 +48,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 				await ctx.send(response_headers)
 				return
 				
-			"""[int(6), int(11)]
+				[int(6), int(11)]
 			
 				original = tempfile.NamedTemporaryFile(suffix = filetype)
 				with open(original, 'wb') as f:
