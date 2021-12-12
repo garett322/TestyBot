@@ -35,9 +35,18 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 						await ctx.send("Got image with no errors")
 						return
 
+
+					filetype = str(resp.headers['content-type'])[5:]
+					await ctx.send('This is a ' + filetype)
+					return
+
+					
+
 			except:
 				await ctx.send("That url doesnt exist")
 				return
+
+
 	
 	
 	
