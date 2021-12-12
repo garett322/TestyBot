@@ -37,6 +37,8 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					filetype = "." + str(resp.headers['content-type'])[6:]
 					await ctx.send('This is a ' + filetype)
 
+					await ctx.send(resp.json())
+
 
 
 					original = tempfile.NamedTemporaryFile(suffix = filetype)
