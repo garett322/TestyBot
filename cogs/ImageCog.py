@@ -40,7 +40,7 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 
 
 					original = tempfile.NamedTemporaryFile(suffix = filetype)
-					with open("./" + original.name + filetype, 'wb') as f:
+					with open("./" + original.name, 'wb') as f:
 						shutil.copyfileobj(resp.read(), f)
 
 						im = Image.open(original)

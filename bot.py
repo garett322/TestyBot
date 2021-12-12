@@ -34,7 +34,7 @@ client.load_extension('cogs.ImageCog')
 client.load_extension('cogs.TestCog')
 #client.load_extension('cogs.RoleCog')
 #client.load_extension('cogs.VcCog')
-client.load_extension('cogs.ErrorCog')
+#client.load_extension('cogs.ErrorCog')
 client.load_extension('cogs.TriviaCog')
 client.load_extension('cogs.UnloadCog')
 
