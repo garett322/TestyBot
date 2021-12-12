@@ -26,16 +26,13 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					await ctx.send('An unknown error has occurred.')
 					return
 				await ctx.send("Got image with no errors")
-				return
-		
-		
-		
-		
-		"""
+	
 				image_formats = ("image/png", "image/jpeg", "image/jpg")
 				if resp.headers['content-type'] not in image_formats:
 					await ctx.send('The url you gave is not an image.')
 					return
+	"""			
+				
 				else:
 		
 		if True:
@@ -54,9 +51,9 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 				with open(original, 'wb') as f:
 					resp_file = resp.read()
 					shutil.copyfileobj(resp_file, f)
-			"""
+
+
 					
-		"""
 		im = Image.open(original)
 		draw = ImageDraw.Draw(im)
 		font = ImageFont.truetype('./fonts/news-cycle.ttf', int(size))
