@@ -31,10 +31,6 @@ class ImageCog(commands.Cog, name = "Image Manipulator"):
 					if resp.headers['content-type'] not in image_formats:
 						await ctx.send('The url you gave is not an image.')
 						return
-					else:
-						await ctx.send("Got image with no errors")
-						return
-
 
 					filetype = str(resp.headers['content-type'])[5:]
 					await ctx.send('This is a ' + filetype)
