@@ -21,7 +21,7 @@ async def on_message(message):
 	  return
 	elif not message.content.startswith('.'):
 		return
-	elif message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta':
+	elif message.channel.name == 'bot-commands' or message.channel.name == 'bot-commands-beta' or message.channel.name == 'spruce-bot-commands':
 		pass
 	else:
 		return
