@@ -13,10 +13,9 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 		return
 	
 	@commands.command(name = 'avatar', description = 'A command to get a user\'s avatar.')
-	async def avatar(self, ctx, *, avamember):
-		avauser = await self.bot.fetch_user(avamember)
-		avatarURL = avauser.avatar_url
-		await ctx.send(avatarURL)
+	async def avatar(self, ctx, *,  avamember : discord.Member=None):
+		userAvatarUrl = avamember.avatar_url
+		await ctx.send(userAvatarUrl)
 		return
 		
 
