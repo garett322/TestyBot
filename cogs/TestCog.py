@@ -14,7 +14,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 	
 	@commands.command(name = 'avatar', description = 'A command to get a user\'s avatar.')
 	async def avatar(self, ctx, *, avamember):
-		user = await bot.fetch_user(avamember)
+		user = await self.bot.fetch_user(avamember)
 		avatarURL = user.avatar_url
 		await ctx.send(avatarURL)
 		return
