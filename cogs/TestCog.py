@@ -16,6 +16,7 @@ class TestCog(commands.Cog, name = 'Test Commands'):
 	async def avatar(self, ctx):
 		mentions = ctx.message.mentions[0]
 		await ctx.send(mentions)
+		await ctx.send (mentions.avatar)
 		await ctx.send (mentions.avatar_url)
 		
 
