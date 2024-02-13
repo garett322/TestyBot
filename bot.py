@@ -10,6 +10,7 @@ client = commands.Bot(command_prefix = ".", intents = intents)
 async def on_ready():
 	print('Logged in as {}'.format(client.user))
 	
+	
 @client.event
 async def on_message(message):
 	if message.author is client.user:
@@ -30,4 +31,4 @@ client.load_extension('cogs.ErrorCog')
 client.load_extension('cogs.TriviaCog')
 client.load_extension('cogs.UnloadCog')
 
-client.run(os.environ.get('BOT_TOKEN'))
+client.run(var)
