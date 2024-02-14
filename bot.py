@@ -9,6 +9,9 @@ client = commands.Bot(command_prefix = ".", intents = intents)
 @client.event
 async def on_ready():
 	print('Logged in as {}'.format(client.user))
+	with open('BOT_TOKEN.txt','r') as file:
+    		bot_token = " ".join(line.rstrip() for line in file)
+    		
 	
 	
 @client.event
@@ -31,4 +34,4 @@ client.load_extension('cogs.ErrorCog')
 client.load_extension('cogs.TriviaCog')
 client.load_extension('cogs.UnloadCog')
 
-client.run(var)
+client.run(bot_token)
