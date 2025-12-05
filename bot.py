@@ -31,7 +31,6 @@ async def on_message(message):
 
 client.load_extension('cogs.TestCog')
 client.load_extension('cogs.ErrorCog')
-client.load_extension('cogs.TriviaCog')
 client.load_extension('cogs.UnloadCog')
 
 client.run(bot_token)
